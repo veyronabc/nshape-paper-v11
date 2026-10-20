@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>N字二板模拟盘 v1.1</title>
+<style>
+:root{--bg:#0b1020;--card:#131a2e;--line:#24304d;--text:#e8eefc;--muted:#8fa0bf;--red:#ff5c72;--green:#28d49a;--blue:#5aa9ff;--gold:#f4c15d}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(1100px 500px at 15% -10%,#1a2950 0,var(--bg) 55%);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+.wrap{max-width:1260px;margin:0 auto;padding:20px}
+header{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:18px;flex-wrap:wrap}
+h1{font-size:24px;margin:0 0 6px}sub{color:var(--muted);font-size:12px;line-height:1.6}
+.badge{padding:6px 10px;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-size:12px}
+.cards{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:14px}
+.card{background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.015));border:1px solid var(--line);border-radius:15px;padding:15px}
+.label{color:var(--muted);font-size:12px;margin-bottom:8px}.value{font-size:21px;font-weight:700;letter-spacing:.4px}
+.up{color:var(--green)}.down{color:var(--red)}.gold{color:var(--gold)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px}
+.step{display:flex;align-items:center;gap:11px;background:#10182c;border:1px solid var(--line);border-radius:14px;padding:13px 15px}
+.step b{width:29px;height:29px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#2f7cf6,#7b5cff);font-size:13px;flex:0 0 auto}
+.step span{font-size:12px;color:#dce6fb}.step em{margin-left:auto;font-style:normal;color:var(--muted);font-size:11px;text-align:right}
+.grid{display:grid;grid-template-columns:1.55fr 1fr;gap:14px;margin-bottom:14px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:15px;overflow:hidden;margin-bottom:14px}
+.panel h2{font-size:14px;margin:0 0 12px;color:#dce6fb;display:flex;justify-content:space-between;gap:8px}
+.panel h2 span{font-size:11px;color:var(--muted);font-weight:400}
+svg{width:100%;height:280px;display:block}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{color:var(--muted);font-weight:500;text-align:left;padding:8px 7px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:9px 7px;border-bottom:1px solid rgba(36,48,77,.55);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+.pill{display:inline-block;padding:3px 7px;border-radius:999px;font-size:10px;border:1px solid var(--line)}
+.pill.待触发{color:#ffcf6b;border-color:#7a5b1d;background:#2a2110}
+.pill.触发买入{color:#28d49a;border-color:#1e6b52;background:#0d2b23}
+.pill.等待回调{color:#8bc7ff;border-color:#24517d;background:#0f2238}
+.pill.淘汰{color:#ff8fa0;border-color:#6b2632;background:#2a1118}
+.pill.A{color:#ffcf6b;border-color:#7a5b1d;background:#2a2110}
+.pill.B{color:#8bc7ff;border-color:#24517d;background:#0f2238}
+.empty{color:var(--muted);font-size:12px;padding:16px 4px}
+.muted{color:var(--muted);font-size:12px;line-height:1.7}
+.footer{color:var(--muted);font-size:11px;line-height:1.8;padding:8px 2px 24px}
+@media(max-width:900px){.cards{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:1fr}.grid{grid-template-columns:1fr}h1{font-size:21px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div>
+    <h1>N字二板 · 模拟盘 <span class="gold">v1.1</span></h1>
+    <sub>10 万起始资金 · 分支 A/B · 单阳不破 · 09:45 前涨超3%</sub>
+    <sub id="lastrun">正在读取数据...</sub>
+  </div>
+  <div class="badge">GitHub Actions 自动更新 · 09:25 / 09:50 / 16:30 北京时间</div>
+</header>
+
+<div class="cards">
+  <div class="card"><div class="label">总资产</div><div class="value" id="equity">--</div></div>
+  <div class="card"><div class="label">累计收益</div><div class="value" id="ret">--</div></div>
+  <div class="card"><div class="label">可用现金</div><div class="value" id="cash">--</div></div>
+  <div class="card"><div class="label">持仓数量</div><div class="value" id="poscount">--</div></div>
+  <div class="card"><div class="label">最大回撤</div><div class="value" id="mdd">--</div></div>
+</div>
+
+<div class="steps">
+  <div class="step"><b>1</b><span>盘前筛选 · 股票池</span><em id="poolCount">--</em></div>
+  <div class="step"><b>2</b><span>09:50 触发 · 持仓池</span><em id="buyCount">--</em></div>
+  <div class="step"><b>3</b><span>收盘复盘 · 收益</span><em id="dayPnl">--</em></div>
+</div>
+
+<div class="grid">
+  <div class="panel"><h2>净值曲线 <span id="chartNote"></span></h2><svg id="chart" viewBox="0 0 900 280" preserveAspectRatio="none"></svg></div>
+  <div class="panel"><h2>模型规则</h2>
+    <div class="muted">
+      <b class="gold">分支 A · 强市顺势</b><br>
+      HS300 在 MA20 上方 · 首板前20日 &gt;30% · 开板1–2次 · 高开3%–5%<br><br>
+      <b style="color:#8bc7ff">分支 B · 弱市反转</b><br>
+      HS300 在 MA20 下方 · 首板前20日 &lt;-5% · 5/20量比 &lt;0.8 · 高开3%–5%<br><br>
+      共用：10:45后首板 · 单阳不破 · 小阳≤1 · 09:45前涨超3% · 封二板持有连续板，断板日收盘卖
+    </div>
+  </div>
+</div>
+
+<div class="panel"><h2>第一步 · 股票池 <span>满足和未满足条件都列出原因</span></h2><div id="stockpool"></div></div>
+<div class="panel"><h2>第二步 · 持仓池</h2><div id="positions"></div></div>
+<div class="panel"><h2>第三步 · 今日复盘</h2><div id="reviews"></div></div>
+<div class="panel"><h2>历史交易</h2><div id="trades"></div></div>
+
+<div class="footer">
+  数据来源：miana Tushare 代理 · 模拟成交，不含真实委托 · 历史回测与模拟盘不代表未来收益。<br>
+  本页面由 GitHub Actions 自动更新，账户状态保存在仓库中的 <code>paper_account_v11.json</code>。
+</div>
+</div>
+
+<script>
+const fmt=n=>Number(n||0).toLocaleString('zh-CN',{maximumFractionDigits:2});
+const pct=n=>(n>=0?'+':'')+(n*100).toFixed(2)+'%';
+function table(rows,cols){
+  if(!rows||!rows.length)return '<div class="empty">暂无记录</div>';
+  let h='<div style="overflow:auto"><table><tr>'+cols.map(c=>`<th>${c[0]}</th>`).join('')+'</tr>';
+  for(const row of rows){
+    h+='<tr>'+cols.map(c=>{
+      let v=row[c[1]];
+      if(c[1]==='branch'||c[1]==='status')return `<td><span class="pill ${v||''}">${v??''}</span></td>`;
+      if(['pnl','entry_price','price','prev_close','threshold','equity','day_pnl','shares'].includes(c[1])&&v!=null)v=fmt(v);
+      return `<td>${v??''}</td>`;
+    }).join('')+'</tr>';
+  }
+  return h+'</table></div>';
+}
+function draw(eq){
+  const svg=document.getElementById('chart');
+  const W=900,H=280,L=52,R=18,T=14,B=26,pw=W-L-R,ph=H-T-B;
+  if(!eq||!eq.length){svg.innerHTML='';return}
+  const vals=eq.map(x=>Number(x.equity));
+  const init=vals[0];let mn=Math.min(...vals,init)*.97,mx=Math.max(...vals,init)*1.03;
+  if(mn===mx){mn*=.99;mx*=1.01}
+  const X=i=>L+pw*i/Math.max(1,eq.length-1),Y=v=>T+ph*(mx-v)/(mx-mn);
+  let s='';
+  for(let k=0;k<5;k++){
+    const v=mn+(mx-mn)*k/4,y=Y(v);
+    s+=`<line x1="${L}" y1="${y}" x2="${W-R}" y2="${y}" stroke="#24304d"/>`;
+    s+=`<text x="${L-8}" y="${y+4}" fill="#8fa0bf" font-size="10" text-anchor="end">${Math.round(v/1000)}k</text>`;
+  }
+  s+=`<line x1="${L}" y1="${Y(init)}" x2="${W-R}" y2="${Y(init)}" stroke="#4a5b7d" stroke-dasharray="5 5"/>`;
+  s+='<polyline fill="none" stroke="#ff5c72" stroke-width="2.4" points="'+eq.map((x,i)=>`${X(i)},${Y(x.equity)}`).join(' ')+'"/>';
+  svg.innerHTML=s;
+}
+async function load(){
+  try{
+    const [stateRes,runRes]=await Promise.all([
+      fetch('state.json?t='+Date.now()),
+      fetch('last_run.json?t='+Date.now()).catch(()=>null)
+    ]);
+    const state=await stateRes.json();
+    const run=runRes&&runRes.ok?await runRes.json():null;
+    const eq=state.equity_curve||[];
+    const last=eq.length?Number(eq[eq.length-1].equity):Number(state.initial_capital);
+    const ret=last/state.initial_capital-1;
+    let peak=state.initial_capital,mdd=0;
+    for(const x of eq){peak=Math.max(peak,Number(x.equity));mdd=Math.max(mdd,(peak-Number(x.equity))/peak)}
+    document.getElementById('equity').textContent='¥'+fmt(last);
+    const r=document.getElementById('ret');r.textContent=pct(ret);r.className='value '+(ret>=0?'up':'down');
+    document.getElementById('cash').textContent='¥'+fmt(state.cash);
+    document.getElementById('poscount').textContent=(state.positions||[]).length;
+    document.getElementById('mdd').textContent=(mdd*100).toFixed(2)+'%';
+    document.getElementById('lastrun').textContent = run
+      ? `最近运行：${run.stage} · ${run.trade_date} · ${run.message}`
+      : '等待首次 GitHub Actions 运行';
+    document.getElementById('chartNote').textContent = eq.length?`${eq[0].date} ~ ${eq[eq.length-1].date}`:'';
+
+    const pool=state.stock_pool||[];
+    const pending=pool.filter(x=>x.status==='待触发').length;
+    const waiting=pool.filter(x=>x.status==='等待回调').length;
+    document.getElementById('poolCount').textContent=`${pending} 待触发 / ${waiting} 观察`;
+    const today=run?run.trade_date:(state.last_review_date||state.last_buy_date||state.last_preopen_date||state.start_date);
+    const buys=(state.trades||[]).filter(t=>t.date===today&&t.side==='BUY');
+    document.getElementById('buyCount').textContent=`${(state.positions||[]).length} 持仓 / ${buys.length} 今日买入`;
+    const review=(state.reviews||[]).slice(-1)[0];
+    const dp=document.getElementById('dayPnl');
+    if(review){dp.textContent=(review.day_pnl>=0?'+':'')+fmt(review.day_pnl)+' 元';dp.className='step '+(review.day_pnl>=0?'up':'down')}
+    else{dp.textContent='--';dp.className='step'}
+
+    document.getElementById('stockpool').innerHTML=table(pool,[
+      ['状态','status'],['分支','branch'],['代码','code'],['名称','name'],['首板日','first_date'],
+      ['间隔','gap_days'],['昨收','prev_close'],['触发价','threshold'],['原因','reason']
+    ]);
+    document.getElementById('positions').innerHTML=table(state.positions,[
+      ['代码','code'],['名称','name'],['分支','branch'],['买入日','entry_date'],['成本','entry_price'],['股数','shares'],['状态','status']
+    ]);
+    document.getElementById('reviews').innerHTML=table((state.reviews||[]).slice().reverse(),[
+      ['日期','date'],['净值','equity'],['现金','cash'],['卖出','sells'],['当日盈亏','day_pnl'],['累计收益','total_return']
+    ]);
+    document.getElementById('trades').innerHTML=table((state.trades||[]).slice().reverse(),[
+      ['日期','date'],['方向','side'],['代码','code'],['名称','name'],['分支','branch'],['价格','price'],['股数','shares'],['盈亏','pnl'],['原因','reason']
+    ]);
+    draw(eq);
+  }catch(e){
+    document.getElementById('lastrun').textContent='数据加载失败：'+e.message;
+  }
+}
+load();setInterval(load,60000);
+</script>
+</body>
+</html>

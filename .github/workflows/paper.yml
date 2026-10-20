@@ -1,0 +1,112 @@
+name: N字二板模拟盘
+
+on:
+  schedule:
+    # GitHub Actions 使用 UTC；以下对应北京时间
+    - cron: "25 1 * * 1-5"   # 09:25 盘前筛选
+    - cron: "50 1 * * 1-5"   # 09:50 触发买入
+    - cron: "30 8 * * 1-5"   # 16:30 收盘复盘
+  workflow_dispatch:
+    inputs:
+      stage:
+        description: "preopen / buy / review"
+        required: true
+        default: "preopen"
+        type: choice
+        options:
+          - preopen
+          - buy
+          - review
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: nshape-paper-v11
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Restore market cache
+        uses: actions/cache@v4
+        with:
+          path: engine/cache
+          key: nshape-v11-${{ github.run_id }}
+          restore-keys: |
+            nshape-v11-
+
+      - name: Determine stage
+        id: stage
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "stage=${{ github.event.inputs.stage }}" >> "$GITHUB_OUTPUT"
+          elif [ "${{ github.event.schedule }}" = "25 1 * * 1-5" ]; then
+            echo "stage=preopen" >> "$GITHUB_OUTPUT"
+          elif [ "${{ github.event.schedule }}" = "50 1 * * 1-5" ]; then
+            echo "stage=buy" >> "$GITHUB_OUTPUT"
+          else
+            echo "stage=review" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Bootstrap market cache
+        run: python engine/bootstrap_cache.py
+
+      - name: Run stage with retry
+        shell: bash
+        run: |
+          for attempt in 1 2 3; do
+            python deploy_runner.py --stage "${{ steps.stage.outputs.stage }}" && exit 0
+            sleep 300
+          done
+          exit 1
+
+      - name: Publish current state to static site
+        run: |
+          cp paper_account_v11.json public/state.json
+
+      - name: Commit state
+        shell: bash
+        run: |
+          git config user.name "nshape-bot"
+          git config user.email "nshape-bot@users.noreply.github.com"
+          git add paper_account_v11.json public/state.json public/last_run.json
+          if git diff --cached --quiet; then
+            echo "no state change"
+          else
+            git commit -m "Update paper account $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            git push
+          fi
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+  deploy:
+    needs: update
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
