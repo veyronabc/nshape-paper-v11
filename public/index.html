@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>N字二板模拟盘 v1.1</title>
+<title>N字二板模拟盘 v1.3</title>
 <style>
 :root{--bg:#0b1020;--card:#131a2e;--line:#24304d;--text:#e8eefc;--muted:#8fa0bf;--red:#ff5c72;--green:#28d49a;--blue:#5aa9ff;--gold:#f4c15d}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(1100px 500px at 15% -10%,#1a2950 0,var(--bg) 55%);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
@@ -45,8 +45,8 @@ tr:last-child td{border-bottom:0}
 <div class="wrap">
 <header>
   <div>
-    <h1>N字二板 · 模拟盘 <span class="gold">v1.1</span></h1>
-    <sub>10 万起始资金 · 分支 A/B · 单阳不破 · 09:45 前涨超3%</sub>
+    <h1>N字二板 · 模拟盘 <span class="gold">v1.3</span></h1>
+    <sub>10 万起始资金 · 单笔 20% · 最多 5 笔 · 单阳不破 · 09:45 前涨超3%</sub>
     <sub id="lastrun">正在读取数据...</sub>
   </div>
   <div style="display:flex;gap:8px;flex-wrap:wrap">
@@ -82,12 +82,17 @@ tr:last-child td{border-bottom:0}
       共用：10:45后首板 · 单阳不破 · 小阳≤1 · 09:45前涨超3%<br>
       未封二板：T+2收盘卖 · 封二板：持有连续板，断板日收盘卖<br>
       <span style="color:#ff8fa0">T+2收盘卖收益更高，但回撤也更大。</span>
+      <br><br><b style="color:#ffcf6b">v1.3 执行池</b><br>
+      A：60日涨幅20%–100%，排除20日涨幅40%–60%<br>
+      A：排除首板换手10%–20%、流通市值100–200亿<br>
+      B：保持前20日&lt;-5%、5/20量比&lt;0.8
     </div>
   </div>
 </div>
 
 <div class="panel"><h2>第一步 · 股票池 <span>满足和未满足条件都列出原因</span></h2><div id="stockpool"></div></div>
 <div class="panel"><h2>v1.2 精选池 <span>从 v1.1 池中二次筛选，仅展示，不参与 v1.1 执行</span></h2><div id="v12pool"></div></div>
+<div class="panel"><h2>v1.3 执行池 <span>实际参与模拟买入</span></h2><div id="v13pool"></div></div>
 <div class="panel"><h2>第二步 · 持仓池</h2><div id="positions"></div></div>
 <div class="panel"><h2>第三步 · 今日复盘</h2><div id="reviews"></div></div>
 <div class="panel"><h2>历史交易</h2><div id="trades"></div></div>
@@ -156,7 +161,7 @@ async function loadQuotes(){
 }
 async function loadWatchQuotes(){
   if(watchTimer){clearTimeout(watchTimer);watchTimer=null}
-  const pending=(state?.stock_pool||[]).filter(x=>x.status==='待触发');
+  const pending=(state?.v13_pool||[]).filter(x=>x.status==='待触发');
   const positions=(state?.positions||[]).map(p=>({...p,status:'持仓',first_date:p.entry_date,threshold:p.entry_price,prev_close:p.entry_price}));
   const rows=[...pending,...positions];
   const codes=[...new Set(rows.map(x=>x.code).filter(Boolean))];
@@ -178,7 +183,7 @@ async function loadWatchQuotes(){
   watchTimer=setTimeout(loadWatchQuotes,tencent?1000:3000);
 }
 function renderWatch(){
-  const pending=(state?.stock_pool||[]).filter(x=>x.status==='待触发');
+  const pending=(state?.v13_pool||[]).filter(x=>x.status==='待触发');
   const positions=(state?.positions||[]).map(p=>({...p,status:'持仓',first_date:p.entry_date,threshold:p.entry_price,prev_close:p.entry_price}));
   const rows=[...pending,...positions].map(x=>{
     const q=watchQuotes[x.code]||quotes[x.code];
@@ -263,7 +268,8 @@ async function load(){
     const pending=pool.filter(x=>x.status==='待触发').length;
     const waiting=pool.filter(x=>x.status==='等待回调').length;
     const v12=state.v12_pool||[];
-    document.getElementById('poolCount').textContent=`${pending} 待触发 / ${waiting} 观察 / v1.2 ${v12.length}`;
+    const v13=state.v13_pool||[];
+    document.getElementById('poolCount').textContent=`${pending} 待触发 / ${waiting} 观察 / v1.2 ${v12.length} / v1.3 ${v13.length}`;
     const today=run?run.trade_date:(state.last_review_date||state.last_buy_date||state.last_preopen_date||state.start_date);
     const buys=(state.trades||[]).filter(t=>t.date===today&&t.side==='BUY');
     document.getElementById('buyCount').textContent=`${(state.positions||[]).length} 持仓 / ${buys.length} 今日买入`;
@@ -278,6 +284,11 @@ async function load(){
       ['涨跌幅','live_pct'],['距触发','distance'],['实时状态','live_status'],['原因','reason']
     ]);
     document.getElementById('v12pool').innerHTML=table(withQuotes(v12),[
+      ['状态','status'],['分支','branch'],['代码','code'],['名称','name'],['首板日','first_date'],
+      ['间隔','gap_days'],['昨收','prev_close'],['触发价','threshold'],['实时价','live_price'],
+      ['涨跌幅','live_pct'],['距触发','distance'],['实时状态','live_status'],['原因','reason']
+    ]);
+    document.getElementById('v13pool').innerHTML=table(withQuotes(v13),[
       ['状态','status'],['分支','branch'],['代码','code'],['名称','name'],['首板日','first_date'],
       ['间隔','gap_days'],['昨收','prev_close'],['触发价','threshold'],['实时价','live_price'],
       ['涨跌幅','live_pct'],['距触发','distance'],['实时状态','live_status'],['原因','reason']

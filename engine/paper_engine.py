@@ -271,6 +271,8 @@ def enrich_candidate(event, rows, market_up):
         return None
     last = closes[-1]
     prior20 = last / closes[-21] - 1 if len(closes) >= 21 else 0.0
+    pre_ret20 = prior20
+    pre_ret60 = last / closes[-61] - 1 if len(closes) >= 61 else 0.0
     ma5 = statistics.mean(closes[-5:])
     ma20 = statistics.mean(closes[-20:])
     ma60 = statistics.mean(closes[-60:]) if len(closes) >= 60 else ma20
@@ -282,6 +284,8 @@ def enrich_candidate(event, rows, market_up):
         "first_low": first["low"],
         "first_vol": first["vol"],
         "prior20": prior20,
+        "pre_ret20": pre_ret20,
+        "pre_ret60": pre_ret60,
         "dist_ma20": last / ma20 - 1 if ma20 else 0,
         "vol_ratio_5_20": v5 / v20 if v20 else 1.0,
         "bear_ma": ma5 < ma20 < ma60,

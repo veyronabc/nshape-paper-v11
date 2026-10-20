@@ -42,8 +42,8 @@ def write_json(path, data):
 def empty_state(date):
     return {
         "account": "N字二板模拟账户 v1.1",
-        "version": "1.1.0",
-        "model": "N字二板量化模型 v1.1",
+        "version": "1.3.0",
+        "model": "N字二板量化模型 v1.3",
         "initial_capital": INITIAL,
         "start_date": date,
         "cash": INITIAL,
@@ -73,7 +73,10 @@ def ensure_state(path, date):
     state = get_state(path)
     if state is None:
         state = empty_state(date)
-        write_json(path, state)
+    state["version"] = "1.3.0"
+    state["model"] = "N字二板量化模型 v1.3"
+    state["position_sizing"] = "单笔20%，最多5笔，单日最多3笔"
+    write_json(path, state)
     return state
 
 
@@ -106,6 +109,46 @@ def stage_preopen(date, path):
         "排除首板换手率 10%-20%",
         "排除流通市值 100-200 亿",
     ]
+    # 第三层：v1.3 实际执行池
+    v13_pool = []
+    for item in result["pool"]:
+        if item.get("status") not in ("待触发", "等待回调"):
+            continue
+        branch = item.get("branch")
+        try:
+            prior20 = float(item.get("prior20"))
+        except Exception:
+            continue
+        ok = False
+        if branch == "A":
+            try:
+                pre60 = float(item.get("pre_ret60"))
+                turnover = float(item.get("first_turnover"))
+                float_mv = float(item.get("float_mv"))
+                ok = (
+                    prior20 > 0.30
+                    and 0.20 <= pre60 < 1.0
+                    and not (0.40 <= prior20 < 0.60)
+                    and not (10 <= turnover < 20)
+                    and not (100e8 <= float_mv < 200e8)
+                )
+            except Exception:
+                ok = False
+        elif branch == "B":
+            try:
+                volr = float(item.get("vol_ratio_5_20"))
+                ok = prior20 < -0.05 and volr < 0.8
+            except Exception:
+                ok = False
+        if ok:
+            v13_pool.append({**item, "pool": "v1.3执行"})
+    state["v13_pool"] = v13_pool
+    state["v13_pool_date"] = date
+    state["v13_filters"] = [
+        "A：60日涨幅20%-100%，排除20日涨幅40%-60%",
+        "A：排除换手10%-20%和市值100-200亿",
+        "B：保持前20日<-5%、5/20量比<0.8",
+    ]
     state["last_preopen_date"] = date
     write_json(path, state)
     counts = {
@@ -119,9 +162,10 @@ def stage_preopen(date, path):
         "counts": counts,
         "pool": result["pool"],
         "v12_pool": v12_pool,
+        "v13_pool": v13_pool,
         "message": (
             f"盘前池已生成：待触发 {counts['待触发']}，等待回调 {counts['等待回调']}，"
-            f"淘汰 {counts['淘汰']}；v1.2 精选 {len(v12_pool)}"
+            f"淘汰 {counts['淘汰']}；v1.2 精选 {len(v12_pool)}；v1.3 执行 {len(v13_pool)}"
         ),
     }
 
@@ -142,7 +186,7 @@ def stage_buy(date, path):
         state = get_state(path)
 
     candidates = [
-        p for p in state.get("stock_pool", []) if p.get("status") == "待触发"
+        p for p in state.get("v13_pool", []) if p.get("status") == "待触发"
     ]
     # 同一代码只保留最近一次首板
     unique = {}
@@ -224,16 +268,18 @@ def stage_buy(date, path):
             "reason": "09:45前涨超3%触发",
         }
         trades.append(trade)
-        for p in state["stock_pool"]:
-            if p.get("code") == cand["code"]:
-                p["status"] = "触发买入"
-                p["entry_price"] = price
-                p["entry_gap"] = cand["entry_gap"]
+        for pool_name in ("stock_pool", "v13_pool"):
+            for p in state.get(pool_name, []):
+                if p.get("code") == cand["code"]:
+                    p["status"] = "触发买入"
+                    p["entry_price"] = price
+                    p["entry_gap"] = cand["entry_gap"]
     # 未触发的池内股票更新状态
     triggered_codes = {t["code"] for t in trades}
-    for p in state["stock_pool"]:
-        if p.get("status") == "待触发" and p.get("code") not in triggered_codes:
-            p["status"] = p.get("buy_status", "未触发")
+    for pool_name in ("stock_pool", "v13_pool"):
+        for p in state.get(pool_name, []):
+            if p.get("status") == "待触发" and p.get("code") not in triggered_codes:
+                p["status"] = p.get("buy_status", "未触发")
 
     state["cash"] = cash
     state["positions"] = positions
