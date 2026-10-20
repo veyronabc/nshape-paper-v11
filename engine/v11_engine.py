@@ -208,7 +208,8 @@ def stage_buy(date, path):
             "cost": cost,
             # 买入日不能卖；收盘确认是否封板，未封板则下一交易日开盘卖。
             "status": "待收盘确认",
-            "pending_t1_open": True,
+            "pending_t1_open": False,
+            "pending_t2_close": True,
         }
         positions.append(pos)
         trade = {
@@ -264,6 +265,7 @@ def stage_review(date, path):
         if state.get("equity_curve")
         else state["initial_capital"]
     )
+    date_index = {d: i for i, d in enumerate(dates)}
     rows = pe.ensure_daily(date)
     today_map = {r["ts_code"]: r for r in rows}
     limit_rows = pe.ensure_limit(date)
@@ -281,11 +283,44 @@ def stage_review(date, path):
         if pos.get("entry_date") == date:
             if pos["code"] in up_limits:
                 pos["pending_t1_open"] = False
+                pos["pending_t2_close"] = False
                 pos["status"] = "封板/连板中"
             else:
-                pos["pending_t1_open"] = True
-                pos["status"] = "T+1待卖"
+                pos["pending_t1_open"] = False
+                pos["pending_t2_close"] = True
+                pos["status"] = "T+2待卖"
             positions.append(pos)
+            continue
+        # 买入日未封板：T+2 收盘卖（历史总收益最高）
+        if pos.get("pending_t2_close"):
+            entry_idx = date_index.get(pos.get("entry_date"))
+            today_idx = date_index.get(date)
+            gap = today_idx - entry_idx if entry_idx is not None and today_idx is not None else 0
+            if gap < 2:
+                pos["status"] = "T+2待卖"
+                positions.append(pos)
+                continue
+            if pos["code"] in down_limits and float(row.get("close") or 0) <= float(row.get("low") or 0):
+                pos["status"] = "跌停无法卖出，顺延"
+                positions.append(pos)
+                continue
+            price = float(row.get("close") or 0)
+            proceeds = pos["shares"] * price * (1 - FEE - SLIP)
+            cash += proceeds
+            pnl = proceeds - pos["cost"]
+            trades.append(
+                {
+                    "date": date,
+                    "side": "SELL",
+                    "code": pos["code"],
+                    "name": pos["name"],
+                    "branch": pos.get("branch"),
+                    "price": price,
+                    "shares": pos["shares"],
+                    "pnl": pnl,
+                    "reason": "T+2收盘卖（买入日未封板）",
+                }
+            )
             continue
         # 买入日未封板：下一交易日开盘卖
         if pos.get("pending_t1_open"):
