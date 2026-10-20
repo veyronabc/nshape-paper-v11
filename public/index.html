@@ -49,7 +49,10 @@ tr:last-child td{border-bottom:0}
     <sub>10 万起始资金 · 分支 A/B · 单阳不破 · 09:45 前涨超3%</sub>
     <sub id="lastrun">正在读取数据...</sub>
   </div>
-  <div class="badge">GitHub Actions 自动更新 · 09:25 / 09:50 / 16:30 北京时间</div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap">
+    <div class="badge">GitHub Actions 自动更新 · 09:25 / 09:50 / 16:30</div>
+    <div class="badge" id="quoteBadge">实时行情加载中 · 盘中5秒刷新</div>
+  </div>
 </header>
 
 <div class="cards">
@@ -89,6 +92,7 @@ tr:last-child td{border-bottom:0}
 
 <div class="footer">
   数据来源：miana Tushare 代理 · 模拟成交，不含真实委托 · 历史回测与模拟盘不代表未来收益。<br>
+  实时价来自东方财富批量行情接口，盘中每 5 秒刷新；非交易时段显示最新收盘价。<br>
   本页面由 GitHub Actions 自动更新，账户状态保存在仓库中的 <code>paper_account_v11.json</code>。
 </div>
 </div>
@@ -96,6 +100,26 @@ tr:last-child td{border-bottom:0}
 <script>
 const fmt=n=>Number(n||0).toLocaleString('zh-CN',{maximumFractionDigits:2});
 const pct=n=>(n>=0?'+':'')+(n*100).toFixed(2)+'%';
+let quotes={}, quoteTime='';
+function secid(code){return (String(code).startsWith('6')?'1.':'0.')+code}
+async function loadQuotes(){
+  try{
+    const codes=[...new Set([...(state?.stock_pool||[]),...(state?.v12_pool||[])].map(x=>x.code).filter(Boolean))];
+    if(!codes.length){document.getElementById('quoteBadge').textContent='实时行情：无候选';return}
+    const url='https://push2.eastmoney.com/api/qt/ulist.np/get?fltt=2&invt=2&fields=f12,f13,f14,f2,f3,f4,f15,f16,f17,f18&secids='+codes.map(secid).join(',');
+    const res=await fetch(url,{cache:'no-store'});
+    const data=await res.json();
+    const out={};
+    for(const x of (data?.data?.diff||[])){
+      out[x.f12]={price:x.f2,pct:x.f3,change:x.f4,high:x.f15,low:x.f16,open:x.f17,preClose:x.f18,name:x.f14};
+    }
+    quotes=out;quoteTime=new Date().toLocaleTimeString('zh-CN',{hour12:false});
+    document.getElementById('quoteBadge').textContent='实时行情 '+quoteTime+' · 5秒刷新';
+    render();
+  }catch(e){
+    document.getElementById('quoteBadge').textContent='实时行情暂不可用';
+  }
+}
 function table(rows,cols){
   if(!rows||!rows.length)return '<div class="empty">暂无记录</div>';
   let h='<div style="overflow:auto"><table><tr>'+cols.map(c=>`<th>${c[0]}</th>`).join('')+'</tr>';
@@ -103,6 +127,9 @@ function table(rows,cols){
     h+='<tr>'+cols.map(c=>{
       let v=row[c[1]];
       if(c[1]==='branch'||c[1]==='status')return `<td><span class="pill ${v||''}">${v??''}</span></td>`;
+      if(c[1]==='live_status')return `<td><span style="color:${v==='已到触发价'?'var(--green)':'var(--muted)'}">${v??''}</span></td>`;
+      if(c[1]==='live_pct'||c[1]==='distance'){const x=Number(v);if(v==null||!Number.isFinite(x))return '<td>--</td>';return `<td style="color:${x>=0?'var(--green)':'var(--red)'}">${x>=0?'+':''}${x.toFixed(2)}%</td>`}
+      if(c[1]==='live_price'){const x=Number(v);if(v==null||!Number.isFinite(x))return '<td>--</td>';return `<td>${x.toFixed(2)}</td>`}
       if(['pnl','entry_price','price','prev_close','threshold','equity','day_pnl','shares'].includes(c[1])&&v!=null)v=fmt(v);
       return `<td>${v??''}</td>`;
     }).join('')+'</tr>';
@@ -151,6 +178,14 @@ async function load(){
     document.getElementById('chartNote').textContent = eq.length?`${eq[0].date} ~ ${eq[eq.length-1].date}`:'';
 
     const pool=state.stock_pool||[];
+    const withQuotes=rows=>rows.map(x=>{
+      const q=quotes[x.code];const th=Number(x.threshold||0);
+      const price=Number(q?.price), pct=Number(q?.pct);
+      const valid=Number.isFinite(price)&&price>0;
+      const dist=valid&&th?price/th-1:null;
+      const liveStatus=valid&&th?(price>=th?'已到触发价':'未触发'):'';
+      return {...x,live_price:valid?price:null,live_pct:Number.isFinite(pct)?pct:null,distance:dist,live_status:liveStatus};
+    });
     const pending=pool.filter(x=>x.status==='待触发').length;
     const waiting=pool.filter(x=>x.status==='等待回调').length;
     const v12=state.v12_pool||[];
@@ -163,13 +198,15 @@ async function load(){
     if(review){dp.textContent=(review.day_pnl>=0?'+':'')+fmt(review.day_pnl)+' 元';dp.className='step '+(review.day_pnl>=0?'up':'down')}
     else{dp.textContent='--';dp.className='step'}
 
-    document.getElementById('stockpool').innerHTML=table(pool,[
+    document.getElementById('stockpool').innerHTML=table(withQuotes(pool),[
       ['状态','status'],['分支','branch'],['代码','code'],['名称','name'],['首板日','first_date'],
-      ['间隔','gap_days'],['昨收','prev_close'],['触发价','threshold'],['原因','reason']
+      ['间隔','gap_days'],['昨收','prev_close'],['触发价','threshold'],['实时价','live_price'],
+      ['涨跌幅','live_pct'],['距触发','distance'],['实时状态','live_status'],['原因','reason']
     ]);
-    document.getElementById('v12pool').innerHTML=table(v12,[
+    document.getElementById('v12pool').innerHTML=table(withQuotes(v12),[
       ['状态','status'],['分支','branch'],['代码','code'],['名称','name'],['首板日','first_date'],
-      ['间隔','gap_days'],['昨收','prev_close'],['触发价','threshold'],['原因','reason']
+      ['间隔','gap_days'],['昨收','prev_close'],['触发价','threshold'],['实时价','live_price'],
+      ['涨跌幅','live_pct'],['距触发','distance'],['实时状态','live_status'],['原因','reason']
     ]);
     document.getElementById('positions').innerHTML=table(state.positions,[
       ['代码','code'],['名称','name'],['分支','branch'],['买入日','entry_date'],['成本','entry_price'],['股数','shares'],['状态','status']
@@ -185,7 +222,9 @@ async function load(){
     document.getElementById('lastrun').textContent='数据加载失败：'+e.message;
   }
 }
-load();setInterval(load,60000);
+load().then(loadQuotes);
+setInterval(load,60000);
+setInterval(loadQuotes,5000);
 </script>
 </body>
 </html>
