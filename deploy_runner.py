@@ -13,6 +13,7 @@ BASE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(BASE, "engine"))
 
 import v11_engine
+import v12_engine
 
 STATE = os.path.join(BASE, "paper_account_v11.json")
 PUBLIC_STATE = os.path.join(BASE, "public", "state.json")
@@ -29,7 +30,7 @@ def main():
     trade_date = max(d for d in dates if d <= today)
     print(f"stage={args.stage} today={today} trade_date={trade_date}", flush=True)
 
-    result = v11_engine.run_stage(args.stage, trade_date, args.state)
+    result = v12_engine.run_stage(args.stage, trade_date, args.state)
     print(json.dumps(result, ensure_ascii=False, indent=2), flush=True)
 
     os.makedirs(os.path.dirname(PUBLIC_STATE), exist_ok=True)
