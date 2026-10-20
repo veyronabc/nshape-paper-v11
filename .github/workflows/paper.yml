@@ -55,7 +55,9 @@ jobs:
         id: stage
         shell: bash
         run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+          if [ "${{ github.event_name }}" = "push" ]; then
+            echo "stage=preopen" >> "$GITHUB_OUTPUT"
+          elif [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             echo "stage=${{ github.event.inputs.stage }}" >> "$GITHUB_OUTPUT"
           elif [ "${{ github.event.schedule }}" = "25 1 * * 1-5" ]; then
             echo "stage=preopen" >> "$GITHUB_OUTPUT"
