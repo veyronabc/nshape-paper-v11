@@ -69,6 +69,8 @@ tr:last-child td{border-bottom:0}
   <div class="step"><b>3</b><span>收盘复盘 · 收益</span><em id="dayPnl">--</em></div>
 </div>
 
+<div class="panel"><h2>实时盯盘 <span id="watchBadge">1秒刷新 · 只盯待触发和持仓</span></h2><div id="watchlist"></div></div>
+
 <div class="grid">
   <div class="panel"><h2>净值曲线 <span id="chartNote"></span></h2><svg id="chart" viewBox="0 0 900 280" preserveAspectRatio="none"></svg></div>
   <div class="panel"><h2>模型规则</h2>
@@ -92,7 +94,7 @@ tr:last-child td{border-bottom:0}
 
 <div class="footer">
   数据来源：miana Tushare 代理 · 模拟成交，不含真实委托 · 历史回测与模拟盘不代表未来收益。<br>
-  实时价来自腾讯行情接口，盘中每 5 秒刷新；非交易时段显示最新收盘价。<br>
+  实时价来自腾讯行情（主）/东方财富（备）；全池 5 秒刷新，实时盯盘 1 秒刷新；非交易时段显示最新收盘价。<br>
   本页面由 GitHub Actions 自动更新，账户状态保存在仓库中的 <code>paper_account_v11.json</code>。
 </div>
 </div>
@@ -100,9 +102,9 @@ tr:last-child td{border-bottom:0}
 <script>
 const fmt=n=>Number(n||0).toLocaleString('zh-CN',{maximumFractionDigits:2});
 const pct=n=>(n>=0?'+':'')+(n*100).toFixed(2)+'%';
-let quotes={}, quoteTime='';
+let quotes={}, quoteTime='', watchQuotes={}, watchTime='', watchTimer=null;
 function secid(code){return (String(code).startsWith('6')?'1.':'0.')+code}
-function loadTencent(codes){
+function fetchTencent(codes){
   return new Promise(resolve=>{
     const symbols=codes.map(c=>(String(c).startsWith('6')?'sh':'sz')+c).join(',');
     const s=document.createElement('script');
@@ -120,9 +122,9 @@ function loadTencent(codes){
         if(p[30]&&String(p[30]).length>=14){const t=String(p[30]);latest=t.slice(8,10)+':'+t.slice(10,12)+':'+t.slice(12,14)}
       }
       s.remove();
-      if(Object.keys(out).length){quotes=out;quoteTime=latest||new Date().toLocaleTimeString('zh-CN',{hour12:false});resolve(true)}else resolve(false)
+      if(Object.keys(out).length)resolve({out,latest:latest||new Date().toLocaleTimeString('zh-CN',{hour12:false})});else resolve(null)
     };
-    s.onerror=()=>{s.remove();resolve(false)};
+    s.onerror=()=>{s.remove();resolve(null)};
     document.head.appendChild(s);
   })
 }
@@ -130,8 +132,9 @@ async function loadQuotes(){
   const codes=[...new Set([...(state?.stock_pool||[]),...(state?.v12_pool||[])].map(x=>x.code).filter(Boolean))];
   if(!codes.length){document.getElementById('quoteBadge').textContent='实时行情：无候选';return}
   try{
-    const ok=await loadTencent(codes);
-    if(ok){
+    const tencent=await fetchTencent(codes);
+    if(tencent){
+      quotes=tencent.out;quoteTime=tencent.latest;
       document.getElementById('quoteBadge').textContent='实时行情 '+quoteTime+' · 5秒刷新';
       render();return;
     }
@@ -150,6 +153,46 @@ async function loadQuotes(){
   }catch(e){
     document.getElementById('quoteBadge').textContent='实时行情暂不可用';
   }
+}
+async function loadWatchQuotes(){
+  if(watchTimer){clearTimeout(watchTimer);watchTimer=null}
+  const pending=(state?.stock_pool||[]).filter(x=>x.status==='待触发');
+  const positions=(state?.positions||[]).map(p=>({...p,status:'持仓',first_date:p.entry_date,threshold:p.entry_price,prev_close:p.entry_price}));
+  const rows=[...pending,...positions];
+  const codes=[...new Set(rows.map(x=>x.code).filter(Boolean))];
+  if(!codes.length){
+    watchQuotes={};watchTime='无盯盘标的';
+    document.getElementById('watchBadge').textContent='1秒刷新 · 当前无盯盘标的';
+    renderWatch();
+    watchTimer=setTimeout(loadWatchQuotes,1000);
+    return;
+  }
+  const tencent=await fetchTencent(codes);
+  if(tencent){
+    watchQuotes=tencent.out;watchTime=tencent.latest;
+    document.getElementById('watchBadge').textContent='1秒刷新 · '+watchTime;
+  }else{
+    document.getElementById('watchBadge').textContent='行情接口限流 · 使用5秒数据';
+  }
+  renderWatch();
+  watchTimer=setTimeout(loadWatchQuotes,tencent?1000:3000);
+}
+function renderWatch(){
+  const pending=(state?.stock_pool||[]).filter(x=>x.status==='待触发');
+  const positions=(state?.positions||[]).map(p=>({...p,status:'持仓',first_date:p.entry_date,threshold:p.entry_price,prev_close:p.entry_price}));
+  const rows=[...pending,...positions].map(x=>{
+    const q=watchQuotes[x.code]||quotes[x.code];
+    const th=Number(x.threshold||0);
+    const price=Number(q?.price),pct=Number(q?.pct);
+    const valid=Number.isFinite(price)&&price>0;
+    const dist=valid&&th?price/th-1:null;
+    const liveStatus=valid&&th?(price>=th?'已到触发价':'未触发'):'';
+    return {...x,live_price:valid?price:null,live_pct:Number.isFinite(pct)?pct:null,distance:dist,live_status:liveStatus};
+  });
+  document.getElementById('watchlist').innerHTML=table(rows,[
+    ['状态','status'],['代码','code'],['名称','name'],['实时价','live_price'],
+    ['涨跌幅','live_pct'],['触发/成本','threshold'],['距触发','distance'],['实时状态','live_status']
+  ]);
 }
 function table(rows,cols){
   if(!rows||!rows.length)return '<div class="empty">暂无记录</div>';
@@ -249,11 +292,12 @@ async function load(){
       ['日期','date'],['方向','side'],['代码','code'],['名称','name'],['分支','branch'],['价格','price'],['股数','shares'],['盈亏','pnl'],['原因','reason']
     ]);
     draw(eq);
+    renderWatch();
   }catch(e){
     document.getElementById('lastrun').textContent='数据加载失败：'+e.message;
   }
 }
-load().then(loadQuotes);
+load().then(()=>{loadQuotes();loadWatchQuotes();});
 setInterval(load,60000);
 setInterval(loadQuotes,5000);
 </script>
