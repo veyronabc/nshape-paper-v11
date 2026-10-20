@@ -794,7 +794,18 @@
   "stock_pool_date": "20261020",
   "buy_signals": [],
   "trades": [],
-  "reviews": [],
+  "reviews": [
+    {
+      "date": "20261020",
+      "equity": 100000.0,
+      "cash": 100000.0,
+      "positions": 0,
+      "sells": 0,
+      "realized_pnl": 0,
+      "day_pnl": 0.0,
+      "total_return": 0.0
+    }
+  ],
   "equity_curve": [
     {
       "date": "20261020",
@@ -803,7 +814,7 @@
   ],
   "last_preopen_date": "20261020",
   "last_buy_date": null,
-  "last_review_date": null,
+  "last_review_date": "20261020",
   "market": {
     "date": "20261019",
     "close": 4174.5349,
