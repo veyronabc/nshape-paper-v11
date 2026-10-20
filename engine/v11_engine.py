@@ -25,7 +25,6 @@ SLIP = 0.001
 INITIAL = 100_000.0
 MAX_POSITIONS = 5
 DAILY_NEW = 3
-POSITION_WEIGHT = 0.20
 
 
 def read_json(path):
@@ -170,7 +169,7 @@ def stage_buy(date, path):
     slots = min(MAX_POSITIONS - len(positions), DAILY_NEW, len(triggered))
     trades = []
     for cand in triggered[: max(0, slots)]:
-        amount = min(equity_prior * POSITION_WEIGHT, cash)
+        amount = min(equity_prior * 0.20, cash)
         if amount <= 0:
             break
         price = float(cand["entry_price"])

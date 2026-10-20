@@ -1,20 +1,12 @@
-# N字二板模拟盘 v1.2（GitHub Pages）
+# N字二板模拟盘 v1.1（GitHub Pages）
 
 这是一个可以部署到 GitHub 的 10 万模拟盘：
 
 - 09:25 盘前筛选股票池
 - 09:50 检查 09:30–09:45 是否涨超 3%
 - 16:30 收盘复盘、断板卖出、更新净值
-- 单笔 50% 仓位，最多 2 笔并发
 - 手机和其他电脑随时打开固定网址
 - 不依赖本地电脑开机
-
-## v1.2 新增过滤
-
-- 排除首板换手率 10%–20%
-- 排除流通市值 100–200 亿
-
-> v1.1 已打标签 `v1.1.0` 并保留 `v1.1` 分支，可随时回滚。
 
 ## 一、部署步骤
 
@@ -125,14 +117,13 @@ GitHub Actions 使用 UTC 时间，已配置为：
 
 | 文件 | 用途 |
 |---|---|
-| `engine/v11_engine.py` | 底层三阶段引擎 |
-| `engine/v12_engine.py` | v1.2 双过滤 + 50% 仓位 |
+| `engine/v11_engine.py` | v1.1 三阶段引擎 |
 | `engine/paper_engine.py` | 数据与信号底层 |
 | `engine/preopen_pool.py` | 盘前股票池 |
 | `engine/miana_api.py` | miana 数据接口 |
 | `engine/bootstrap_cache.py` | GitHub Actions 行情缓存 |
 | `deploy_runner.py` | Actions 执行入口 |
-| `paper_account_v11.json` | 模拟账户状态（v1.2 使用） |
+| `paper_account_v11.json` | 模拟账户状态 |
 | `public/index.html` | 静态网页 |
 | `public/state.json` | 网页读取的账户快照 |
 | `.github/workflows/paper.yml` | 自动运行配置 |

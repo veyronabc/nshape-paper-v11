@@ -1,7 +1,7 @@
 {
   "account": "N字二板模拟账户 v1.1",
-  "version": "1.2.0",
-  "model": "N字二板量化模型 v1.2",
+  "version": "1.1.0",
+  "model": "N字二板量化模型 v1.1",
   "initial_capital": 100000.0,
   "start_date": "20261020",
   "cash": 100000.0,
@@ -810,13 +810,9 @@
     "ma20": 4369.10628,
     "market_up": false
   },
-  "position_sizing": "单笔50%，最多2笔，单日最多2笔",
+  "position_sizing": "单笔20%，最多5笔，单日最多3笔",
   "costs": {
     "commission": 0.0003,
     "slippage": 0.001
-  },
-  "v12_filters": [
-    "排除首板换手率 10%-20%",
-    "排除流通市值 100-200 亿"
-  ]
+  }
 }
