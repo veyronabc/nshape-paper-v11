@@ -95,6 +95,7 @@ def get_trade_dates(end_date=None):
         end_date=end_date or "20261231",
     )
     dates = sorted(r["cal_date"] for r in rows if str(r.get("is_open")) == "1")
+    os.makedirs(CACHE, exist_ok=True)
     write_json(path, dates)
     return dates
 

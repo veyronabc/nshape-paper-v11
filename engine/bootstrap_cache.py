@@ -28,6 +28,7 @@ def ensure_stock_basic():
 
 
 def main():
+    os.makedirs(CACHE, exist_ok=True)
     today = datetime.datetime.now(ZoneInfo("Asia/Shanghai")).strftime("%Y%m%d")
     dates = pe.get_trade_dates(today)
     wanted = [d for d in dates if d <= today][-90:]
