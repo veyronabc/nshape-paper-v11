@@ -266,7 +266,9 @@ def stage_review(date, path):
     )
     rows = pe.ensure_daily(date)
     today_map = {r["ts_code"]: r for r in rows}
-    limits = {r["ts_code"] for r in pe.ensure_limit(date) if r.get("limit") == "U"}
+    limit_rows = pe.ensure_limit(date)
+    up_limits = {r["ts_code"] for r in limit_rows if r.get("limit") == "U"}
+    down_limits = {r["ts_code"] for r in limit_rows if r.get("limit") == "D"}
     cash = float(state["cash"])
     positions = []
     trades = []
@@ -277,7 +279,7 @@ def stage_review(date, path):
             continue
         # A 股 T+1：买入日当天不能卖
         if pos.get("entry_date") == date:
-            if pos["code"] in limits:
+            if pos["code"] in up_limits:
                 pos["pending_t1_open"] = False
                 pos["status"] = "封板/连板中"
             else:
@@ -287,6 +289,10 @@ def stage_review(date, path):
             continue
         # 买入日未封板：下一交易日开盘卖
         if pos.get("pending_t1_open"):
+            if pos["code"] in down_limits and float(row.get("open") or 0) <= float(row.get("low") or 0):
+                pos["status"] = "跌停无法卖出，顺延"
+                positions.append(pos)
+                continue
             price = float(row.get("open") or 0)
             proceeds = pos["shares"] * price * (1 - FEE - SLIP)
             cash += proceeds
@@ -305,8 +311,13 @@ def stage_review(date, path):
                 }
             )
             continue
-        if pos["code"] in limits:
+        if pos["code"] in up_limits:
             pos["status"] = "封板/连板中"
+            positions.append(pos)
+            continue
+        if pos["code"] in down_limits and float(row.get("close") or 0) <= float(row.get("low") or 0):
+            pos["pending_t1_open"] = True
+            pos["status"] = "跌停无法卖出，顺延"
             positions.append(pos)
             continue
         price = float(row.get("close") or 0)
