@@ -5,6 +5,7 @@ import datetime
 import json
 import os
 import sys
+import tarfile
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from zoneinfo import ZoneInfo
 
@@ -27,8 +28,23 @@ def ensure_stock_basic():
             f.write(json.dumps(row, ensure_ascii=False) + "\n")
 
 
+def extract_seed():
+    seed = os.path.join(BASE, "seed_cache.tar.gz")
+    marker = os.path.join(CACHE, "stock_basic.jsonl")
+    if not os.path.exists(seed) or os.path.exists(marker):
+        return
+    os.makedirs(CACHE, exist_ok=True)
+    print("extracting seed cache", flush=True)
+    with tarfile.open(seed, "r:gz") as tar:
+        try:
+            tar.extractall(CACHE, filter="data")
+        except TypeError:
+            tar.extractall(CACHE)
+
+
 def main():
     os.makedirs(CACHE, exist_ok=True)
+    extract_seed()
     today = datetime.datetime.now(ZoneInfo("Asia/Shanghai")).strftime("%Y%m%d")
     dates = pe.get_trade_dates(today)
     wanted = [d for d in dates if d <= today][-90:]
