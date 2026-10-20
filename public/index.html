@@ -92,7 +92,7 @@ tr:last-child td{border-bottom:0}
 
 <div class="footer">
   数据来源：miana Tushare 代理 · 模拟成交，不含真实委托 · 历史回测与模拟盘不代表未来收益。<br>
-  实时价来自东方财富批量行情接口，盘中每 5 秒刷新；非交易时段显示最新收盘价。<br>
+  实时价来自腾讯行情接口，盘中每 5 秒刷新；非交易时段显示最新收盘价。<br>
   本页面由 GitHub Actions 自动更新，账户状态保存在仓库中的 <code>paper_account_v11.json</code>。
 </div>
 </div>
@@ -102,10 +102,40 @@ const fmt=n=>Number(n||0).toLocaleString('zh-CN',{maximumFractionDigits:2});
 const pct=n=>(n>=0?'+':'')+(n*100).toFixed(2)+'%';
 let quotes={}, quoteTime='';
 function secid(code){return (String(code).startsWith('6')?'1.':'0.')+code}
+function loadTencent(codes){
+  return new Promise(resolve=>{
+    const symbols=codes.map(c=>(String(c).startsWith('6')?'sh':'sz')+c).join(',');
+    const s=document.createElement('script');
+    s.charset='GBK';s.src='https://qt.gtimg.cn/q='+symbols+'&_='+Date.now();
+    s.onload=()=>{
+      const out={};let latest='';
+      for(const c of codes){
+        const sym=(String(c).startsWith('6')?'sh':'sz')+c;
+        const raw=window['v_'+sym];
+        if(typeof raw!=='string')continue;
+        const p=raw.split('~');
+        const price=Number(p[3]),prev=Number(p[4]),pct=Number(p[32]);
+        if(!Number.isFinite(price)||price<=0)continue;
+        out[c]={price,pct:Number.isFinite(pct)?pct:null,preClose:prev,open:Number(p[5]),high:Number(p[33]),low:Number(p[34]),name:p[1]};
+        if(p[30]&&String(p[30]).length>=14){const t=String(p[30]);latest=t.slice(8,10)+':'+t.slice(10,12)+':'+t.slice(12,14)}
+      }
+      s.remove();
+      if(Object.keys(out).length){quotes=out;quoteTime=latest||new Date().toLocaleTimeString('zh-CN',{hour12:false});resolve(true)}else resolve(false)
+    };
+    s.onerror=()=>{s.remove();resolve(false)};
+    document.head.appendChild(s);
+  })
+}
 async function loadQuotes(){
+  const codes=[...new Set([...(state?.stock_pool||[]),...(state?.v12_pool||[])].map(x=>x.code).filter(Boolean))];
+  if(!codes.length){document.getElementById('quoteBadge').textContent='实时行情：无候选';return}
   try{
-    const codes=[...new Set([...(state?.stock_pool||[]),...(state?.v12_pool||[])].map(x=>x.code).filter(Boolean))];
-    if(!codes.length){document.getElementById('quoteBadge').textContent='实时行情：无候选';return}
+    const ok=await loadTencent(codes);
+    if(ok){
+      document.getElementById('quoteBadge').textContent='实时行情 '+quoteTime+' · 5秒刷新';
+      render();return;
+    }
+    // 备用：东方财富批量接口
     const url='https://push2.eastmoney.com/api/qt/ulist.np/get?fltt=2&invt=2&fields=f12,f13,f14,f2,f3,f4,f15,f16,f17,f18&secids='+codes.map(secid).join(',');
     const res=await fetch(url,{cache:'no-store'});
     const data=await res.json();
@@ -113,6 +143,7 @@ async function loadQuotes(){
     for(const x of (data?.data?.diff||[])){
       out[x.f12]={price:x.f2,pct:x.f3,change:x.f4,high:x.f15,low:x.f16,open:x.f17,preClose:x.f18,name:x.f14};
     }
+    if(!Object.keys(out).length)throw new Error('no quote data');
     quotes=out;quoteTime=new Date().toLocaleTimeString('zh-CN',{hour12:false});
     document.getElementById('quoteBadge').textContent='实时行情 '+quoteTime+' · 5秒刷新';
     render();
