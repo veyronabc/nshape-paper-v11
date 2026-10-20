@@ -88,6 +88,24 @@ def stage_preopen(date, path):
     state["stock_pool"] = result["pool"]
     state["stock_pool_date"] = date
     state["market"] = result["market"]
+    # 第二层候选池：先从 v1.1 池子里筛，再套用 v1.2 两个过滤。
+    v12_pool = []
+    for item in result["pool"]:
+        if item.get("status") not in ("待触发", "等待回调"):
+            continue
+        turnover = item.get("first_turnover")
+        float_mv = item.get("float_mv")
+        if turnover is not None and 10 <= float(turnover) < 20:
+            continue
+        if float_mv is not None and 100e8 <= float(float_mv) < 200e8:
+            continue
+        v12_pool.append({**item, "pool": "v1.2精选"})
+    state["v12_pool"] = v12_pool
+    state["v12_pool_date"] = date
+    state["v12_filters"] = [
+        "排除首板换手率 10%-20%",
+        "排除流通市值 100-200 亿",
+    ]
     state["last_preopen_date"] = date
     write_json(path, state)
     counts = {
@@ -100,7 +118,11 @@ def stage_preopen(date, path):
         "date": date,
         "counts": counts,
         "pool": result["pool"],
-        "message": f"盘前池已生成：待触发 {counts['待触发']}，等待回调 {counts['等待回调']}，淘汰 {counts['淘汰']}",
+        "v12_pool": v12_pool,
+        "message": (
+            f"盘前池已生成：待触发 {counts['待触发']}，等待回调 {counts['等待回调']}，"
+            f"淘汰 {counts['淘汰']}；v1.2 精选 {len(v12_pool)}"
+        ),
     }
 
 
@@ -184,7 +206,9 @@ def stage_buy(date, path):
             "entry_price": price,
             "shares": shares,
             "cost": cost,
+            # 买入日不能卖；收盘确认是否封板，未封板则下一交易日开盘卖。
             "status": "待收盘确认",
+            "pending_t1_open": True,
         }
         positions.append(pos)
         trade = {
@@ -251,6 +275,36 @@ def stage_review(date, path):
         if not row:
             positions.append(pos)
             continue
+        # A 股 T+1：买入日当天不能卖
+        if pos.get("entry_date") == date:
+            if pos["code"] in limits:
+                pos["pending_t1_open"] = False
+                pos["status"] = "封板/连板中"
+            else:
+                pos["pending_t1_open"] = True
+                pos["status"] = "T+1待卖"
+            positions.append(pos)
+            continue
+        # 买入日未封板：下一交易日开盘卖
+        if pos.get("pending_t1_open"):
+            price = float(row.get("open") or 0)
+            proceeds = pos["shares"] * price * (1 - FEE - SLIP)
+            cash += proceeds
+            pnl = proceeds - pos["cost"]
+            trades.append(
+                {
+                    "date": date,
+                    "side": "SELL",
+                    "code": pos["code"],
+                    "name": pos["name"],
+                    "branch": pos.get("branch"),
+                    "price": price,
+                    "shares": pos["shares"],
+                    "pnl": pnl,
+                    "reason": "T+1开盘卖（买入日未封板）",
+                }
+            )
+            continue
         if pos["code"] in limits:
             pos["status"] = "封板/连板中"
             positions.append(pos)
@@ -269,7 +323,7 @@ def stage_review(date, path):
                 "price": price,
                 "shares": pos["shares"],
                 "pnl": pnl,
-                "reason": "未封板/断板收盘卖",
+                "reason": "断板收盘卖",
             }
         )
     state["cash"] = cash

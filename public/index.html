@@ -80,6 +80,7 @@ tr:last-child td{border-bottom:0}
 </div>
 
 <div class="panel"><h2>第一步 · 股票池 <span>满足和未满足条件都列出原因</span></h2><div id="stockpool"></div></div>
+<div class="panel"><h2>v1.2 精选池 <span>从 v1.1 池中二次筛选，仅展示，不参与 v1.1 执行</span></h2><div id="v12pool"></div></div>
 <div class="panel"><h2>第二步 · 持仓池</h2><div id="positions"></div></div>
 <div class="panel"><h2>第三步 · 今日复盘</h2><div id="reviews"></div></div>
 <div class="panel"><h2>历史交易</h2><div id="trades"></div></div>
@@ -150,7 +151,8 @@ async function load(){
     const pool=state.stock_pool||[];
     const pending=pool.filter(x=>x.status==='待触发').length;
     const waiting=pool.filter(x=>x.status==='等待回调').length;
-    document.getElementById('poolCount').textContent=`${pending} 待触发 / ${waiting} 观察`;
+    const v12=state.v12_pool||[];
+    document.getElementById('poolCount').textContent=`${pending} 待触发 / ${waiting} 观察 / v1.2 ${v12.length}`;
     const today=run?run.trade_date:(state.last_review_date||state.last_buy_date||state.last_preopen_date||state.start_date);
     const buys=(state.trades||[]).filter(t=>t.date===today&&t.side==='BUY');
     document.getElementById('buyCount').textContent=`${(state.positions||[]).length} 持仓 / ${buys.length} 今日买入`;
@@ -160,6 +162,10 @@ async function load(){
     else{dp.textContent='--';dp.className='step'}
 
     document.getElementById('stockpool').innerHTML=table(pool,[
+      ['状态','status'],['分支','branch'],['代码','code'],['名称','name'],['首板日','first_date'],
+      ['间隔','gap_days'],['昨收','prev_close'],['触发价','threshold'],['原因','reason']
+    ]);
+    document.getElementById('v12pool').innerHTML=table(v12,[
       ['状态','status'],['分支','branch'],['代码','code'],['名称','name'],['首板日','first_date'],
       ['间隔','gap_days'],['昨收','prev_close'],['触发价','threshold'],['原因','reason']
     ]);
