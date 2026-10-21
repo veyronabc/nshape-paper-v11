@@ -11,6 +11,9 @@
 header{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:18px;flex-wrap:wrap}
 h1{font-size:24px;margin:0 0 6px}sub{color:var(--muted);font-size:12px;line-height:1.6}
 .badge{padding:6px 10px;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-size:12px}
+.btn{display:inline-block;padding:8px 12px;border:1px solid #31538f;border-radius:10px;background:#1b2a4b;color:#e8eefc;text-decoration:none;font-size:12px;cursor:pointer}
+.btn.primary{background:linear-gradient(135deg,#2f7cf6,#7b5cff);border:0}
+.hint{color:var(--muted);font-size:11px;line-height:1.7;margin:8px 0 0}
 .cards{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:14px}
 .card{background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.015));border:1px solid var(--line);border-radius:15px;padding:15px}
 .label{color:var(--muted);font-size:12px;margin-bottom:8px}.value{font-size:21px;font-weight:700;letter-spacing:.4px}
@@ -52,8 +55,11 @@ tr:last-child td{border-bottom:0}
   <div style="display:flex;gap:8px;flex-wrap:wrap">
     <div class="badge">GitHub Actions 自动更新 · 09:25 / 09:50 / 16:30</div>
     <div class="badge" id="quoteBadge">实时行情加载中 · 盘中5秒刷新</div>
+    <a class="btn primary" href="https://github.com/veyronabc/nshape-paper-v11/actions/workflows/paper.yml" target="_blank" rel="noopener">手动更新</a>
+    <button class="btn" onclick="refreshNow()">刷新数据</button>
   </div>
 </header>
+<div class="hint">手动更新：点击“手动更新”打开 GitHub Actions，选择 preopen / buy / review，点击 Run workflow；运行完成后点“刷新数据”。</div>
 
 <div class="cards">
   <div class="card"><div class="label">总资产</div><div class="value" id="equity">--</div></div>
@@ -308,6 +314,13 @@ async function load(){
   }catch(e){
     document.getElementById('lastrun').textContent='数据加载失败：'+e.message;
   }
+}
+async function refreshNow(){
+  document.getElementById('quoteBadge').textContent='正在刷新...';
+  await load();
+  await loadQuotes();
+  await loadWatchQuotes();
+  document.getElementById('quoteBadge').textContent='已刷新 '+new Date().toLocaleTimeString('zh-CN',{hour12:false});
 }
 load().then(()=>{loadQuotes();loadWatchQuotes();});
 setInterval(load,60000);
