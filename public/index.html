@@ -76,6 +76,7 @@ tr:last-child td{border-bottom:0}
 </div>
 
 <div class="panel"><h2>实时盯盘 <span id="watchBadge">1秒刷新 · 只盯待触发和持仓</span></h2><div id="watchlist"></div></div>
+<div class="panel"><h2>数据健康 <span>最近交易日数据覆盖</span></h2><div id="dataHealth" class="muted">加载中...</div></div>
 
 <div class="grid">
   <div class="panel"><h2>净值曲线 <span id="chartNote"></span></h2><svg id="chart" viewBox="0 0 900 280" preserveAspectRatio="none"></svg></div>
@@ -262,6 +263,10 @@ async function load(){
       ? `最近运行：${run.stage} · ${run.trade_date} · ${run.message}`
       : '等待首次 GitHub Actions 运行';
     document.getElementById('chartNote').textContent = eq.length?`${eq[0].date} ~ ${eq[eq.length-1].date}`:'';
+    const dq=state.data_quality;
+    document.getElementById('dataHealth').innerHTML=dq
+      ? `数据日：<b>${dq.data_date}</b> · 执行日：<b>${dq.trade_date}</b><br>日线覆盖：<b>${fmt(dq.daily_rows)}</b> 只 · 涨跌停明细：<b>${fmt(dq.limit_rows)}</b> 条（涨停 ${fmt(dq.limit_up)} / 跌停 ${fmt(dq.limit_down)}）<br>沪深300：<b>${Number(dq.market?.close||0).toFixed(2)}</b> / MA20 <b>${Number(dq.market?.ma20||0).toFixed(2)}</b> · ${dq.market?.market_up?'强市':'弱市'}`
+      : '暂无数据质量信息';
 
     const pool=state.stock_pool||[];
     const withQuotes=rows=>rows.map(x=>{

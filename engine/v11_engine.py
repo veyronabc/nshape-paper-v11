@@ -91,6 +91,19 @@ def stage_preopen(date, path):
     state["stock_pool"] = result["pool"]
     state["stock_pool_date"] = date
     state["market"] = result["market"]
+    prev_date = dates[dates.index(date) - 1] if date in dates and dates.index(date) > 0 else None
+    if prev_date:
+        daily_rows = pe.ensure_daily(prev_date)
+        limit_rows = pe.ensure_limit(prev_date)
+        state["data_quality"] = {
+            "trade_date": date,
+            "data_date": prev_date,
+            "daily_rows": len(daily_rows),
+            "limit_rows": len(limit_rows),
+            "limit_up": sum(1 for r in limit_rows if r.get("limit") == "U"),
+            "limit_down": sum(1 for r in limit_rows if r.get("limit") == "D"),
+            "market": result["market"],
+        }
     # 第二层候选池：先从 v1.1 池子里筛，再套用 v1.2 两个过滤。
     v12_pool = []
     for item in result["pool"]:
@@ -163,6 +176,7 @@ def stage_preopen(date, path):
         "pool": result["pool"],
         "v12_pool": v12_pool,
         "v13_pool": v13_pool,
+        "data_quality": state.get("data_quality"),
         "message": (
             f"盘前池已生成：待触发 {counts['待触发']}，等待回调 {counts['等待回调']}，"
             f"淘汰 {counts['淘汰']}；v1.2 精选 {len(v12_pool)}；v1.3 执行 {len(v13_pool)}"
