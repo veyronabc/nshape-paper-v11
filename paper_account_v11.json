@@ -32,8 +32,8 @@
       "entry_date": "20261023",
       "prev_close": 3.58,
       "threshold": 3.6874000000000002,
-      "status": "待触发",
-      "reason": "等待09:45前涨超3%"
+      "status": "未执行",
+      "reason": "09:30-09:45分钟数据未返回，未触发模拟买入"
     },
     {
       "first_date": "20261022",
@@ -672,8 +672,8 @@
       "entry_date": "20261023",
       "prev_close": 3.58,
       "threshold": 3.6874000000000002,
-      "status": "待触发",
-      "reason": "等待09:45前涨超3%",
+      "status": "未执行",
+      "reason": "09:30-09:45分钟数据未返回，未触发模拟买入",
       "pool": "v1.2精选"
     },
     {
@@ -756,8 +756,8 @@
       "entry_date": "20261023",
       "prev_close": 3.58,
       "threshold": 3.6874000000000002,
-      "status": "待触发",
-      "reason": "等待09:45前涨超3%",
+      "status": "未执行",
+      "reason": "09:30-09:45分钟数据未返回，未触发模拟买入",
       "pool": "v1.3执行"
     }
   ],
@@ -769,16 +769,17 @@
   ],
   "data_quality": {
     "trade_date": "20261023",
-    "data_date": "20261022",
-    "daily_rows": 5570,
-    "limit_rows": 104,
-    "limit_up": 33,
-    "limit_down": 48,
+    "data_date": "20261023",
+    "daily_rows": 5572,
+    "limit_rows": null,
+    "limit_up": null,
+    "limit_down": null,
     "market": {
-      "date": "20261022",
-      "close": 4036.2966,
-      "ma20": 4313.603585,
+      "date": "20261023",
+      "close": 4105.3286,
+      "ma20": 4295.86223,
       "market_up": false
-    }
+    },
+    "limit_status": "pending"
   }
 }
