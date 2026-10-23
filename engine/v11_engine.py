@@ -282,7 +282,7 @@ def stage_buy(date, path):
             "reason": "09:45前涨超3%触发",
         }
         trades.append(trade)
-        for pool_name in ("stock_pool", "v13_pool"):
+        for pool_name in ("stock_pool", "v12_pool", "v13_pool"):
             for p in state.get(pool_name, []):
                 if p.get("code") == cand["code"]:
                     p["status"] = "触发买入"
@@ -290,7 +290,7 @@ def stage_buy(date, path):
                     p["entry_gap"] = cand["entry_gap"]
     # 未触发的池内股票更新状态
     triggered_codes = {t["code"] for t in trades}
-    for pool_name in ("stock_pool", "v13_pool"):
+    for pool_name in ("stock_pool", "v12_pool", "v13_pool"):
         for p in state.get(pool_name, []):
             if p.get("status") == "待触发" and p.get("code") not in triggered_codes:
                 p["status"] = p.get("buy_status", "未触发")
