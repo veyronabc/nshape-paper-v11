@@ -1398,6 +1398,16 @@
       "realized_pnl": 0,
       "day_pnl": 0.0,
       "total_return": 0.0
+    },
+    {
+      "date": "20261028",
+      "equity": 100000.0,
+      "cash": 100000.0,
+      "positions": 0,
+      "sells": 0,
+      "realized_pnl": 0,
+      "day_pnl": 0.0,
+      "total_return": 0.0
     }
   ],
   "equity_curve": [
@@ -1416,11 +1426,15 @@
     {
       "date": "20261027",
       "equity": 100000.0
+    },
+    {
+      "date": "20261028",
+      "equity": 100000.0
     }
   ],
   "last_preopen_date": "20261028",
   "last_buy_date": "20261027",
-  "last_review_date": "20261027",
+  "last_review_date": "20261028",
   "market": {
     "date": "20261027",
     "close": 4049.5516,
