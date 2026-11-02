@@ -351,17 +351,51 @@ def minute_trigger(date, events):
         if os.path.exists(path) and os.path.getsize(path) > 2:
             data = read_json(path)
         else:
-            rows = api.call(
-                "stk_mins",
-                ts_code=",".join(chunk),
-                freq="1min",
-                start_date=f"{date[:4]}-{date[4:6]}-{date[6:]} 09:30:00",
-                end_date=f"{date[:4]}-{date[4:6]}-{date[6:]} 09:45:00",
-                retries=4,
-            )
+            try:
+                rows = api.call(
+                    "stk_mins",
+                    ts_code=",".join(chunk),
+                    freq="1min",
+                    start_date=f"{date[:4]}-{date[4:6]}-{date[6:]} 09:30:00",
+                    end_date=f"{date[:4]}-{date[4:6]}-{date[6:]} 09:45:00",
+                    retries=4,
+                )
+            except Exception:
+                rows = []
             data = defaultdict(list)
             for row in rows:
                 data[row["ts_code"]].append(row)
+            for code in chunk:
+                if data.get(code):
+                    continue
+                try:
+                    native_rows = api.native_get(
+                        "/api/stock/v3/kline",
+                        symbol=code,
+                        type="1min",
+                        beginDate=f"{date[:4]}-{date[4:6]}-{date[6:]} 09:30:00",
+                        endDate=f"{date[:4]}-{date[4:6]}-{date[6:]} 09:45:59",
+                        limit="30",
+                        method="bfq",
+                    )
+                except Exception:
+                    native_rows = []
+                for row in native_rows:
+                    bar_date = str(row.get("date") or "")
+                    if not bar_date.startswith(
+                        f"{date[:4]}-{date[4:6]}-{date[6:]}"
+                    ):
+                        continue
+                    data[code].append(
+                        {
+                            "ts_code": code,
+                            "trade_time": bar_date,
+                            "open": row.get("open"),
+                            "high": row.get("high"),
+                            "low": row.get("low"),
+                            "close": row.get("close"),
+                        }
+                    )
             write_json(path, dict(data))
         for code, bars in data.items():
             result[code] = sorted(

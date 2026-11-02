@@ -69,6 +69,21 @@ def call(api, retries=3, **params):
             time.sleep(1.2)
     raise RuntimeError(f"{api} 调用失败: {last}")
 
+
+def native_get(path, **params):
+    """调用原生数据接口，返回 data 列表。"""
+    q = {"token": get_token()}
+    q.update({k: v for k, v in params.items() if v is not None})
+    url = BASE + path + "?" + urllib.parse.urlencode(q)
+    req = urllib.request.Request(url, headers={"User-Agent": UA})
+    raw = urllib.request.urlopen(req, timeout=60, context=CTX).read().decode()
+    d = json.loads(raw)
+    if d.get("code") != 200:
+        raise RuntimeError(f"{path} 调用失败: {d.get('msg')}")
+    data = d.get("data")
+    return data if isinstance(data, list) else []
+
+
 def cached(path, fn):
     """磁盘 JSON 缓存包装"""
     if os.path.exists(path) and os.path.getsize(path) > 2:
