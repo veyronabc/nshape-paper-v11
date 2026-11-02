@@ -269,8 +269,13 @@ async function load(){
     const limitText=dq&&dq.limit_rows==null
       ? '涨跌停明细：<b>尚未发布</b>'
       : `涨跌停明细：<b>${fmt(dq?.limit_rows)}</b> 条（涨停 ${fmt(dq?.limit_up)} / 跌停 ${fmt(dq?.limit_down)}）`;
+    const sources=dq?.sources||state.data_sources?.sources||{};
+    const sourceText=dq
+      ? `日线 ${sources.daily?.[dq.data_date]||'未知'} · 涨跌停 ${sources.limit_list?.[dq.data_date]||'未知'}`
+      : '';
+    const fallbackCount=(dq?.fallbacks||state.data_sources?.fallbacks||[]).length;
     document.getElementById('dataHealth').innerHTML=dq
-      ? `数据日：<b>${dq.data_date}</b> · 执行日：<b>${dq.trade_date}</b><br>日线覆盖：<b>${fmt(dq.daily_rows)}</b> 只 · ${limitText}<br>沪深300：<b>${Number(dq.market?.close||0).toFixed(2)}</b> / MA20 <b>${Number(dq.market?.ma20||0).toFixed(2)}</b> · ${dq.market?.market_up?'强市':'弱市'}`
+      ? `数据日：<b>${dq.data_date}</b> · 执行日：<b>${dq.trade_date}</b><br>日线覆盖：<b>${fmt(dq.daily_rows)}</b> 只 · ${limitText}<br>沪深300：<b>${Number(dq.market?.close||0).toFixed(2)}</b> / MA20 <b>${Number(dq.market?.ma20||0).toFixed(2)}</b> · ${dq.market?.market_up?'强市':'弱市'}<br>数据来源：${sourceText}${fallbackCount?` · 备用源 ${fallbackCount} 项`:''}`
       : '暂无数据质量信息';
 
     const pool=state.stock_pool||[];

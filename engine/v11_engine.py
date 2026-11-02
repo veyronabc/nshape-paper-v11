@@ -81,6 +81,7 @@ def ensure_state(path, date):
 
 
 def stage_preopen(date, path):
+    pe.reset_provenance()
     dates = pe.get_trade_dates(date)
     if date not in dates:
         return {"ok": False, "message": f"{date} 不是交易日"}
@@ -93,16 +94,25 @@ def stage_preopen(date, path):
     state["market"] = result["market"]
     prev_date = dates[dates.index(date) - 1] if date in dates and dates.index(date) > 0 else None
     if prev_date:
-        daily_rows = pe.ensure_daily(prev_date)
+        daily_error = None
+        try:
+            daily_rows = pe.ensure_daily(prev_date)
+        except Exception as exc:
+            daily_rows = []
+            daily_error = exc
         limit_rows = pe.ensure_limit(prev_date)
         state["data_quality"] = {
             "trade_date": date,
             "data_date": prev_date,
-            "daily_rows": len(daily_rows),
+            "daily_rows": len(daily_rows) if daily_rows else None,
+            "daily_status": "complete" if daily_rows else "candidate_window_fallback",
+            "daily_error": str(daily_error)[:240] if daily_error else None,
             "limit_rows": len(limit_rows),
             "limit_up": sum(1 for r in limit_rows if r.get("limit") == "U"),
             "limit_down": sum(1 for r in limit_rows if r.get("limit") == "D"),
             "market": result["market"],
+            "sources": pe.get_provenance()["sources"],
+            "fallbacks": pe.get_provenance()["fallbacks"],
         }
     # 第二层候选池：先从 v1.1 池子里筛，再套用 v1.2 两个过滤。
     v12_pool = []
@@ -163,6 +173,7 @@ def stage_preopen(date, path):
         "B：保持前20日<-5%、5/20量比<0.8",
     ]
     state["last_preopen_date"] = date
+    state["data_sources"] = pe.get_provenance()
     write_json(path, state)
     counts = {
         s: sum(1 for x in result["pool"] if x.get("status") == s)
@@ -177,6 +188,7 @@ def stage_preopen(date, path):
         "v12_pool": v12_pool,
         "v13_pool": v13_pool,
         "data_quality": state.get("data_quality"),
+        "data_sources": state.get("data_sources"),
         "message": (
             f"盘前池已生成：待触发 {counts['待触发']}，等待回调 {counts['等待回调']}，"
             f"淘汰 {counts['淘汰']}；v1.2 精选 {len(v12_pool)}；v1.3 执行 {len(v13_pool)}"
@@ -185,6 +197,7 @@ def stage_preopen(date, path):
 
 
 def stage_buy(date, path):
+    pe.reset_provenance()
     dates = pe.get_trade_dates(date)
     if date not in dates:
         return {"ok": False, "message": f"{date} 不是交易日"}
@@ -300,6 +313,7 @@ def stage_buy(date, path):
     state["trades"].extend(trades)
     state["buy_signals"].extend(triggered)
     state["last_buy_date"] = date
+    state["data_sources"] = pe.get_provenance()
     write_json(path, state)
     return {
         "ok": True,
@@ -309,11 +323,13 @@ def stage_buy(date, path):
         "bought": len(trades),
         "trades": trades,
         "positions": positions,
+        "data_sources": state.get("data_sources"),
         "message": f"09:50 买入阶段完成：触发 {len(triggered)}，成交 {len(trades)}",
     }
 
 
 def stage_review(date, path):
+    pe.reset_provenance()
     dates = pe.get_trade_dates(date)
     if date not in dates:
         return {"ok": False, "message": f"{date} 不是交易日"}
@@ -455,9 +471,11 @@ def stage_review(date, path):
         "realized_pnl": realized_pnl,
         "day_pnl": day_pnl,
         "total_return": equity / state["initial_capital"] - 1,
+        "data_sources": pe.get_provenance(),
     }
     state["reviews"].append(review)
     state["last_review_date"] = date
+    state["data_sources"] = pe.get_provenance()
     write_json(path, state)
     return {
         "ok": True,
@@ -467,6 +485,7 @@ def stage_review(date, path):
         "day_pnl": day_pnl,
         "positions": positions,
         "trades": trades,
+        "data_sources": state.get("data_sources"),
         "message": f"收盘复盘完成：卖出 {len(trades)}，当日盈亏 {day_pnl:.2f}，净值 {equity:.2f}",
     }
 

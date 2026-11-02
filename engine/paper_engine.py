@@ -21,9 +21,11 @@ import math
 import os
 import statistics
 import sys
+import threading
 import time
 from collections import defaultdict
 
+import eastmoney_api as backup_api
 import miana_api as api
 
 BASE = os.path.dirname(os.path.abspath(__file__))
@@ -36,6 +38,56 @@ SLIP = 0.001
 INITIAL = 100_000.0
 MAX_POSITIONS = 5
 DAILY_NEW = 3
+PRIMARY_SOURCE = "miana_tushare"
+LEGACY_CACHE_SOURCE = "miana_tushare_cache"
+
+_PROVENANCE_LOCK = threading.Lock()
+_PROVENANCE = {"sources": {}, "fallbacks": []}
+
+
+def reset_provenance():
+    with _PROVENANCE_LOCK:
+        _PROVENANCE["sources"].clear()
+        _PROVENANCE["fallbacks"].clear()
+
+
+def get_provenance():
+    with _PROVENANCE_LOCK:
+        return {
+            "sources": {
+                kind: dict(values)
+                for kind, values in _PROVENANCE["sources"].items()
+            },
+            "fallbacks": [dict(item) for item in _PROVENANCE["fallbacks"]],
+        }
+
+
+def _record_source(kind, key, source, fallback_reason=None):
+    with _PROVENANCE_LOCK:
+        _PROVENANCE["sources"].setdefault(kind, {})[str(key)] = source
+        if fallback_reason:
+            item = {
+                "data": kind,
+                "key": str(key),
+                "primary": PRIMARY_SOURCE,
+                "fallback": source,
+                "reason": str(fallback_reason)[:240],
+            }
+            if item not in _PROVENANCE["fallbacks"]:
+                _PROVENANCE["fallbacks"].append(item)
+
+
+def _tag_rows(rows, source):
+    return [{**row, "_source": row.get("_source") or source} for row in rows]
+
+
+def _row_source(rows, default=LEGACY_CACHE_SOURCE):
+    sources = {
+        str(row.get("_source") or default)
+        for row in rows
+        if row is not None
+    }
+    return ",".join(sorted(sources)) if sources else default
 
 
 def read_json(path):
@@ -87,26 +139,82 @@ def get_trade_dates(end_date=None):
     if os.path.exists(path):
         dates = read_json(path)
         if dates and (end_date is None or end_date <= dates[-1]):
+            _record_source("trade_cal", end_date or dates[-1], "cache")
             return dates
-    rows = api.call(
-        "trade_cal",
-        exchange="SSE",
-        start_date="20240101",
-        end_date=end_date or "20261231",
-    )
+    start_date = "20240101"
+    end_date = end_date or "20261231"
+    primary_error = None
+    try:
+        rows = api.call(
+            "trade_cal",
+            exchange="SSE",
+            start_date=start_date,
+            end_date=end_date,
+        )
+    except Exception as exc:
+        rows = []
+        primary_error = exc
+    if rows:
+        source = PRIMARY_SOURCE
+    else:
+        rows = backup_api.trade_dates(start_date, end_date)
+        source = backup_api.SOURCE
+        if rows:
+            _record_source(
+                "trade_cal",
+                end_date,
+                source,
+                primary_error or "empty response",
+            )
     dates = sorted(r["cal_date"] for r in rows if str(r.get("is_open")) == "1")
+    if not dates:
+        raise RuntimeError(
+            f"交易日历为空；主源：{primary_error or 'empty response'}；备用源：empty response"
+        )
+    _record_source("trade_cal", end_date, source)
     os.makedirs(CACHE, exist_ok=True)
     write_json(path, dates)
     return dates
 
 
-def ensure_daily(date):
+def ensure_daily(date, allow_spot=True):
     path = os.path.join(SHARD, f"daily_{date}.json")
     if os.path.exists(path) and os.path.getsize(path) > 10:
-        return read_json(path)
-    rows = api.call("daily", trade_date=date, retries=4)
-    if not rows:
-        raise RuntimeError(f"{date} 日线数据为空")
+        rows = _tag_rows(read_json(path), LEGACY_CACHE_SOURCE)
+        _record_source("daily", date, _row_source(rows))
+        return rows
+    primary_error = None
+    try:
+        rows = api.call("daily", trade_date=date, retries=4)
+    except Exception as exc:
+        rows = []
+        primary_error = exc
+    if rows:
+        source = PRIMARY_SOURCE
+    elif allow_spot:
+        try:
+            rows = backup_api.daily_snapshot(date)
+            fallback_error = None
+        except Exception as exc:
+            rows = []
+            fallback_error = exc
+        source = backup_api.SOURCE
+        if rows:
+            _record_source(
+                "daily",
+                date,
+                source,
+                primary_error or "empty response",
+            )
+        else:
+            raise RuntimeError(
+                f"{date} 日线数据为空；主源：{primary_error or 'empty response'}；"
+                f"备用源：{fallback_error or 'empty response'}"
+            )
+    else:
+        raise RuntimeError(
+            f"{date} 日线数据为空；主源：{primary_error or 'empty response'}"
+        )
     keep = [
         "ts_code",
         "trade_date",
@@ -118,10 +226,18 @@ def ensure_daily(date):
         "pct_chg",
         "vol",
         "amount",
+        "_source",
     ]
-    rows = [{k: r.get(k) for k in keep} for r in rows]
+    rows = [
+        {
+            **{k: r.get(k) for k in keep},
+            "_source": r.get("_source") or source,
+        }
+        for r in rows
+    ]
     os.makedirs(SHARD, exist_ok=True)
     write_json(path, rows)
+    _record_source("daily", date, _row_source(rows, source))
     return rows
 
 
@@ -130,19 +246,56 @@ def ensure_limit(date):
     path = os.path.join(LIMIT_DIR, f"{month}.json")
     os.makedirs(LIMIT_DIR, exist_ok=True)
     rows = read_json(path) if os.path.exists(path) else []
-    if not any(r.get("trade_date") == date for r in rows):
+    current = [r for r in rows if r.get("trade_date") == date]
+    if current:
+        current = _tag_rows(current, LEGACY_CACHE_SOURCE)
+        _record_source("limit_list", date, _row_source(current))
+        return current
+
+    primary_error = None
+    try:
         new = api.call(
             "limit_list_d",
             start_date=f"{month}01",
             end_date=f"{month}31",
             retries=4,
         )
-        if not new:
-            raise RuntimeError(f"{date} 涨跌停明细为空")
+    except Exception as exc:
+        new = []
+        primary_error = exc
+    if new:
+        new = _tag_rows(new, PRIMARY_SOURCE)
         dedup = {(r.get("trade_date"), r.get("ts_code")): r for r in rows + new}
         rows = list(dedup.values())
-        write_json(path, rows)
-    return [r for r in rows if r.get("trade_date") == date]
+
+    current = [r for r in rows if r.get("trade_date") == date]
+    fallback_error = None
+    if not current:
+        try:
+            fallback = backup_api.limit_list(date)
+            fallback_error = None
+        except Exception as exc:
+            fallback = []
+            fallback_error = exc
+        if not fallback:
+            raise RuntimeError(
+                f"{date} 涨跌停明细为空；主源：{primary_error or 'empty response'}；"
+                f"备用源：{fallback_error or 'empty response'}"
+            )
+        fallback = _tag_rows(fallback, backup_api.SOURCE)
+        dedup = {(r.get("trade_date"), r.get("ts_code")): r for r in rows + fallback}
+        rows = list(dedup.values())
+        current = [r for r in rows if r.get("trade_date") == date]
+        _record_source(
+            "limit_list",
+            date,
+            backup_api.SOURCE,
+            primary_error or "no rows for requested date",
+        )
+
+    write_json(path, rows)
+    _record_source("limit_list", date, _row_source(current))
+    return current
 
 
 def ensure_index(end_date):
@@ -154,22 +307,68 @@ def ensure_index(end_date):
         latest = max(have)
         start = latest
     if end_date not in have:
-        new = api.call(
-            "index_daily",
-            ts_code="000300.SH",
-            start_date=start,
-            end_date=end_date,
-            retries=4,
-        )
-        if not new:
-            raise RuntimeError(f"{end_date} 沪深300指数数据为空")
+        primary_error = None
+        try:
+            new = api.call(
+                "index_daily",
+                ts_code="000300.SH",
+                start_date=start,
+                end_date=end_date,
+                retries=4,
+            )
+        except Exception as exc:
+            new = []
+            primary_error = exc
+        if new:
+            new = _tag_rows(new, PRIMARY_SOURCE)
         dedup = {
             (r.get("ts_code"), r.get("trade_date")): r for r in rows + new
         }
         rows = list(dedup.values())
+        have = {
+            r.get("trade_date")
+            for r in rows
+            if r.get("ts_code") == "000300.SH"
+        }
+        if end_date not in have:
+            fallback_error = None
+            try:
+                fallback = backup_api.index_daily(start, end_date)
+            except Exception as exc:
+                fallback = []
+                fallback_error = exc
+            if not fallback:
+                raise RuntimeError(
+                    f"{end_date} 沪深300指数数据为空；"
+                    f"主源：{primary_error or 'empty response'}；"
+                    f"备用源：{fallback_error or 'empty response'}"
+                )
+            fallback = _tag_rows(fallback, backup_api.SOURCE)
+            dedup = {
+                (r.get("ts_code"), r.get("trade_date")): r
+                for r in rows + fallback
+            }
+            rows = list(dedup.values())
+            _record_source(
+                "index_daily",
+                end_date,
+                backup_api.SOURCE,
+                primary_error or "no rows for requested date",
+            )
         with open(path, "w", encoding="utf-8") as f:
             for r in rows:
+                r.setdefault("_source", LEGACY_CACHE_SOURCE)
                 f.write(json.dumps(r, ensure_ascii=False) + "\n")
+    rows = [
+        {**r, "_source": r.get("_source") or LEGACY_CACHE_SOURCE}
+        for r in rows
+    ]
+    current = [
+        r for r in rows
+        if r.get("ts_code") == "000300.SH" and r.get("trade_date") == end_date
+    ]
+    if current:
+        _record_source("index_daily", end_date, _row_source(current))
     return rows
 
 
@@ -189,6 +388,7 @@ def hs300_context(end_date, dates):
         "close": closes[-1],
         "ma20": ma20,
         "market_up": closes[-1] >= ma20,
+        "source": rows[-1].get("_source") or LEGACY_CACHE_SOURCE,
     }
 
 
@@ -196,8 +396,13 @@ def load_window_rows(codes, dates):
     """读取最近 80 个交易日的候选股票日线。"""
     needed = set(dates[-80:])
     by_code = defaultdict(list)
+    missing_dates = []
     for date in sorted(needed):
-        rows = ensure_daily(date)
+        try:
+            rows = ensure_daily(date, allow_spot=False)
+        except Exception as exc:
+            missing_dates.append(date)
+            continue
         for row in rows:
             code = row.get("ts_code")
             if code in codes:
@@ -211,8 +416,62 @@ def load_window_rows(codes, dates):
                         "pre_close": float(row.get("pre_close") or 0),
                         "vol": float(row.get("vol") or 0),
                         "amount": float(row.get("amount") or 0) * 1000,
+                        "_source": row.get("_source") or LEGACY_CACHE_SOURCE,
                     }
                 )
+    if missing_dates:
+        missing = set(missing_dates)
+        start_date = min(missing)
+        end_date = max(missing)
+        _record_source(
+            "daily_window",
+            f"{start_date}~{end_date}",
+            "candidate_window_fallback",
+            f"{len(missing)} full-market daily shards unavailable",
+        )
+        for code in sorted(codes):
+            try:
+                fallback = backup_api.daily_bar(code, start_date, end_date)
+                fallback_error = None
+            except Exception as exc:
+                fallback = []
+                fallback_error = exc
+            have_dates = {row["date"] for row in by_code[code]}
+            added = False
+            for row in fallback:
+                date = str(row.get("trade_date") or "")
+                if date not in missing or date in have_dates:
+                    continue
+                bar = {
+                    "date": date,
+                    "open": float(row.get("open") or 0),
+                    "high": float(row.get("high") or 0),
+                    "low": float(row.get("low") or 0),
+                    "close": float(row.get("close") or 0),
+                    "pre_close": float(row.get("pre_close") or 0),
+                    "vol": float(row.get("vol") or 0),
+                    "amount": float(row.get("amount") or 0) * 1000,
+                    "_source": row.get("_source") or backup_api.SOURCE,
+                }
+                by_code[code].append(bar)
+                have_dates.add(date)
+                added = True
+            if added:
+                _record_source(
+                    "daily_window",
+                    code,
+                    backup_api.SOURCE,
+                    "missing primary daily dates",
+                )
+            elif fallback_error:
+                _record_source(
+                    "daily_window",
+                    code,
+                    "missing",
+                    fallback_error,
+                )
+    for code in by_code:
+        by_code[code].sort(key=lambda row: row["date"])
     return by_code
 
 
@@ -244,6 +503,7 @@ def first_board_events(dates, today_index):
                     "first_open_times": int(row.get("open_times") or 0),
                     "first_turnover": float(row.get("turnover_ratio") or 0),
                     "float_mv": float(row.get("float_mv") or 0),
+                    "_source": row.get("_source") or LEGACY_CACHE_SOURCE,
                 }
             )
     return events
@@ -286,6 +546,15 @@ def enrich_candidate(event, rows, market_up):
     v20 = statistics.mean(vols[-20:])
     return {
         **event,
+        "data_sources": {
+            "first_board": event.get("_source") or LEGACY_CACHE_SOURCE,
+            "daily": sorted(
+                {
+                    row.get("_source") or LEGACY_CACHE_SOURCE
+                    for row in rows
+                }
+            ),
+        },
         "first_open": first["open"],
         "first_low": first["low"],
         "first_vol": first["vol"],
@@ -350,6 +619,10 @@ def minute_trigger(date, events):
         path = os.path.join(MIN_DIR, key + ".json")
         if os.path.exists(path) and os.path.getsize(path) > 2:
             data = read_json(path)
+            data = {
+                code: _tag_rows(bars, "cache_unknown")
+                for code, bars in data.items()
+            }
         else:
             try:
                 rows = api.call(
@@ -360,46 +633,97 @@ def minute_trigger(date, events):
                     end_date=f"{date[:4]}-{date[4:6]}-{date[6:]} 09:45:00",
                     retries=4,
                 )
-            except Exception:
+            except Exception as exc:
                 rows = []
+                primary_error = exc
+            else:
+                primary_error = None
             data = defaultdict(list)
             for row in rows:
-                data[row["ts_code"]].append(row)
+                data[row["ts_code"]].append(
+                    {**row, "_source": PRIMARY_SOURCE}
+                )
             for code in chunk:
                 if data.get(code):
                     continue
+                native_error = None
                 try:
-                    native_rows = api.native_get(
-                        "/api/stock/v3/kline",
-                        symbol=code,
-                        type="1min",
-                        beginDate=f"{date[:4]}-{date[4:6]}-{date[6:]} 09:30:00",
-                        endDate=f"{date[:4]}-{date[4:6]}-{date[6:]} 09:45:59",
-                        limit="30",
-                        method="bfq",
+                    fallback_rows = backup_api.minute_bar(code, date)
+                except Exception as exc:
+                    fallback_rows = []
+                    fallback_error = exc
+                else:
+                    fallback_error = None
+                if fallback_rows:
+                    data[code].extend(
+                        row
+                        for row in fallback_rows
+                        if str(row.get("trade_time") or "")[11:16]
+                        <= "09:45"
                     )
-                except Exception:
-                    native_rows = []
-                for row in native_rows:
-                    bar_date = str(row.get("date") or "")
-                    if not bar_date.startswith(
-                        f"{date[:4]}-{date[4:6]}-{date[6:]}"
-                    ):
-                        continue
-                    data[code].append(
-                        {
-                            "ts_code": code,
-                            "trade_time": bar_date,
-                            "open": row.get("open"),
-                            "high": row.get("high"),
-                            "low": row.get("low"),
-                            "close": row.get("close"),
-                        }
+                if not data.get(code):
+                    try:
+                        native_rows = api.native_get(
+                            "/api/stock/v3/kline",
+                            symbol=code,
+                            type="1min",
+                            beginDate=(
+                                f"{date[:4]}-{date[4:6]}-{date[6:]} 09:30:00"
+                            ),
+                            endDate=(
+                                f"{date[:4]}-{date[4:6]}-{date[6:]} 09:45:59"
+                            ),
+                            limit="30",
+                            method="bfq",
+                        )
+                    except Exception as exc:
+                        native_rows = []
+                        native_error = exc
+                    else:
+                        native_error = None
+                    for row in native_rows:
+                        bar_date = str(row.get("date") or "")
+                        if not bar_date.startswith(
+                            f"{date[:4]}-{date[4:6]}-{date[6:]}"
+                        ):
+                            continue
+                        data[code].append(
+                            {
+                                "ts_code": code,
+                                "trade_time": bar_date,
+                                "open": row.get("open"),
+                                "high": row.get("high"),
+                                "low": row.get("low"),
+                                "close": row.get("close"),
+                                "_source": "miana_native",
+                            }
+                        )
+                if data.get(code):
+                    reason = primary_error or fallback_error or native_error
+                    source = _row_source(data[code], "cache_unknown")
+                    _record_source(
+                        "minutes",
+                        f"{date}:{code}",
+                        source,
+                        reason if source != PRIMARY_SOURCE else None,
                     )
-            write_json(path, dict(data))
+                else:
+                    _record_source(
+                        "minutes",
+                        f"{date}:{code}",
+                        "missing",
+                        primary_error or fallback_error or native_error,
+                    )
+            if any(data.values()):
+                write_json(path, dict(data))
         for code, bars in data.items():
             result[code] = sorted(
                 bars, key=lambda r: r["trade_time"]
+            )
+            _record_source(
+                "minutes",
+                f"{date}:{code}",
+                _row_source(bars, "cache_unknown"),
             )
     return result
 
