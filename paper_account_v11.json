@@ -873,6 +873,30 @@
       "realized_pnl": 0,
       "day_pnl": 0.0,
       "total_return": 0.0
+    },
+    {
+      "date": "20261102",
+      "equity": 100000.0,
+      "cash": 100000.0,
+      "positions": 0,
+      "sells": 0,
+      "realized_pnl": 0,
+      "day_pnl": 0.0,
+      "total_return": 0.0,
+      "data_sources": {
+        "sources": {
+          "trade_cal": {
+            "20261102": "cache"
+          },
+          "daily": {
+            "20261102": "miana_tushare"
+          },
+          "limit_list": {
+            "20261102": "eastmoney"
+          }
+        },
+        "fallbacks": []
+      }
     }
   ],
   "equity_curve": [
@@ -903,11 +927,15 @@
     {
       "date": "20261030",
       "equity": 100000.0
+    },
+    {
+      "date": "20261102",
+      "equity": 100000.0
     }
   ],
   "last_preopen_date": "20261102",
   "last_buy_date": "20261102",
-  "last_review_date": "20261030",
+  "last_review_date": "20261102",
   "market": {
     "date": "20261030",
     "close": 3985.501,
@@ -1049,5 +1077,19 @@
       "ma20": 4181.678995,
       "market_up": false
     }
+  },
+  "data_sources": {
+    "sources": {
+      "trade_cal": {
+        "20261102": "cache"
+      },
+      "daily": {
+        "20261102": "miana_tushare"
+      },
+      "limit_list": {
+        "20261102": "eastmoney"
+      }
+    },
+    "fallbacks": []
   }
 }
