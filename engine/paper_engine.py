@@ -105,6 +105,8 @@ def ensure_daily(date):
     if os.path.exists(path) and os.path.getsize(path) > 10:
         return read_json(path)
     rows = api.call("daily", trade_date=date, retries=4)
+    if not rows:
+        raise RuntimeError(f"{date} 日线数据为空")
     keep = [
         "ts_code",
         "trade_date",
@@ -135,6 +137,8 @@ def ensure_limit(date):
             end_date=f"{month}31",
             retries=4,
         )
+        if not new:
+            raise RuntimeError(f"{date} 涨跌停明细为空")
         dedup = {(r.get("trade_date"), r.get("ts_code")): r for r in rows + new}
         rows = list(dedup.values())
         write_json(path, rows)
@@ -157,6 +161,8 @@ def ensure_index(end_date):
             end_date=end_date,
             retries=4,
         )
+        if not new:
+            raise RuntimeError(f"{end_date} 沪深300指数数据为空")
         dedup = {
             (r.get("ts_code"), r.get("trade_date")): r for r in rows + new
         }

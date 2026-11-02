@@ -42,6 +42,21 @@ def call(api, retries=3, **params):
             req = urllib.request.Request(url, headers={"User-Agent": UA})
             raw = urllib.request.urlopen(req, timeout=60, context=CTX).read().decode()
             d = json.loads(raw)
+            msg = str(d.get("msg") or "")
+            if d.get("code") != 0 and "不支持" in msg and "字段" in msg:
+                q.pop("fields", None)
+                url = (
+                    BASE
+                    + "/api/tushare/v1/"
+                    + api
+                    + "?"
+                    + urllib.parse.urlencode(q)
+                )
+                req = urllib.request.Request(url, headers={"User-Agent": UA})
+                raw = urllib.request.urlopen(
+                    req, timeout=60, context=CTX
+                ).read().decode()
+                d = json.loads(raw)
             if d.get("code") != 0:
                 last = d.get("msg")
                 time.sleep(1.0)
