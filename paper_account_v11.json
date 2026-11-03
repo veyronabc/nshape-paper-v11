@@ -15,12 +15,13 @@
       "first_time": "132045",
       "first_close": 8.71,
       "first_open_times": 0,
-      "first_turnover": 36.69446563720703,
-      "float_mv": 5227016674.750001,
-      "_source": "eastmoney",
+      "first_turnover": 36.69,
+      "float_mv": 5227016674.75,
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -45,12 +46,13 @@
       "first_time": "110411",
       "first_close": 47.05,
       "first_open_times": 2,
-      "first_turnover": 8.057315826416016,
+      "first_turnover": 8.06,
       "float_mv": 6567239000.0,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -75,12 +77,13 @@
       "first_time": "110927",
       "first_close": 20.43,
       "first_open_times": 2,
-      "first_turnover": 3.1641931533813477,
+      "first_turnover": 3.16,
       "float_mv": 9480345494.58,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -105,12 +108,13 @@
       "first_time": "111526",
       "first_close": 26.72,
       "first_open_times": 0,
-      "first_turnover": 12.501058578491211,
-      "float_mv": 11727323431.199999,
-      "_source": "eastmoney",
+      "first_turnover": 12.5,
+      "float_mv": 11727323431.2,
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -135,12 +139,13 @@
       "first_time": "111304",
       "first_close": 45.95,
       "first_open_times": 0,
-      "first_turnover": 2.1779119968414307,
+      "first_turnover": 2.18,
       "float_mv": 18650645500.0,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -165,12 +170,13 @@
       "first_time": "112223",
       "first_close": 7.61,
       "first_open_times": 0,
-      "first_turnover": 1.7256815433502197,
+      "first_turnover": 1.73,
       "float_mv": 15881309000.0,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -195,12 +201,13 @@
       "first_time": "130918",
       "first_close": 19.21,
       "first_open_times": 3,
-      "first_turnover": 9.793532371520996,
-      "float_mv": 2754057632.7200003,
-      "_source": "eastmoney",
+      "first_turnover": 9.79,
+      "float_mv": 2754057632.72,
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -225,12 +232,13 @@
       "first_time": "135118",
       "first_close": 20.12,
       "first_open_times": 4,
-      "first_turnover": 14.068565368652344,
+      "first_turnover": 14.07,
       "float_mv": 2615600000.0,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -255,12 +263,13 @@
       "first_time": "112835",
       "first_close": 13.22,
       "first_open_times": 4,
-      "first_turnover": 18.20144271850586,
+      "first_turnover": 18.2,
       "float_mv": 7863678564.08,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -285,12 +294,13 @@
       "first_time": "112218",
       "first_close": 16.97,
       "first_open_times": 0,
-      "first_turnover": 6.177755832672119,
-      "float_mv": 3524205243.8399997,
-      "_source": "eastmoney",
+      "first_turnover": 6.18,
+      "float_mv": 3524205243.84,
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -315,12 +325,13 @@
       "first_time": "111805",
       "first_close": 27.72,
       "first_open_times": 2,
-      "first_turnover": 6.421715259552002,
+      "first_turnover": 6.42,
       "float_mv": 3762158400.0,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -345,12 +356,13 @@
       "first_time": "112748",
       "first_close": 14.08,
       "first_open_times": 1,
-      "first_turnover": 17.988737106323242,
+      "first_turnover": 17.99,
       "float_mv": 2139112954.88,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -375,12 +387,13 @@
       "first_time": "112457",
       "first_close": 18.27,
       "first_open_times": 3,
-      "first_turnover": 22.279733657836914,
+      "first_turnover": 22.28,
       "float_mv": 2223342894.15,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -405,12 +418,13 @@
       "first_time": "110639",
       "first_close": 3.47,
       "first_open_times": 1,
-      "first_turnover": 3.835723638534546,
-      "float_mv": 4027082311.9100003,
-      "_source": "eastmoney",
+      "first_turnover": 3.84,
+      "float_mv": 4027082311.91,
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -435,12 +449,13 @@
       "first_time": "134421",
       "first_close": 10.27,
       "first_open_times": 1,
-      "first_turnover": 10.272697448730469,
+      "first_turnover": 10.27,
       "float_mv": 11651696058.08,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -465,12 +480,13 @@
       "first_time": "112601",
       "first_close": 10.71,
       "first_open_times": 4,
-      "first_turnover": 3.623051404953003,
+      "first_turnover": 3.62,
       "float_mv": 13581077595.12,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -495,12 +511,13 @@
       "first_time": "134843",
       "first_close": 8.34,
       "first_open_times": 4,
-      "first_turnover": 12.377265930175781,
+      "first_turnover": 12.38,
       "float_mv": 4840206761.82,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -525,12 +542,13 @@
       "first_time": "135838",
       "first_close": 72.69,
       "first_open_times": 4,
-      "first_turnover": 2.403594493865967,
+      "first_turnover": 2.4,
       "float_mv": 12651588517.98,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -555,12 +573,13 @@
       "first_time": "135120",
       "first_close": 15.33,
       "first_open_times": 2,
-      "first_turnover": 11.91453742980957,
+      "first_turnover": 11.91,
       "float_mv": 4420295890.5,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -585,12 +604,13 @@
       "first_time": "111518",
       "first_close": 7.28,
       "first_open_times": 0,
-      "first_turnover": 1.88904869556427,
-      "float_mv": 12375096384.560001,
-      "_source": "eastmoney",
+      "first_turnover": 1.89,
+      "float_mv": 12375096384.56,
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -615,12 +635,13 @@
       "first_time": "135030",
       "first_close": 3.15,
       "first_open_times": 6,
-      "first_turnover": 10.802513122558594,
+      "first_turnover": 10.8,
       "float_mv": 2898585657.45,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -645,12 +666,13 @@
       "first_time": "133751",
       "first_close": 13.43,
       "first_open_times": 1,
-      "first_turnover": 5.691784858703613,
+      "first_turnover": 5.69,
       "float_mv": 8347773348.53,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -675,12 +697,13 @@
       "first_time": "111536",
       "first_close": 23.42,
       "first_open_times": 1,
-      "first_turnover": 9.113043785095215,
+      "first_turnover": 9.11,
       "float_mv": 4324956294.1,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -705,12 +728,13 @@
       "first_time": "134710",
       "first_close": 16.25,
       "first_open_times": 0,
-      "first_turnover": 9.489763259887695,
+      "first_turnover": 9.49,
       "float_mv": 2506312640.0,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -735,12 +759,13 @@
       "first_time": "145515",
       "first_close": 9.39,
       "first_open_times": 1,
-      "first_turnover": 11.752326965332031,
+      "first_turnover": 11.75,
       "float_mv": 6248161955.01,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -765,12 +790,13 @@
       "first_time": "134449",
       "first_close": 4.59,
       "first_open_times": 4,
-      "first_turnover": 5.510029315948486,
+      "first_turnover": 5.51,
       "float_mv": 8297561676.78,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -795,12 +821,13 @@
       "first_time": "134744",
       "first_close": 13.04,
       "first_open_times": 7,
-      "first_turnover": 4.5088582038879395,
+      "first_turnover": 4.51,
       "float_mv": 5186091456.0,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -825,12 +852,13 @@
       "first_time": "134756",
       "first_close": 10.08,
       "first_open_times": 4,
-      "first_turnover": 6.6214728355407715,
+      "first_turnover": 6.62,
       "float_mv": 6094406545.92,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -855,12 +883,13 @@
       "first_time": "141115",
       "first_close": 34.61,
       "first_open_times": 2,
-      "first_turnover": 6.785037994384766,
+      "first_turnover": 6.79,
       "float_mv": 3114831472.2,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -885,12 +914,13 @@
       "first_time": "134927",
       "first_close": 4.94,
       "first_open_times": 3,
-      "first_turnover": 9.06701374053955,
-      "float_mv": 2672047348.6200004,
-      "_source": "eastmoney",
+      "first_turnover": 9.07,
+      "float_mv": 2672047348.62,
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -915,12 +945,13 @@
       "first_time": "130642",
       "first_close": 8.82,
       "first_open_times": 3,
-      "first_turnover": 7.803531169891357,
+      "first_turnover": 7.8,
       "float_mv": 4955366019.24,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -945,12 +976,13 @@
       "first_time": "130016",
       "first_close": 6.66,
       "first_open_times": 4,
-      "first_turnover": 7.654062271118164,
+      "first_turnover": 7.65,
       "float_mv": 3669091902.0,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -975,12 +1007,13 @@
       "first_time": "130015",
       "first_close": 5.36,
       "first_open_times": 3,
-      "first_turnover": 8.761208534240723,
+      "first_turnover": 8.76,
       "float_mv": 4658511447.2,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -1005,12 +1038,13 @@
       "first_time": "112227",
       "first_close": 15.63,
       "first_open_times": 4,
-      "first_turnover": 6.305430889129639,
+      "first_turnover": 6.31,
       "float_mv": 10567990722.09,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -1035,12 +1069,13 @@
       "first_time": "112554",
       "first_close": 4.41,
       "first_open_times": 4,
-      "first_turnover": 17.303010940551758,
+      "first_turnover": 17.3,
       "float_mv": 3134622725.64,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -1065,12 +1100,13 @@
       "first_time": "111525",
       "first_close": 5.69,
       "first_open_times": 2,
-      "first_turnover": 4.205685138702393,
+      "first_turnover": 4.21,
       "float_mv": 3759427290.96,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -1095,12 +1131,13 @@
       "first_time": "111836",
       "first_close": 64.57,
       "first_open_times": 6,
-      "first_turnover": 3.409221649169922,
-      "float_mv": 6345841259.889999,
-      "_source": "eastmoney",
+      "first_turnover": 3.41,
+      "float_mv": 6345841259.89,
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -1125,12 +1162,13 @@
       "first_time": "134948",
       "first_close": 5.57,
       "first_open_times": 1,
-      "first_turnover": 11.792045593261719,
+      "first_turnover": 11.79,
       "float_mv": 6477059583.54,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -1155,12 +1193,13 @@
       "first_time": "134343",
       "first_close": 17.29,
       "first_open_times": 5,
-      "first_turnover": 10.733298301696777,
+      "first_turnover": 10.73,
       "float_mv": 4671987957.0,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -1185,12 +1224,13 @@
       "first_time": "134500",
       "first_close": 11.14,
       "first_open_times": 2,
-      "first_turnover": 2.4062747955322266,
+      "first_turnover": 2.41,
       "float_mv": 8817881927.6,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -1215,12 +1255,13 @@
       "first_time": "135339",
       "first_close": 3.66,
       "first_open_times": 2,
-      "first_turnover": 5.087563514709473,
+      "first_turnover": 5.09,
       "float_mv": 3239327534.88,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -1245,12 +1286,13 @@
       "first_time": "110506",
       "first_close": 20.68,
       "first_open_times": 1,
-      "first_turnover": 3.7207961082458496,
+      "first_turnover": 3.72,
       "float_mv": 39303466460.28,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -1275,12 +1317,13 @@
       "first_time": "110700",
       "first_close": 7.57,
       "first_open_times": 3,
-      "first_turnover": 7.131859302520752,
+      "first_turnover": 7.13,
       "float_mv": 4557362716.97,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -1305,12 +1348,13 @@
       "first_time": "111201",
       "first_close": 28.25,
       "first_open_times": 0,
-      "first_turnover": 2.083963394165039,
+      "first_turnover": 2.08,
       "float_mv": 4185520000.0,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -1335,12 +1379,13 @@
       "first_time": "134609",
       "first_close": 21.16,
       "first_open_times": 9,
-      "first_turnover": 9.110966682434082,
+      "first_turnover": 9.11,
       "float_mv": 4257957649.12,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -1365,12 +1410,13 @@
       "first_time": "104503",
       "first_close": 3.42,
       "first_open_times": 0,
-      "first_turnover": 5.08845853805542,
+      "first_turnover": 5.09,
       "float_mv": 2945175958.62,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -1395,12 +1441,13 @@
       "first_time": "130521",
       "first_close": 11.28,
       "first_open_times": 7,
-      "first_turnover": 4.879909992218018,
+      "first_turnover": 4.88,
       "float_mv": 11046041993.76,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -1425,12 +1472,13 @@
       "first_time": "133454",
       "first_close": 6.61,
       "first_open_times": 0,
-      "first_turnover": 3.2603676319122314,
+      "first_turnover": 3.26,
       "float_mv": 5304916047.6,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -1461,6 +1509,7 @@
       "data_sources": {
         "first_board": "miana_tushare_cache",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -1491,6 +1540,7 @@
       "data_sources": {
         "first_board": "miana_tushare_cache",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -1521,6 +1571,7 @@
       "data_sources": {
         "first_board": "miana_tushare_cache",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -1551,6 +1602,7 @@
       "data_sources": {
         "first_board": "miana_tushare_cache",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -1575,9 +1627,9 @@
       "first_time": "105316",
       "first_close": 7.57,
       "first_open_times": 0,
-      "first_turnover": 1.125563383102417,
+      "first_turnover": 1.13,
       "float_mv": 11351737330.0,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "status": "淘汰",
       "reason": "流动性或历史数据不足"
     },
@@ -1589,9 +1641,9 @@
       "first_time": "105951",
       "first_close": 22.22,
       "first_open_times": 0,
-      "first_turnover": 2.7600460052490234,
+      "first_turnover": 2.76,
       "float_mv": 2873828855.04,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "status": "淘汰",
       "reason": "流动性或历史数据不足"
     },
@@ -1603,9 +1655,9 @@
       "first_time": "112048",
       "first_close": 27.39,
       "first_open_times": 1,
-      "first_turnover": 3.8639752864837646,
+      "first_turnover": 3.86,
       "float_mv": 5625258473.01,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "status": "淘汰",
       "reason": "流动性或历史数据不足"
     },
@@ -1617,9 +1669,9 @@
       "first_time": "112416",
       "first_close": 5.62,
       "first_open_times": 0,
-      "first_turnover": 4.5115532875061035,
+      "first_turnover": 4.51,
       "float_mv": 3711392266.46,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "status": "淘汰",
       "reason": "流动性或历史数据不足"
     },
@@ -1631,9 +1683,9 @@
       "first_time": "130108",
       "first_close": 4.32,
       "first_open_times": 3,
-      "first_turnover": 4.282580375671387,
+      "first_turnover": 4.28,
       "float_mv": 9708646314.24,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "status": "淘汰",
       "reason": "流动性或历史数据不足"
     },
@@ -1645,9 +1697,9 @@
       "first_time": "130110",
       "first_close": 5.89,
       "first_open_times": 3,
-      "first_turnover": 6.851256847381592,
+      "first_turnover": 6.85,
       "float_mv": 2513915718.02,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "status": "淘汰",
       "reason": "流动性或历史数据不足"
     },
@@ -1659,9 +1711,9 @@
       "first_time": "134120",
       "first_close": 27.78,
       "first_open_times": 0,
-      "first_turnover": 3.0743188858032227,
-      "float_mv": 2739488058.1800003,
-      "_source": "eastmoney",
+      "first_turnover": 3.07,
+      "float_mv": 2739488058.18,
+      "_source": "miana_tushare",
       "status": "淘汰",
       "reason": "流动性或历史数据不足"
     },
@@ -1673,9 +1725,9 @@
       "first_time": "141911",
       "first_close": 8.47,
       "first_open_times": 0,
-      "first_turnover": 3.8972008228302,
+      "first_turnover": 3.9,
       "float_mv": 2448185740.0,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "status": "淘汰",
       "reason": "流动性或历史数据不足"
     },
@@ -1763,6 +1815,7 @@
       "data_sources": {
         "first_board": "miana_tushare_cache",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -1793,6 +1846,7 @@
       "data_sources": {
         "first_board": "miana_tushare_cache",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -1823,6 +1877,7 @@
       "data_sources": {
         "first_board": "miana_tushare_cache",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -1853,6 +1908,7 @@
       "data_sources": {
         "first_board": "miana_tushare_cache",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -1883,6 +1939,7 @@
       "data_sources": {
         "first_board": "miana_tushare_cache",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -1913,6 +1970,7 @@
       "data_sources": {
         "first_board": "miana_tushare_cache",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -1943,6 +2001,7 @@
       "data_sources": {
         "first_board": "miana_tushare_cache",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -2088,10 +2147,10 @@
   "last_review_date": "20261102",
   "market": {
     "date": "20261102",
-    "close": 4016.9179,
-    "ma20": 4165.48714,
+    "close": 4016.92,
+    "ma20": 4165.487245,
     "market_up": false,
-    "source": "miana_tushare"
+    "source": "eastmoney"
   },
   "position_sizing": "单笔20%，最多5笔，单日最多3笔",
   "costs": {
@@ -2107,12 +2166,13 @@
       "first_time": "132045",
       "first_close": 8.71,
       "first_open_times": 0,
-      "first_turnover": 36.69446563720703,
-      "float_mv": 5227016674.750001,
-      "_source": "eastmoney",
+      "first_turnover": 36.69,
+      "float_mv": 5227016674.75,
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -2138,12 +2198,13 @@
       "first_time": "110411",
       "first_close": 47.05,
       "first_open_times": 2,
-      "first_turnover": 8.057315826416016,
+      "first_turnover": 8.06,
       "float_mv": 6567239000.0,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -2169,12 +2230,13 @@
       "first_time": "110927",
       "first_close": 20.43,
       "first_open_times": 2,
-      "first_turnover": 3.1641931533813477,
+      "first_turnover": 3.16,
       "float_mv": 9480345494.58,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -2200,12 +2262,13 @@
       "first_time": "130918",
       "first_close": 19.21,
       "first_open_times": 3,
-      "first_turnover": 9.793532371520996,
-      "float_mv": 2754057632.7200003,
-      "_source": "eastmoney",
+      "first_turnover": 9.79,
+      "float_mv": 2754057632.72,
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -2231,12 +2294,13 @@
       "first_time": "112218",
       "first_close": 16.97,
       "first_open_times": 0,
-      "first_turnover": 6.177755832672119,
-      "float_mv": 3524205243.8399997,
-      "_source": "eastmoney",
+      "first_turnover": 6.18,
+      "float_mv": 3524205243.84,
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -2262,12 +2326,13 @@
       "first_time": "111805",
       "first_close": 27.72,
       "first_open_times": 2,
-      "first_turnover": 6.421715259552002,
+      "first_turnover": 6.42,
       "float_mv": 3762158400.0,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -2293,12 +2358,13 @@
       "first_time": "112457",
       "first_close": 18.27,
       "first_open_times": 3,
-      "first_turnover": 22.279733657836914,
+      "first_turnover": 22.28,
       "float_mv": 2223342894.15,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -2324,12 +2390,13 @@
       "first_time": "110639",
       "first_close": 3.47,
       "first_open_times": 1,
-      "first_turnover": 3.835723638534546,
-      "float_mv": 4027082311.9100003,
-      "_source": "eastmoney",
+      "first_turnover": 3.84,
+      "float_mv": 4027082311.91,
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -2355,12 +2422,13 @@
       "first_time": "133751",
       "first_close": 13.43,
       "first_open_times": 1,
-      "first_turnover": 5.691784858703613,
+      "first_turnover": 5.69,
       "float_mv": 8347773348.53,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -2386,12 +2454,13 @@
       "first_time": "111536",
       "first_close": 23.42,
       "first_open_times": 1,
-      "first_turnover": 9.113043785095215,
+      "first_turnover": 9.11,
       "float_mv": 4324956294.1,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -2417,12 +2486,13 @@
       "first_time": "134710",
       "first_close": 16.25,
       "first_open_times": 0,
-      "first_turnover": 9.489763259887695,
+      "first_turnover": 9.49,
       "float_mv": 2506312640.0,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -2448,12 +2518,13 @@
       "first_time": "134449",
       "first_close": 4.59,
       "first_open_times": 4,
-      "first_turnover": 5.510029315948486,
+      "first_turnover": 5.51,
       "float_mv": 8297561676.78,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -2479,12 +2550,13 @@
       "first_time": "134744",
       "first_close": 13.04,
       "first_open_times": 7,
-      "first_turnover": 4.5088582038879395,
+      "first_turnover": 4.51,
       "float_mv": 5186091456.0,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -2510,12 +2582,13 @@
       "first_time": "134756",
       "first_close": 10.08,
       "first_open_times": 4,
-      "first_turnover": 6.6214728355407715,
+      "first_turnover": 6.62,
       "float_mv": 6094406545.92,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -2541,12 +2614,13 @@
       "first_time": "141115",
       "first_close": 34.61,
       "first_open_times": 2,
-      "first_turnover": 6.785037994384766,
+      "first_turnover": 6.79,
       "float_mv": 3114831472.2,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -2572,12 +2646,13 @@
       "first_time": "134927",
       "first_close": 4.94,
       "first_open_times": 3,
-      "first_turnover": 9.06701374053955,
-      "float_mv": 2672047348.6200004,
-      "_source": "eastmoney",
+      "first_turnover": 9.07,
+      "float_mv": 2672047348.62,
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -2603,12 +2678,13 @@
       "first_time": "130642",
       "first_close": 8.82,
       "first_open_times": 3,
-      "first_turnover": 7.803531169891357,
+      "first_turnover": 7.8,
       "float_mv": 4955366019.24,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -2634,12 +2710,13 @@
       "first_time": "130016",
       "first_close": 6.66,
       "first_open_times": 4,
-      "first_turnover": 7.654062271118164,
+      "first_turnover": 7.65,
       "float_mv": 3669091902.0,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -2665,12 +2742,13 @@
       "first_time": "130015",
       "first_close": 5.36,
       "first_open_times": 3,
-      "first_turnover": 8.761208534240723,
+      "first_turnover": 8.76,
       "float_mv": 4658511447.2,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -2696,12 +2774,13 @@
       "first_time": "111525",
       "first_close": 5.69,
       "first_open_times": 2,
-      "first_turnover": 4.205685138702393,
+      "first_turnover": 4.21,
       "float_mv": 3759427290.96,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -2727,12 +2806,13 @@
       "first_time": "111836",
       "first_close": 64.57,
       "first_open_times": 6,
-      "first_turnover": 3.409221649169922,
-      "float_mv": 6345841259.889999,
-      "_source": "eastmoney",
+      "first_turnover": 3.41,
+      "float_mv": 6345841259.89,
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -2758,12 +2838,13 @@
       "first_time": "134500",
       "first_close": 11.14,
       "first_open_times": 2,
-      "first_turnover": 2.4062747955322266,
+      "first_turnover": 2.41,
       "float_mv": 8817881927.6,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -2789,12 +2870,13 @@
       "first_time": "135339",
       "first_close": 3.66,
       "first_open_times": 2,
-      "first_turnover": 5.087563514709473,
+      "first_turnover": 5.09,
       "float_mv": 3239327534.88,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -2820,12 +2902,13 @@
       "first_time": "110506",
       "first_close": 20.68,
       "first_open_times": 1,
-      "first_turnover": 3.7207961082458496,
+      "first_turnover": 3.72,
       "float_mv": 39303466460.28,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -2851,12 +2934,13 @@
       "first_time": "110700",
       "first_close": 7.57,
       "first_open_times": 3,
-      "first_turnover": 7.131859302520752,
+      "first_turnover": 7.13,
       "float_mv": 4557362716.97,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -2882,12 +2966,13 @@
       "first_time": "111201",
       "first_close": 28.25,
       "first_open_times": 0,
-      "first_turnover": 2.083963394165039,
+      "first_turnover": 2.08,
       "float_mv": 4185520000.0,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -2913,12 +2998,13 @@
       "first_time": "134609",
       "first_close": 21.16,
       "first_open_times": 9,
-      "first_turnover": 9.110966682434082,
+      "first_turnover": 9.11,
       "float_mv": 4257957649.12,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -2944,12 +3030,13 @@
       "first_time": "104503",
       "first_close": 3.42,
       "first_open_times": 0,
-      "first_turnover": 5.08845853805542,
+      "first_turnover": 5.09,
       "float_mv": 2945175958.62,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -2975,12 +3062,13 @@
       "first_time": "133454",
       "first_close": 6.61,
       "first_open_times": 0,
-      "first_turnover": 3.2603676319122314,
+      "first_turnover": 3.26,
       "float_mv": 5304916047.6,
-      "_source": "eastmoney",
+      "_source": "miana_tushare",
       "data_sources": {
-        "first_board": "eastmoney",
+        "first_board": "miana_tushare",
         "daily": [
+          "miana_tushare",
           "miana_tushare_cache"
         ]
       },
@@ -3017,25 +3105,25 @@
     "daily_rows": 5571,
     "daily_status": "complete",
     "daily_error": null,
-    "limit_rows": 133,
+    "limit_rows": 161,
     "limit_up": 125,
     "limit_down": 8,
     "market": {
       "date": "20261102",
-      "close": 4016.9179,
-      "ma20": 4165.48714,
+      "close": 4016.92,
+      "ma20": 4165.487245,
       "market_up": false,
-      "source": "miana_tushare"
+      "source": "eastmoney"
     },
     "sources": {
       "trade_cal": {
         "20261103": "cache"
       },
       "index_daily": {
-        "20261102": "miana_tushare"
+        "20261102": "eastmoney"
       },
       "limit_list": {
-        "20261102": "eastmoney",
+        "20261102": "miana_tushare",
         "20261030": "miana_tushare_cache",
         "20261029": "miana_tushare_cache"
       },
@@ -3119,7 +3207,7 @@
         "20261028": "miana_tushare_cache",
         "20261029": "miana_tushare_cache",
         "20261030": "miana_tushare_cache",
-        "20261102": "miana_tushare_cache"
+        "20261102": "miana_tushare"
       }
     },
     "fallbacks": []
@@ -3130,10 +3218,10 @@
         "20261103": "cache"
       },
       "index_daily": {
-        "20261102": "miana_tushare"
+        "20261102": "eastmoney"
       },
       "limit_list": {
-        "20261102": "eastmoney",
+        "20261102": "miana_tushare",
         "20261030": "miana_tushare_cache",
         "20261029": "miana_tushare_cache"
       },
@@ -3217,7 +3305,7 @@
         "20261028": "miana_tushare_cache",
         "20261029": "miana_tushare_cache",
         "20261030": "miana_tushare_cache",
-        "20261102": "miana_tushare_cache"
+        "20261102": "miana_tushare"
       }
     },
     "fallbacks": []
