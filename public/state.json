@@ -2350,6 +2350,30 @@
         },
         "fallbacks": []
       }
+    },
+    {
+      "date": "20261104",
+      "equity": 100000.0,
+      "cash": 100000.0,
+      "positions": 0,
+      "sells": 0,
+      "realized_pnl": 0,
+      "day_pnl": 0.0,
+      "total_return": 0.0,
+      "data_sources": {
+        "sources": {
+          "trade_cal": {
+            "20261104": "cache"
+          },
+          "daily": {
+            "20261104": "eastmoney"
+          },
+          "limit_list": {
+            "20261104": "eastmoney"
+          }
+        },
+        "fallbacks": []
+      }
     }
   ],
   "equity_curve": [
@@ -2388,11 +2412,15 @@
     {
       "date": "20261103",
       "equity": 100000.0
+    },
+    {
+      "date": "20261104",
+      "equity": 100000.0
     }
   ],
   "last_preopen_date": "20261104",
   "last_buy_date": "20261104",
-  "last_review_date": "20261103",
+  "last_review_date": "20261104",
   "market": {
     "date": "20261103",
     "close": 4008.87,
@@ -2875,8 +2903,11 @@
       "trade_cal": {
         "20261104": "cache"
       },
-      "minutes": {
-        "20261104:603016.SH": "eastmoney"
+      "daily": {
+        "20261104": "eastmoney"
+      },
+      "limit_list": {
+        "20261104": "eastmoney"
       }
     },
     "fallbacks": []
