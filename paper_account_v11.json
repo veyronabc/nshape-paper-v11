@@ -4,8 +4,21 @@
   "model": "N字二板量化模型 v1.3",
   "initial_capital": 100000.0,
   "start_date": "20261020",
-  "cash": 100000.0,
-  "positions": [],
+  "cash": 80000.0,
+  "positions": [
+    {
+      "code": "603016.SH",
+      "name": "新宏泰",
+      "branch": "B",
+      "entry_date": "20261105",
+      "entry_price": 27.35,
+      "shares": 730.3120203333474,
+      "cost": 20000.000000000004,
+      "status": "待收盘确认",
+      "pending_t1_open": false,
+      "pending_t2_close": true
+    }
+  ],
   "stock_pool": [
     {
       "first_date": "20261102",
@@ -41,7 +54,7 @@
       "entry_date": "20261105",
       "prev_close": 12.93,
       "threshold": 13.3179,
-      "status": "待触发",
+      "status": "未触发",
       "reason": "等待09:45前涨超3%"
     },
     {
@@ -78,8 +91,10 @@
       "entry_date": "20261105",
       "prev_close": 26.5,
       "threshold": 27.295,
-      "status": "待触发",
-      "reason": "等待09:45前涨超3%"
+      "status": "触发买入",
+      "reason": "等待09:45前涨超3%",
+      "entry_price": 27.35,
+      "entry_gap": 0.03207547169811331
     },
     {
       "first_date": "20261102",
@@ -1970,8 +1985,62 @@
     }
   ],
   "stock_pool_date": "20261105",
-  "buy_signals": [],
-  "trades": [],
+  "buy_signals": [
+    {
+      "first_date": "20261102",
+      "gap_days": 3,
+      "code": "603016.SH",
+      "name": "新宏泰",
+      "first_time": "111201",
+      "first_close": 28.25,
+      "first_open_times": 0,
+      "first_turnover": 2.08,
+      "float_mv": 4185520000.0,
+      "_source": "miana_tushare",
+      "data_sources": {
+        "first_board": "miana_tushare",
+        "daily": [
+          "eastmoney",
+          "miana_tushare",
+          "miana_tushare_cache"
+        ]
+      },
+      "first_open": 26.22,
+      "first_low": 25.29,
+      "first_vol": 30876.0,
+      "prior20": -0.21033210332103325,
+      "pre_ret20": -0.21033210332103325,
+      "pre_ret60": -0.04179104477611939,
+      "dist_ma20": -0.11098802187911094,
+      "vol_ratio_5_20": 0.7965416595050159,
+      "bear_ma": true,
+      "market_up": false,
+      "branch": "B",
+      "small_yang": 0,
+      "entry_date": "20261105",
+      "prev_close": 26.5,
+      "threshold": 27.295,
+      "status": "触发买入",
+      "reason": "等待09:45前涨超3%",
+      "pool": "v1.3执行",
+      "entry_price": 27.35,
+      "entry_gap": 0.03207547169811331,
+      "buy_status": "触发买入"
+    }
+  ],
+  "trades": [
+    {
+      "date": "20261105",
+      "side": "BUY",
+      "code": "603016.SH",
+      "name": "新宏泰",
+      "branch": "B",
+      "price": 27.35,
+      "shares": 730.3120203333474,
+      "pnl": 0.0,
+      "reason": "09:45前涨超3%触发"
+    }
+  ],
   "reviews": [
     {
       "date": "20261023",
@@ -2149,7 +2218,7 @@
     }
   ],
   "last_preopen_date": "20261105",
-  "last_buy_date": "20261104",
+  "last_buy_date": "20261105",
   "last_review_date": "20261104",
   "market": {
     "date": "20261104",
@@ -2198,7 +2267,7 @@
       "entry_date": "20261105",
       "prev_close": 12.93,
       "threshold": 13.3179,
-      "status": "待触发",
+      "status": "未触发",
       "reason": "等待09:45前涨超3%",
       "pool": "v1.2精选"
     },
@@ -2236,9 +2305,11 @@
       "entry_date": "20261105",
       "prev_close": 26.5,
       "threshold": 27.295,
-      "status": "待触发",
+      "status": "触发买入",
       "reason": "等待09:45前涨超3%",
-      "pool": "v1.2精选"
+      "pool": "v1.2精选",
+      "entry_price": 27.35,
+      "entry_gap": 0.03207547169811331
     }
   ],
   "v12_pool_date": "20261105",
@@ -2281,9 +2352,10 @@
       "entry_date": "20261105",
       "prev_close": 12.93,
       "threshold": 13.3179,
-      "status": "待触发",
+      "status": "未触发",
       "reason": "等待09:45前涨超3%",
-      "pool": "v1.3执行"
+      "pool": "v1.3执行",
+      "buy_status": "未触发"
     },
     {
       "first_date": "20261102",
@@ -2319,9 +2391,12 @@
       "entry_date": "20261105",
       "prev_close": 26.5,
       "threshold": 27.295,
-      "status": "待触发",
+      "status": "触发买入",
       "reason": "等待09:45前涨超3%",
-      "pool": "v1.3执行"
+      "pool": "v1.3执行",
+      "entry_price": 27.35,
+      "entry_gap": 0.03207547169811331,
+      "buy_status": "触发买入"
     }
   ],
   "v13_pool_date": "20261105",
@@ -2448,97 +2523,26 @@
       "trade_cal": {
         "20261105": "cache"
       },
-      "index_daily": {
-        "20261104": "eastmoney"
-      },
-      "limit_list": {
-        "20261104": "eastmoney",
-        "20261103": "miana_tushare",
-        "20261102": "miana_tushare"
-      },
-      "daily": {
-        "20260708": "miana_tushare_cache",
-        "20260709": "miana_tushare_cache",
-        "20260710": "miana_tushare_cache",
-        "20260713": "miana_tushare_cache",
-        "20260714": "miana_tushare_cache",
-        "20260715": "miana_tushare_cache",
-        "20260716": "miana_tushare_cache",
-        "20260717": "miana_tushare_cache",
-        "20260720": "miana_tushare_cache",
-        "20260721": "miana_tushare_cache",
-        "20260722": "miana_tushare_cache",
-        "20260723": "miana_tushare_cache",
-        "20260724": "miana_tushare_cache",
-        "20260727": "miana_tushare_cache",
-        "20260728": "miana_tushare_cache",
-        "20260729": "miana_tushare_cache",
-        "20260730": "miana_tushare_cache",
-        "20260731": "miana_tushare_cache",
-        "20260803": "miana_tushare_cache",
-        "20260804": "miana_tushare_cache",
-        "20260805": "miana_tushare_cache",
-        "20260806": "miana_tushare_cache",
-        "20260807": "miana_tushare_cache",
-        "20260810": "miana_tushare_cache",
-        "20260811": "miana_tushare_cache",
-        "20260812": "miana_tushare_cache",
-        "20260813": "miana_tushare_cache",
-        "20260814": "miana_tushare_cache",
-        "20260817": "miana_tushare_cache",
-        "20260818": "miana_tushare_cache",
-        "20260819": "miana_tushare_cache",
-        "20260820": "miana_tushare_cache",
-        "20260821": "miana_tushare_cache",
-        "20260824": "miana_tushare_cache",
-        "20260825": "miana_tushare_cache",
-        "20260826": "miana_tushare_cache",
-        "20260827": "miana_tushare_cache",
-        "20260828": "miana_tushare_cache",
-        "20260831": "miana_tushare_cache",
-        "20260901": "miana_tushare_cache",
-        "20260902": "miana_tushare_cache",
-        "20260903": "miana_tushare_cache",
-        "20260904": "miana_tushare_cache",
-        "20260907": "miana_tushare_cache",
-        "20260908": "miana_tushare_cache",
-        "20260909": "miana_tushare_cache",
-        "20260910": "miana_tushare_cache",
-        "20260911": "miana_tushare_cache",
-        "20260914": "miana_tushare_cache",
-        "20260915": "miana_tushare_cache",
-        "20260916": "miana_tushare_cache",
-        "20260917": "miana_tushare_cache",
-        "20260918": "miana_tushare_cache",
-        "20260921": "miana_tushare_cache",
-        "20260922": "miana_tushare_cache",
-        "20260923": "miana_tushare_cache",
-        "20260924": "miana_tushare_cache",
-        "20260928": "miana_tushare_cache",
-        "20260929": "miana_tushare_cache",
-        "20260930": "miana_tushare_cache",
-        "20261008": "miana_tushare_cache",
-        "20261009": "miana_tushare_cache",
-        "20261012": "miana_tushare_cache",
-        "20261013": "miana_tushare_cache",
-        "20261014": "miana_tushare_cache",
-        "20261015": "miana_tushare_cache",
-        "20261016": "miana_tushare_cache",
-        "20261019": "miana_tushare_cache",
-        "20261020": "miana_tushare_cache",
-        "20261021": "miana_tushare_cache",
-        "20261022": "miana_tushare_cache",
-        "20261023": "miana_tushare_cache",
-        "20261026": "miana_tushare_cache",
-        "20261027": "miana_tushare_cache",
-        "20261028": "miana_tushare_cache",
-        "20261029": "miana_tushare_cache",
-        "20261030": "miana_tushare_cache",
-        "20261102": "miana_tushare",
-        "20261103": "eastmoney",
-        "20261104": "eastmoney"
+      "minutes": {
+        "20261105:600088.SH": "eastmoney",
+        "20261105:603016.SH": "eastmoney"
       }
     },
-    "fallbacks": []
+    "fallbacks": [
+      {
+        "data": "minutes",
+        "key": "20261105:600088.SH",
+        "primary": "miana_tushare",
+        "fallback": "eastmoney",
+        "reason": "stk_mins 调用失败: 无法获取 testToken"
+      },
+      {
+        "data": "minutes",
+        "key": "20261105:603016.SH",
+        "primary": "miana_tushare",
+        "fallback": "eastmoney",
+        "reason": "stk_mins 调用失败: 无法获取 testToken"
+      }
+    ]
   }
 }
