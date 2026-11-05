@@ -14,7 +14,7 @@
       "entry_price": 27.35,
       "shares": 730.3120203333474,
       "cost": 20000.000000000004,
-      "status": "待收盘确认",
+      "status": "T+2待卖",
       "pending_t1_open": false,
       "pending_t2_close": true
     }
@@ -2173,6 +2173,30 @@
         },
         "fallbacks": []
       }
+    },
+    {
+      "date": "20261105",
+      "equity": 100733.55825726374,
+      "cash": 80000.0,
+      "positions": 1,
+      "sells": 0,
+      "realized_pnl": 0,
+      "day_pnl": 733.5582572637359,
+      "total_return": 0.007335582572637334,
+      "data_sources": {
+        "sources": {
+          "trade_cal": {
+            "20261105": "cache"
+          },
+          "daily": {
+            "20261105": "eastmoney"
+          },
+          "limit_list": {
+            "20261105": "eastmoney"
+          }
+        },
+        "fallbacks": []
+      }
     }
   ],
   "equity_curve": [
@@ -2215,11 +2239,15 @@
     {
       "date": "20261104",
       "equity": 100000.0
+    },
+    {
+      "date": "20261105",
+      "equity": 100733.55825726374
     }
   ],
   "last_preopen_date": "20261105",
   "last_buy_date": "20261105",
-  "last_review_date": "20261104",
+  "last_review_date": "20261105",
   "market": {
     "date": "20261104",
     "close": 4101.34,
@@ -2523,26 +2551,13 @@
       "trade_cal": {
         "20261105": "cache"
       },
-      "minutes": {
-        "20261105:600088.SH": "eastmoney",
-        "20261105:603016.SH": "eastmoney"
+      "daily": {
+        "20261105": "eastmoney"
+      },
+      "limit_list": {
+        "20261105": "eastmoney"
       }
     },
-    "fallbacks": [
-      {
-        "data": "minutes",
-        "key": "20261105:600088.SH",
-        "primary": "miana_tushare",
-        "fallback": "eastmoney",
-        "reason": "stk_mins 调用失败: 无法获取 testToken"
-      },
-      {
-        "data": "minutes",
-        "key": "20261105:603016.SH",
-        "primary": "miana_tushare",
-        "fallback": "eastmoney",
-        "reason": "stk_mins 调用失败: 无法获取 testToken"
-      }
-    ]
+    "fallbacks": []
   }
 }
