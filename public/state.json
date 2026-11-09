@@ -3661,15 +3661,7 @@
         "20261106": "miana_tushare"
       }
     },
-    "fallbacks": [
-      {
-        "data": "index_daily",
-        "key": "20261106",
-        "primary": "miana_tushare",
-        "fallback": "eastmoney",
-        "reason": "no rows for requested date"
-      }
-    ]
+    "fallbacks": []
   },
   "data_sources": {
     "sources": {
@@ -3767,14 +3759,6 @@
         "20261106": "miana_tushare"
       }
     },
-    "fallbacks": [
-      {
-        "data": "index_daily",
-        "key": "20261106",
-        "primary": "miana_tushare",
-        "fallback": "eastmoney",
-        "reason": "no rows for requested date"
-      }
-    ]
+    "fallbacks": []
   }
 }
