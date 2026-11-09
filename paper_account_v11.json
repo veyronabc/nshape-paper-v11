@@ -4,20 +4,8 @@
   "model": "N字二板量化模型 v1.3",
   "initial_capital": 100000.0,
   "start_date": "20261020",
-  "cash": 60005.19324877659,
+  "cash": 80398.1719559819,
   "positions": [
-    {
-      "code": "603016.SH",
-      "name": "新宏泰",
-      "branch": "B",
-      "entry_date": "20261105",
-      "entry_price": 27.35,
-      "shares": 730.3120203333474,
-      "cost": 20000.000000000004,
-      "status": "T+2待卖",
-      "pending_t1_open": false,
-      "pending_t2_close": true
-    },
     {
       "code": "002596.SZ",
       "name": "海南瑞泽",
@@ -26,9 +14,9 @@
       "entry_price": 3.2754000000000003,
       "shares": 6096.6133143428815,
       "cost": 19994.806751223412,
-      "status": "待收盘确认",
+      "status": "封板/连板中",
       "pending_t1_open": false,
-      "pending_t2_close": true
+      "pending_t2_close": false
     }
   ],
   "stock_pool": [
@@ -2829,6 +2817,17 @@
       "shares": 6096.6133143428815,
       "pnl": 0.0,
       "reason": "09:45前涨超3%触发"
+    },
+    {
+      "date": "20261109",
+      "side": "SELL",
+      "code": "603016.SH",
+      "name": "新宏泰",
+      "branch": "B",
+      "price": 27.96,
+      "shares": 730.3120203333474,
+      "pnl": 392.978707205315,
+      "reason": "T+2收盘卖（买入日未封板）"
     }
   ],
   "reviews": [
@@ -3019,6 +3018,30 @@
           }
         ]
       }
+    },
+    {
+      "date": "20261109",
+      "equity": 101614.38628989513,
+      "cash": 80398.1719559819,
+      "positions": 1,
+      "sells": 1,
+      "realized_pnl": 392.978707205315,
+      "day_pnl": 1421.2589276780782,
+      "total_return": 0.016143862898951422,
+      "data_sources": {
+        "sources": {
+          "trade_cal": {
+            "20261109": "cache"
+          },
+          "daily": {
+            "20261109": "eastmoney"
+          },
+          "limit_list": {
+            "20261109": "eastmoney"
+          }
+        },
+        "fallbacks": []
+      }
     }
   ],
   "equity_curve": [
@@ -3069,11 +3092,15 @@
     {
       "date": "20261106",
       "equity": 100193.12736221706
+    },
+    {
+      "date": "20261109",
+      "equity": 101614.38628989513
     }
   ],
   "last_preopen_date": "20261109",
   "last_buy_date": "20261109",
-  "last_review_date": "20261106",
+  "last_review_date": "20261109",
   "market": {
     "date": "20261106",
     "close": 4054.28,
@@ -3487,10 +3514,11 @@
       "trade_cal": {
         "20261109": "cache"
       },
-      "minutes": {
-        "20261109:002596.SZ": "eastmoney",
-        "20261109:603682.SH": "eastmoney",
-        "20261109:605188.SH": "eastmoney"
+      "daily": {
+        "20261109": "eastmoney"
+      },
+      "limit_list": {
+        "20261109": "eastmoney"
       }
     },
     "fallbacks": []
