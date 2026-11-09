@@ -4,7 +4,7 @@
   "model": "N字二板量化模型 v1.3",
   "initial_capital": 100000.0,
   "start_date": "20261020",
-  "cash": 80000.0,
+  "cash": 60005.19324877659,
   "positions": [
     {
       "code": "603016.SH",
@@ -15,6 +15,18 @@
       "shares": 730.3120203333474,
       "cost": 20000.000000000004,
       "status": "T+2待卖",
+      "pending_t1_open": false,
+      "pending_t2_close": true
+    },
+    {
+      "code": "002596.SZ",
+      "name": "海南瑞泽",
+      "branch": "B",
+      "entry_date": "20261109",
+      "entry_price": 3.2754000000000003,
+      "shares": 6096.6133143428815,
+      "cost": 19994.806751223412,
+      "status": "待收盘确认",
       "pending_t1_open": false,
       "pending_t2_close": true
     }
@@ -54,7 +66,7 @@
       "entry_date": "20261109",
       "prev_close": 12.2,
       "threshold": 12.565999999999999,
-      "status": "待触发",
+      "status": "未触发",
       "reason": "等待09:45前涨超3%"
     },
     {
@@ -91,8 +103,10 @@
       "entry_date": "20261109",
       "prev_close": 3.18,
       "threshold": 3.2754000000000003,
-      "status": "待触发",
-      "reason": "等待09:45前涨超3%"
+      "status": "触发买入",
+      "reason": "等待09:45前涨超3%",
+      "entry_price": 3.2754000000000003,
+      "entry_gap": 0.030000000000000027
     },
     {
       "first_date": "20261105",
@@ -128,7 +142,7 @@
       "entry_date": "20261109",
       "prev_close": 8.19,
       "threshold": 8.435699999999999,
-      "status": "待触发",
+      "status": "未触发",
       "reason": "等待09:45前涨超3%"
     },
     {
@@ -2750,6 +2764,47 @@
       "entry_price": 27.35,
       "entry_gap": 0.03207547169811331,
       "buy_status": "触发买入"
+    },
+    {
+      "first_date": "20261105",
+      "gap_days": 2,
+      "code": "002596.SZ",
+      "name": "海南瑞泽",
+      "first_time": "140515",
+      "first_close": 3.33,
+      "first_open_times": 1,
+      "first_turnover": 6.44,
+      "float_mv": 3818079928.17,
+      "_source": "miana_tushare",
+      "data_sources": {
+        "first_board": "miana_tushare",
+        "daily": [
+          "eastmoney",
+          "miana_tushare",
+          "miana_tushare_cache"
+        ]
+      },
+      "first_open": 3.01,
+      "first_low": 2.99,
+      "first_vol": 253654.0,
+      "prior20": -0.10248447204968947,
+      "pre_ret20": -0.10248447204968947,
+      "pre_ret60": -0.09687500000000004,
+      "dist_ma20": -0.09361768856829222,
+      "vol_ratio_5_20": 0.580552152181119,
+      "bear_ma": true,
+      "market_up": false,
+      "branch": "B",
+      "small_yang": 0,
+      "entry_date": "20261109",
+      "prev_close": 3.18,
+      "threshold": 3.2754000000000003,
+      "status": "触发买入",
+      "reason": "等待09:45前涨超3%",
+      "pool": "v1.3执行",
+      "entry_price": 3.2754000000000003,
+      "entry_gap": 0.030000000000000027,
+      "buy_status": "触发买入"
     }
   ],
   "trades": [
@@ -2761,6 +2816,17 @@
       "branch": "B",
       "price": 27.35,
       "shares": 730.3120203333474,
+      "pnl": 0.0,
+      "reason": "09:45前涨超3%触发"
+    },
+    {
+      "date": "20261109",
+      "side": "BUY",
+      "code": "002596.SZ",
+      "name": "海南瑞泽",
+      "branch": "B",
+      "price": 3.2754000000000003,
+      "shares": 6096.6133143428815,
       "pnl": 0.0,
       "reason": "09:45前涨超3%触发"
     }
@@ -3006,7 +3072,7 @@
     }
   ],
   "last_preopen_date": "20261109",
-  "last_buy_date": "20261106",
+  "last_buy_date": "20261109",
   "last_review_date": "20261106",
   "market": {
     "date": "20261106",
@@ -3055,7 +3121,7 @@
       "entry_date": "20261109",
       "prev_close": 12.2,
       "threshold": 12.565999999999999,
-      "status": "待触发",
+      "status": "未触发",
       "reason": "等待09:45前涨超3%",
       "pool": "v1.2精选"
     },
@@ -3093,9 +3159,11 @@
       "entry_date": "20261109",
       "prev_close": 3.18,
       "threshold": 3.2754000000000003,
-      "status": "待触发",
+      "status": "触发买入",
       "reason": "等待09:45前涨超3%",
-      "pool": "v1.2精选"
+      "pool": "v1.2精选",
+      "entry_price": 3.2754000000000003,
+      "entry_gap": 0.030000000000000027
     },
     {
       "first_date": "20261105",
@@ -3131,7 +3199,7 @@
       "entry_date": "20261109",
       "prev_close": 8.19,
       "threshold": 8.435699999999999,
-      "status": "待触发",
+      "status": "未触发",
       "reason": "等待09:45前涨超3%",
       "pool": "v1.2精选"
     },
@@ -3209,9 +3277,10 @@
       "entry_date": "20261109",
       "prev_close": 12.2,
       "threshold": 12.565999999999999,
-      "status": "待触发",
+      "status": "未触发",
       "reason": "等待09:45前涨超3%",
-      "pool": "v1.3执行"
+      "pool": "v1.3执行",
+      "buy_status": "未触发"
     },
     {
       "first_date": "20261105",
@@ -3247,9 +3316,12 @@
       "entry_date": "20261109",
       "prev_close": 3.18,
       "threshold": 3.2754000000000003,
-      "status": "待触发",
+      "status": "触发买入",
       "reason": "等待09:45前涨超3%",
-      "pool": "v1.3执行"
+      "pool": "v1.3执行",
+      "entry_price": 3.2754000000000003,
+      "entry_gap": 0.030000000000000027,
+      "buy_status": "触发买入"
     },
     {
       "first_date": "20261105",
@@ -3285,9 +3357,10 @@
       "entry_date": "20261109",
       "prev_close": 8.19,
       "threshold": 8.435699999999999,
-      "status": "待触发",
+      "status": "未触发",
       "reason": "等待09:45前涨超3%",
-      "pool": "v1.3执行"
+      "pool": "v1.3执行",
+      "buy_status": "未触发"
     }
   ],
   "v13_pool_date": "20261109",
@@ -3414,95 +3487,10 @@
       "trade_cal": {
         "20261109": "cache"
       },
-      "index_daily": {
-        "20261106": "eastmoney"
-      },
-      "limit_list": {
-        "20261106": "miana_tushare",
-        "20261105": "eastmoney,miana_tushare",
-        "20261104": "eastmoney,miana_tushare"
-      },
-      "daily": {
-        "20260710": "miana_tushare_cache",
-        "20260713": "miana_tushare_cache",
-        "20260714": "miana_tushare_cache",
-        "20260715": "miana_tushare_cache",
-        "20260716": "miana_tushare_cache",
-        "20260717": "miana_tushare_cache",
-        "20260720": "miana_tushare_cache",
-        "20260721": "miana_tushare_cache",
-        "20260722": "miana_tushare_cache",
-        "20260723": "miana_tushare_cache",
-        "20260724": "miana_tushare_cache",
-        "20260727": "miana_tushare_cache",
-        "20260728": "miana_tushare_cache",
-        "20260729": "miana_tushare_cache",
-        "20260730": "miana_tushare_cache",
-        "20260731": "miana_tushare_cache",
-        "20260803": "miana_tushare_cache",
-        "20260804": "miana_tushare_cache",
-        "20260805": "miana_tushare_cache",
-        "20260806": "miana_tushare_cache",
-        "20260807": "miana_tushare_cache",
-        "20260810": "miana_tushare_cache",
-        "20260811": "miana_tushare_cache",
-        "20260812": "miana_tushare_cache",
-        "20260813": "miana_tushare_cache",
-        "20260814": "miana_tushare_cache",
-        "20260817": "miana_tushare_cache",
-        "20260818": "miana_tushare_cache",
-        "20260819": "miana_tushare_cache",
-        "20260820": "miana_tushare_cache",
-        "20260821": "miana_tushare_cache",
-        "20260824": "miana_tushare_cache",
-        "20260825": "miana_tushare_cache",
-        "20260826": "miana_tushare_cache",
-        "20260827": "miana_tushare_cache",
-        "20260828": "miana_tushare_cache",
-        "20260831": "miana_tushare_cache",
-        "20260901": "miana_tushare_cache",
-        "20260902": "miana_tushare_cache",
-        "20260903": "miana_tushare_cache",
-        "20260904": "miana_tushare_cache",
-        "20260907": "miana_tushare_cache",
-        "20260908": "miana_tushare_cache",
-        "20260909": "miana_tushare_cache",
-        "20260910": "miana_tushare_cache",
-        "20260911": "miana_tushare_cache",
-        "20260914": "miana_tushare_cache",
-        "20260915": "miana_tushare_cache",
-        "20260916": "miana_tushare_cache",
-        "20260917": "miana_tushare_cache",
-        "20260918": "miana_tushare_cache",
-        "20260921": "miana_tushare_cache",
-        "20260922": "miana_tushare_cache",
-        "20260923": "miana_tushare_cache",
-        "20260924": "miana_tushare_cache",
-        "20260928": "miana_tushare_cache",
-        "20260929": "miana_tushare_cache",
-        "20260930": "miana_tushare_cache",
-        "20261008": "miana_tushare_cache",
-        "20261009": "miana_tushare_cache",
-        "20261012": "miana_tushare_cache",
-        "20261013": "miana_tushare_cache",
-        "20261014": "miana_tushare_cache",
-        "20261015": "miana_tushare_cache",
-        "20261016": "miana_tushare_cache",
-        "20261019": "miana_tushare_cache",
-        "20261020": "miana_tushare_cache",
-        "20261021": "miana_tushare_cache",
-        "20261022": "miana_tushare_cache",
-        "20261023": "miana_tushare_cache",
-        "20261026": "miana_tushare_cache",
-        "20261027": "miana_tushare_cache",
-        "20261028": "miana_tushare_cache",
-        "20261029": "miana_tushare_cache",
-        "20261030": "miana_tushare_cache",
-        "20261102": "miana_tushare",
-        "20261103": "eastmoney",
-        "20261104": "eastmoney",
-        "20261105": "eastmoney",
-        "20261106": "eastmoney"
+      "minutes": {
+        "20261109:002596.SZ": "eastmoney",
+        "20261109:603682.SH": "eastmoney",
+        "20261109:605188.SH": "eastmoney"
       }
     },
     "fallbacks": []
