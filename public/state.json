@@ -34,63 +34,60 @@
       "data_sources": {
         "first_board": "miana_tushare",
         "daily": [
+          "eastmoney",
           "miana_tushare",
           "miana_tushare_cache"
         ]
       },
       "first_open": 11.27,
       "first_low": 11.27,
-      "first_vol": 121100.0,
-      "prior20": -0.08951612903225814,
-      "pre_ret20": -0.08951612903225814,
-      "pre_ret60": -0.11520376175548597,
-      "dist_ma20": -0.09669160299235913,
-      "vol_ratio_5_20": 0.7318619357253614,
+      "first_vol": 47964.0,
+      "prior20": -0.09508460918614015,
+      "pre_ret20": -0.09508460918614015,
+      "pre_ret60": -0.09943865276663999,
+      "dist_ma20": -0.10542876488628661,
+      "vol_ratio_5_20": 0.7886516230091031,
       "bear_ma": true,
       "market_up": false,
       "branch": "B",
       "small_yang": 0,
       "entry_date": "20261110",
-      "prev_close": 12.03,
-      "threshold": 12.3909,
+      "prev_close": 11.95,
+      "threshold": 12.3085,
       "status": "待触发",
       "reason": "等待09:45前涨超3%"
     },
     {
       "first_date": "20261105",
       "gap_days": 3,
-      "code": "605069.SH",
-      "name": "正和生态",
-      "first_time": "141301",
-      "first_close": 10.52,
-      "first_open_times": 0,
-      "first_turnover": 4.6,
-      "float_mv": 2227060624.56,
+      "code": "002343.SZ",
+      "name": "慈文传媒",
+      "first_time": "133515",
+      "first_close": 8.89,
+      "first_open_times": 1,
+      "first_turnover": 35.16,
+      "float_mv": 4211017742.54,
       "_source": "miana_tushare",
       "data_sources": {
         "first_board": "miana_tushare",
         "daily": [
+          "eastmoney",
           "miana_tushare",
           "miana_tushare_cache"
         ]
       },
-      "first_open": 9.49,
-      "first_low": 9.41,
-      "first_vol": 97371.0,
-      "prior20": -0.19392917369308593,
-      "pre_ret20": -0.19392917369308593,
-      "pre_ret60": -0.09125475285171092,
-      "dist_ma20": -0.10196796768587668,
-      "vol_ratio_5_20": 0.5939151354594328,
-      "bear_ma": true,
+      "first_open": 8.45,
+      "first_low": 8.3,
+      "first_vol": 1123800.0,
+      "prior20": 0.5000000000000002,
+      "pre_ret20": 0.5000000000000002,
+      "pre_ret60": 0.6363636363636365,
+      "dist_ma20": -0.02207837244249211,
+      "vol_ratio_5_20": 1.141885324154105,
+      "bear_ma": false,
       "market_up": false,
-      "branch": "B",
-      "small_yang": 0,
-      "entry_date": "20261110",
-      "prev_close": 10.15,
-      "threshold": 10.454500000000001,
-      "status": "待触发",
-      "reason": "等待09:45前涨超3%"
+      "status": "等待回调",
+      "reason": "还没有回调日"
     },
     {
       "first_date": "20261109",
@@ -106,80 +103,19 @@
       "data_sources": {
         "first_board": "miana_tushare",
         "daily": [
+          "eastmoney",
           "miana_tushare",
           "miana_tushare_cache"
         ]
       },
       "first_open": 10.39,
       "first_low": 10.32,
-      "first_vol": 985354.19,
-      "prior20": 0.20114942528735624,
-      "pre_ret20": 0.20114942528735624,
-      "pre_ret60": 0.4295485636114911,
-      "dist_ma20": -0.010369809176570932,
-      "vol_ratio_5_20": 1.7611035074149881,
-      "bear_ma": false,
-      "market_up": false,
-      "status": "等待回调",
-      "reason": "首板后还没有回调日"
-    },
-    {
-      "first_date": "20261109",
-      "gap_days": 1,
-      "code": "603389.SH",
-      "name": "亚振家居",
-      "first_time": "112025",
-      "first_close": 53.44,
-      "first_open_times": 2,
-      "first_turnover": 2.27,
-      "float_mv": 14041466880.0,
-      "_source": "miana_tushare",
-      "data_sources": {
-        "first_board": "miana_tushare",
-        "daily": [
-          "miana_tushare",
-          "miana_tushare_cache"
-        ]
-      },
-      "first_open": 48.2,
-      "first_low": 48.2,
-      "first_vol": 59575.8,
-      "prior20": 0.12453703703703689,
-      "pre_ret20": 0.12453703703703689,
-      "pre_ret60": 0.05425347222222232,
-      "dist_ma20": 0.13652048801600203,
-      "vol_ratio_5_20": 1.479466674643285,
-      "bear_ma": false,
-      "market_up": false,
-      "status": "等待回调",
-      "reason": "首板后还没有回调日"
-    },
-    {
-      "first_date": "20261109",
-      "gap_days": 1,
-      "code": "000525.SZ",
-      "name": "红太阳",
-      "first_time": "135648",
-      "first_close": 5.52,
-      "first_open_times": 10,
-      "first_turnover": 20.16,
-      "float_mv": 6136915227.6,
-      "_source": "miana_tushare",
-      "data_sources": {
-        "first_board": "miana_tushare",
-        "daily": [
-          "miana_tushare",
-          "miana_tushare_cache"
-        ]
-      },
-      "first_open": 5.14,
-      "first_low": 5.08,
-      "first_vol": 2240947.88,
-      "prior20": 0.08893709327548782,
-      "pre_ret20": 0.08893709327548782,
-      "pre_ret60": 0.10087719298245612,
-      "dist_ma20": 0.1374192817491786,
-      "vol_ratio_5_20": 2.407363557644431,
+      "first_vol": 449493.0,
+      "prior20": 0.2321839080459771,
+      "pre_ret20": 0.2321839080459771,
+      "pre_ret60": 0.4664842681258552,
+      "dist_ma20": 0.014095166020244188,
+      "vol_ratio_5_20": 1.3645242036632248,
       "bear_ma": false,
       "market_up": false,
       "status": "等待回调",
@@ -199,18 +135,51 @@
       "data_sources": {
         "first_board": "miana_tushare",
         "daily": [
+          "eastmoney",
           "miana_tushare",
           "miana_tushare_cache"
         ]
       },
       "first_open": 14.76,
       "first_low": 14.74,
-      "first_vol": 1766606.0,
-      "prior20": 0.03571428571428581,
-      "pre_ret20": 0.03571428571428581,
-      "pre_ret60": 0.1471518987341771,
-      "dist_ma20": 0.0026275757156686286,
-      "vol_ratio_5_20": 0.8948948655048174,
+      "first_vol": 522420.0,
+      "prior20": 0.06428571428571428,
+      "pre_ret20": 0.06428571428571428,
+      "pre_ret60": 0.17879746835443044,
+      "dist_ma20": 0.03157020216006656,
+      "vol_ratio_5_20": 0.4890813195850808,
+      "bear_ma": false,
+      "market_up": false,
+      "status": "等待回调",
+      "reason": "首板后还没有回调日"
+    },
+    {
+      "first_date": "20261109",
+      "gap_days": 1,
+      "code": "000525.SZ",
+      "name": "红太阳",
+      "first_time": "135648",
+      "first_close": 5.52,
+      "first_open_times": 10,
+      "first_turnover": 20.16,
+      "float_mv": 6136915227.6,
+      "_source": "miana_tushare",
+      "data_sources": {
+        "first_board": "miana_tushare",
+        "daily": [
+          "eastmoney",
+          "miana_tushare",
+          "miana_tushare_cache"
+        ]
+      },
+      "first_open": 5.14,
+      "first_low": 5.08,
+      "first_vol": 1250887.0,
+      "prior20": 0.00433839479392617,
+      "pre_ret20": 0.00433839479392617,
+      "pre_ret60": 0.015350877192982448,
+      "dist_ma20": 0.05299067546054115,
+      "vol_ratio_5_20": 2.0113438484479387,
       "bear_ma": false,
       "market_up": false,
       "status": "等待回调",
@@ -230,18 +199,19 @@
       "data_sources": {
         "first_board": "miana_tushare",
         "daily": [
+          "eastmoney",
           "miana_tushare",
           "miana_tushare_cache"
         ]
       },
       "first_open": 3.88,
       "first_low": 3.86,
-      "first_vol": 1338145.1,
-      "prior20": -0.2420634920634921,
-      "pre_ret20": -0.2420634920634921,
-      "pre_ret60": 0.043715846994535346,
-      "dist_ma20": -0.07629065409261282,
-      "vol_ratio_5_20": 0.6240403470842228,
+      "first_vol": 419361.0,
+      "prior20": -0.2321428571428571,
+      "pre_ret20": -0.2321428571428571,
+      "pre_ret60": 0.05737704918032782,
+      "dist_ma20": -0.06499154385117178,
+      "vol_ratio_5_20": 0.35842679696105656,
       "bear_ma": true,
       "market_up": false,
       "status": "等待回调",
@@ -261,53 +231,23 @@
       "data_sources": {
         "first_board": "miana_tushare",
         "daily": [
+          "eastmoney",
           "miana_tushare",
           "miana_tushare_cache"
         ]
       },
       "first_open": 53.47,
       "first_low": 52.46,
-      "first_vol": 77910.45,
-      "prior20": -0.40712212547443627,
-      "pre_ret20": -0.40712212547443627,
-      "pre_ret60": 0.054188169908693906,
-      "dist_ma20": -0.24868084143218883,
-      "vol_ratio_5_20": 0.8674682065054882,
+      "first_vol": 49663.0,
+      "prior20": -0.4091315025675374,
+      "pre_ret20": -0.4091315025675374,
+      "pre_ret60": 0.050615323541087776,
+      "dist_ma20": -0.2503894632488316,
+      "vol_ratio_5_20": 0.541395932520901,
       "bear_ma": false,
       "market_up": false,
       "status": "等待回调",
       "reason": "首板后还没有回调日"
-    },
-    {
-      "first_date": "20261105",
-      "gap_days": 3,
-      "code": "002343.SZ",
-      "name": "慈文传媒",
-      "first_time": "133515",
-      "first_close": 8.89,
-      "first_open_times": 1,
-      "first_turnover": 35.16,
-      "float_mv": 4211017742.54,
-      "_source": "miana_tushare",
-      "data_sources": {
-        "first_board": "miana_tushare",
-        "daily": [
-          "miana_tushare",
-          "miana_tushare_cache"
-        ]
-      },
-      "first_open": 8.45,
-      "first_low": 8.3,
-      "first_vol": 1665248.81,
-      "prior20": 0.4326241134751774,
-      "pre_ret20": 0.4326241134751774,
-      "pre_ret60": 0.562862669245648,
-      "dist_ma20": -0.06297112373883806,
-      "vol_ratio_5_20": 1.2977939832290792,
-      "bear_ma": false,
-      "market_up": false,
-      "status": "淘汰",
-      "reason": "跌破首板最低价（单阳破位）"
     },
     {
       "first_date": "20261105",
@@ -323,18 +263,19 @@
       "data_sources": {
         "first_board": "miana_tushare",
         "daily": [
+          "eastmoney",
           "miana_tushare",
           "miana_tushare_cache"
         ]
       },
       "first_open": 4.02,
       "first_low": 4.02,
-      "first_vol": 3422209.22,
+      "first_vol": 2285646.0,
       "prior20": 0.3556231003039514,
       "pre_ret20": 0.3556231003039514,
       "pre_ret60": 0.457516339869281,
       "dist_ma20": 0.24825076966134896,
-      "vol_ratio_5_20": 2.0499825229421806,
+      "vol_ratio_5_20": 1.9937094766717172,
       "bear_ma": false,
       "market_up": false,
       "status": "淘汰",
@@ -354,22 +295,23 @@
       "data_sources": {
         "first_board": "miana_tushare",
         "daily": [
+          "eastmoney",
           "miana_tushare",
           "miana_tushare_cache"
         ]
       },
       "first_open": 59.72,
       "first_low": 59.2,
-      "first_vol": 423444.08,
+      "first_vol": 286659.0,
       "prior20": 0.2900832021587587,
       "pre_ret20": 0.2900832021587587,
       "pre_ret60": -0.006924009001211817,
-      "dist_ma20": 0.14532695820564778,
-      "vol_ratio_5_20": 1.1792450401621986,
+      "dist_ma20": 0.14616214488352575,
+      "vol_ratio_5_20": 0.9488583282760444,
       "bear_ma": false,
       "market_up": false,
       "status": "淘汰",
-      "reason": "跌破首板最低价（单阳破位）"
+      "reason": "分支 A/B 前置条件不符"
     },
     {
       "first_date": "20261106",
@@ -385,22 +327,23 @@
       "data_sources": {
         "first_board": "miana_tushare",
         "daily": [
+          "eastmoney",
           "miana_tushare",
           "miana_tushare_cache"
         ]
       },
       "first_open": 9.75,
-      "first_low": 9.07,
-      "first_vol": 628805.7,
-      "prior20": 0.24290998766954397,
-      "pre_ret20": 0.24290998766954397,
-      "pre_ret60": 0.32981530343007925,
-      "dist_ma20": 0.25529265255292666,
-      "vol_ratio_5_20": 2.0247174519526894,
+      "first_low": 9.17,
+      "first_vol": 268067.0,
+      "prior20": 0.2022194821208385,
+      "pre_ret20": 0.2022194821208385,
+      "pre_ret60": 0.2862796833773087,
+      "dist_ma20": 0.21669682410931546,
+      "vol_ratio_5_20": 1.889426987902928,
       "bear_ma": false,
       "market_up": false,
       "status": "淘汰",
-      "reason": "分支 A/B 前置条件不符"
+      "reason": "回调收盘未低于首板收盘"
     },
     {
       "first_date": "20261105",
@@ -416,18 +359,19 @@
       "data_sources": {
         "first_board": "miana_tushare",
         "daily": [
+          "eastmoney",
           "miana_tushare",
           "miana_tushare_cache"
         ]
       },
       "first_open": 13.33,
       "first_low": 13.1,
-      "first_vol": 641950.58,
-      "prior20": 0.11074918566775249,
-      "pre_ret20": 0.11074918566775249,
-      "pre_ret60": 0.23774954627949185,
-      "dist_ma20": 0.13453940528176322,
-      "vol_ratio_5_20": 1.0800206355319293,
+      "first_vol": 230051.0,
+      "prior20": 0.10097719869706845,
+      "pre_ret20": 0.10097719869706845,
+      "pre_ret60": 0.22686025408348454,
+      "dist_ma20": 0.12320345601063387,
+      "vol_ratio_5_20": 0.9123834914765532,
       "bear_ma": false,
       "market_up": false,
       "status": "淘汰",
@@ -447,22 +391,23 @@
       "data_sources": {
         "first_board": "miana_tushare",
         "daily": [
+          "eastmoney",
           "miana_tushare",
           "miana_tushare_cache"
         ]
       },
       "first_open": 11.31,
       "first_low": 11.3,
-      "first_vol": 575812.8,
-      "prior20": 0.09491850431447757,
-      "pre_ret20": 0.09491850431447757,
-      "pre_ret60": 0.30514285714285716,
-      "dist_ma20": 0.018052150657454913,
-      "vol_ratio_5_20": 1.0765459533485673,
+      "first_vol": 265536.0,
+      "prior20": 0.07574304889741135,
+      "pre_ret20": 0.07574304889741135,
+      "pre_ret60": 0.28228571428571425,
+      "dist_ma20": -0.0006680026720105037,
+      "vol_ratio_5_20": 0.9014174583862469,
       "bear_ma": false,
       "market_up": false,
       "status": "淘汰",
-      "reason": "回调收盘未低于首板收盘"
+      "reason": "分支 A/B 前置条件不符"
     },
     {
       "first_date": "20261105",
@@ -478,22 +423,37 @@
       "data_sources": {
         "first_board": "miana_tushare",
         "daily": [
+          "eastmoney",
           "miana_tushare",
           "miana_tushare_cache"
         ]
       },
       "first_open": 8.92,
       "first_low": 8.75,
-      "first_vol": 2276894.75,
-      "prior20": 0.05805687203791465,
-      "pre_ret20": 0.05805687203791465,
-      "pre_ret60": -0.030401737242128246,
-      "dist_ma20": 0.08696975229748638,
-      "vol_ratio_5_20": 1.1686912852090423,
+      "first_vol": 1163270.0,
+      "prior20": 0.04739336492891,
+      "pre_ret20": 0.04739336492891,
+      "pre_ret60": -0.04017372421281229,
+      "dist_ma20": 0.07483737613228758,
+      "vol_ratio_5_20": 0.9953609779401543,
       "bear_ma": false,
       "market_up": false,
       "status": "淘汰",
       "reason": "回调收盘未低于首板收盘"
+    },
+    {
+      "first_date": "20261109",
+      "gap_days": 1,
+      "code": "603389.SH",
+      "name": "亚振家居",
+      "first_time": "112025",
+      "first_close": 53.44,
+      "first_open_times": 2,
+      "first_turnover": 2.27,
+      "float_mv": 14041466880.0,
+      "_source": "miana_tushare",
+      "status": "淘汰",
+      "reason": "流动性或历史数据不足"
     },
     {
       "first_date": "20261109",
@@ -533,6 +493,34 @@
       "first_open_times": 3,
       "first_turnover": 10.04,
       "float_mv": 2842922663.14,
+      "_source": "miana_tushare",
+      "status": "淘汰",
+      "reason": "流动性或历史数据不足"
+    },
+    {
+      "first_date": "20261106",
+      "gap_days": 2,
+      "code": "002973.SZ",
+      "name": "侨银股份",
+      "first_time": "131124",
+      "first_close": 10.78,
+      "first_open_times": 2,
+      "first_turnover": 5.64,
+      "float_mv": 3424121200.5,
+      "_source": "miana_tushare",
+      "status": "淘汰",
+      "reason": "流动性或历史数据不足"
+    },
+    {
+      "first_date": "20261105",
+      "gap_days": 3,
+      "code": "605069.SH",
+      "name": "正和生态",
+      "first_time": "141301",
+      "first_close": 10.52,
+      "first_open_times": 0,
+      "first_turnover": 4.6,
+      "float_mv": 2227060624.56,
       "_source": "miana_tushare",
       "status": "淘汰",
       "reason": "流动性或历史数据不足"
@@ -591,6 +579,20 @@
       "float_mv": 1965323804.71,
       "_source": "miana_tushare",
       "status": "淘汰",
+      "reason": "上市不足一年"
+    },
+    {
+      "first_date": "20261105",
+      "gap_days": 3,
+      "code": "000889.SZ",
+      "name": "中嘉博创",
+      "first_time": "141539",
+      "first_close": 3.27,
+      "first_open_times": 0,
+      "first_turnover": 6.64,
+      "float_mv": 2844244204.77,
+      "_source": "miana_tushare",
+      "status": "淘汰",
       "reason": "流动性或历史数据不足"
     },
     {
@@ -621,18 +623,19 @@
       "data_sources": {
         "first_board": "miana_tushare",
         "daily": [
+          "eastmoney",
           "miana_tushare",
           "miana_tushare_cache"
         ]
       },
       "first_open": 4.41,
       "first_low": 4.34,
-      "first_vol": 1260770.79,
-      "prior20": -0.002188183807440014,
-      "pre_ret20": -0.002188183807440014,
-      "pre_ret60": -0.008695652173913104,
-      "dist_ma20": 0.03801502390166167,
-      "vol_ratio_5_20": 2.420200006824266,
+      "first_vol": 693366.0,
+      "prior20": -0.008752735229759279,
+      "pre_ret20": -0.008752735229759279,
+      "pre_ret60": -0.015217391304347738,
+      "dist_ma20": 0.030482256596906288,
+      "vol_ratio_5_20": 2.1322560772601813,
       "bear_ma": false,
       "market_up": false,
       "status": "淘汰",
@@ -652,18 +655,19 @@
       "data_sources": {
         "first_board": "miana_tushare",
         "daily": [
+          "eastmoney",
           "miana_tushare",
           "miana_tushare_cache"
         ]
       },
       "first_open": 2.23,
       "first_low": 2.23,
-      "first_vol": 2502235.22,
+      "first_vol": 848013.0,
       "prior20": -0.017316017316017285,
       "pre_ret20": -0.017316017316017285,
       "pre_ret60": -0.08467741935483875,
-      "dist_ma20": -0.042396118962244156,
-      "vol_ratio_5_20": 0.7232479109532522,
+      "dist_ma20": -0.04400926510844383,
+      "vol_ratio_5_20": 0.611785185689341,
       "bear_ma": true,
       "market_up": false,
       "status": "淘汰",
@@ -683,53 +687,23 @@
       "data_sources": {
         "first_board": "miana_tushare",
         "daily": [
+          "eastmoney",
           "miana_tushare",
           "miana_tushare_cache"
         ]
       },
       "first_open": 22.17,
       "first_low": 21.83,
-      "first_vol": 113618.59,
-      "prior20": -0.03443708609271512,
-      "pre_ret20": -0.03443708609271512,
-      "pre_ret60": -0.07721518987341769,
-      "dist_ma20": 0.00885690561859942,
-      "vol_ratio_5_20": 1.154006424149768,
+      "first_vol": 48220.0,
+      "prior20": -0.027497708524289677,
+      "pre_ret20": -0.027497708524289677,
+      "pre_ret60": -0.10765349032800686,
+      "dist_ma20": -0.0212628568792953,
+      "vol_ratio_5_20": 0.8264189452273184,
       "bear_ma": true,
       "market_up": false,
       "status": "淘汰",
       "reason": "分支 A/B 前置条件不符"
-    },
-    {
-      "first_date": "20261105",
-      "gap_days": 3,
-      "code": "002596.SZ",
-      "name": "海南瑞泽",
-      "first_time": "140515",
-      "first_close": 3.33,
-      "first_open_times": 1,
-      "first_turnover": 6.44,
-      "float_mv": 3818079928.17,
-      "_source": "miana_tushare",
-      "data_sources": {
-        "first_board": "miana_tushare",
-        "daily": [
-          "miana_tushare",
-          "miana_tushare_cache"
-        ]
-      },
-      "first_open": 3.01,
-      "first_low": 2.99,
-      "first_vol": 738696.53,
-      "prior20": -0.05900621118012439,
-      "pre_ret20": -0.05900621118012439,
-      "pre_ret60": -0.05312500000000009,
-      "dist_ma20": -0.05045440300846127,
-      "vol_ratio_5_20": 0.7467739724117399,
-      "bear_ma": true,
-      "market_up": false,
-      "status": "淘汰",
-      "reason": "回调收盘未低于首板收盘"
     },
     {
       "first_date": "20261105",
@@ -745,19 +719,52 @@
       "data_sources": {
         "first_board": "miana_tushare",
         "daily": [
+          "eastmoney",
           "miana_tushare",
           "miana_tushare_cache"
         ]
       },
       "first_open": 9.35,
       "first_low": 9.35,
-      "first_vol": 243305.5,
-      "prior20": -0.06965174129353247,
-      "pre_ret20": -0.06965174129353247,
-      "pre_ret60": 0.055304740406320496,
-      "dist_ma20": -0.07872696817420433,
-      "vol_ratio_5_20": 0.7100564897334306,
+      "first_vol": 86915.0,
+      "prior20": -0.08159203980099505,
+      "pre_ret20": -0.08159203980099505,
+      "pre_ret60": 0.04176072234762995,
+      "dist_ma20": -0.09158013877269822,
+      "vol_ratio_5_20": 0.5670881779455372,
       "bear_ma": false,
+      "market_up": false,
+      "status": "淘汰",
+      "reason": "回调收盘未低于首板收盘"
+    },
+    {
+      "first_date": "20261105",
+      "gap_days": 3,
+      "code": "002596.SZ",
+      "name": "海南瑞泽",
+      "first_time": "140515",
+      "first_close": 3.33,
+      "first_open_times": 1,
+      "first_turnover": 6.44,
+      "float_mv": 3818079928.17,
+      "_source": "miana_tushare",
+      "data_sources": {
+        "first_board": "miana_tushare",
+        "daily": [
+          "eastmoney",
+          "miana_tushare",
+          "miana_tushare_cache"
+        ]
+      },
+      "first_open": 3.01,
+      "first_low": 2.99,
+      "first_vol": 253654.0,
+      "prior20": -0.10248447204968947,
+      "pre_ret20": -0.10248447204968947,
+      "pre_ret60": -0.09687500000000004,
+      "dist_ma20": -0.09361768856829222,
+      "vol_ratio_5_20": 0.580552152181119,
+      "bear_ma": true,
       "market_up": false,
       "status": "淘汰",
       "reason": "回调收盘未低于首板收盘"
@@ -776,18 +783,19 @@
       "data_sources": {
         "first_board": "miana_tushare",
         "daily": [
+          "eastmoney",
           "miana_tushare",
           "miana_tushare_cache"
         ]
       },
       "first_open": 7.9,
       "first_low": 7.85,
-      "first_vol": 324400.0,
-      "prior20": -0.08219178082191791,
-      "pre_ret20": -0.08219178082191791,
-      "pre_ret60": -0.007407407407407418,
-      "dist_ma20": -0.04694167852062603,
-      "vol_ratio_5_20": 1.049911393417274,
+      "first_vol": 124570.0,
+      "prior20": -0.10638297872340419,
+      "pre_ret20": -0.10638297872340419,
+      "pre_ret60": -0.007462686567163979,
+      "dist_ma20": -0.059461370734869456,
+      "vol_ratio_5_20": 0.951638494898082,
       "bear_ma": true,
       "market_up": false,
       "status": "淘汰",
@@ -807,18 +815,19 @@
       "data_sources": {
         "first_board": "miana_tushare",
         "daily": [
+          "eastmoney",
           "miana_tushare",
           "miana_tushare_cache"
         ]
       },
       "first_open": 96.0,
       "first_low": 95.67,
-      "first_vol": 32592.97,
-      "prior20": -0.09998129442573889,
-      "pre_ret20": -0.09998129442573889,
-      "pre_ret60": 0.0355105993758742,
-      "dist_ma20": 0.0051705227973051215,
-      "vol_ratio_5_20": 1.2955432441841304,
+      "first_vol": 12093.0,
+      "prior20": -0.13449307893752338,
+      "pre_ret20": -0.13449307893752338,
+      "pre_ret60": -0.00419670719896692,
+      "dist_ma20": -0.03270651935318636,
+      "vol_ratio_5_20": 1.0236552520901836,
       "bear_ma": true,
       "market_up": false,
       "status": "淘汰",
@@ -838,18 +847,19 @@
       "data_sources": {
         "first_board": "miana_tushare",
         "daily": [
+          "eastmoney",
           "miana_tushare",
           "miana_tushare_cache"
         ]
       },
       "first_open": 5.58,
       "first_low": 5.55,
-      "first_vol": 1287401.3,
-      "prior20": -0.14893617021276606,
-      "pre_ret20": -0.14893617021276606,
-      "pre_ret60": 0.07692307692307687,
-      "dist_ma20": -0.10263600673022999,
-      "vol_ratio_5_20": 0.6655137136002459,
+      "first_vol": 569863.0,
+      "prior20": -0.1534954407294833,
+      "pre_ret20": -0.1534954407294833,
+      "pre_ret60": 0.07115384615384612,
+      "dist_ma20": -0.10908509277031342,
+      "vol_ratio_5_20": 0.5399494186304932,
       "bear_ma": false,
       "market_up": false,
       "status": "淘汰",
@@ -869,53 +879,23 @@
       "data_sources": {
         "first_board": "miana_tushare",
         "daily": [
+          "eastmoney",
           "miana_tushare",
           "miana_tushare_cache"
         ]
       },
       "first_open": 36.5,
       "first_low": 36.5,
-      "first_vol": 163694.67,
-      "prior20": -0.17125665355241837,
-      "pre_ret20": -0.17125665355241837,
-      "pre_ret60": -0.28948412698412695,
-      "dist_ma20": -0.042257288044931784,
-      "vol_ratio_5_20": 1.2862980930504622,
+      "first_vol": 58719.0,
+      "prior20": -0.19999999999999996,
+      "pre_ret20": -0.19999999999999996,
+      "pre_ret60": -0.2817133443163097,
+      "dist_ma20": -0.07667465223088421,
+      "vol_ratio_5_20": 1.5140127468980382,
       "bear_ma": true,
       "market_up": false,
       "status": "淘汰",
       "reason": "回调收盘未低于首板收盘"
-    },
-    {
-      "first_date": "20261105",
-      "gap_days": 3,
-      "code": "000889.SZ",
-      "name": "中嘉博创",
-      "first_time": "141539",
-      "first_close": 3.27,
-      "first_open_times": 0,
-      "first_turnover": 6.64,
-      "float_mv": 2844244204.77,
-      "_source": "miana_tushare",
-      "data_sources": {
-        "first_board": "miana_tushare",
-        "daily": [
-          "miana_tushare",
-          "miana_tushare_cache"
-        ]
-      },
-      "first_open": 2.97,
-      "first_low": 2.95,
-      "first_vol": 577790.14,
-      "prior20": -0.1795580110497237,
-      "pre_ret20": -0.1795580110497237,
-      "pre_ret60": -0.24234693877551017,
-      "dist_ma20": -0.09007352941176461,
-      "vol_ratio_5_20": 1.2878569105922701,
-      "bear_ma": true,
-      "market_up": false,
-      "status": "淘汰",
-      "reason": "分支 A/B 前置条件不符"
     },
     {
       "first_date": "20261105",
@@ -931,18 +911,19 @@
       "data_sources": {
         "first_board": "miana_tushare",
         "daily": [
+          "eastmoney",
           "miana_tushare",
           "miana_tushare_cache"
         ]
       },
       "first_open": 18.57,
       "first_low": 18.46,
-      "first_vol": 66988.0,
-      "prior20": -0.18494055482166438,
-      "pre_ret20": -0.18494055482166438,
-      "pre_ret60": -0.1418636995827538,
-      "dist_ma20": -0.07108624193912627,
-      "vol_ratio_5_20": 1.2031913969356842,
+      "first_vol": 27457.0,
+      "prior20": -0.20343461030383092,
+      "pre_ret20": -0.20343461030383092,
+      "pre_ret60": -0.16133518776077893,
+      "dist_ma20": -0.09134289373885529,
+      "vol_ratio_5_20": 1.0128798945207917,
       "bear_ma": true,
       "market_up": false,
       "status": "淘汰",
@@ -962,49 +943,19 @@
       "data_sources": {
         "first_board": "miana_tushare",
         "daily": [
+          "eastmoney",
           "miana_tushare",
           "miana_tushare_cache"
         ]
       },
       "first_open": 7.46,
       "first_low": 7.4,
-      "first_vol": 128978.0,
-      "prior20": -0.20678685047720036,
-      "pre_ret20": -0.20678685047720036,
-      "pre_ret60": -0.26522593320235754,
-      "dist_ma20": -0.10403066419117202,
-      "vol_ratio_5_20": 0.7399317342633037,
-      "bear_ma": true,
-      "market_up": false,
-      "status": "淘汰",
-      "reason": "回调收盘未低于首板收盘"
-    },
-    {
-      "first_date": "20261106",
-      "gap_days": 2,
-      "code": "002973.SZ",
-      "name": "侨银股份",
-      "first_time": "131124",
-      "first_close": 10.78,
-      "first_open_times": 2,
-      "first_turnover": 5.64,
-      "float_mv": 3424121200.5,
-      "_source": "miana_tushare",
-      "data_sources": {
-        "first_board": "miana_tushare",
-        "daily": [
-          "miana_tushare",
-          "miana_tushare_cache"
-        ]
-      },
-      "first_open": 9.41,
-      "first_low": 9.21,
-      "first_vol": 179180.58,
-      "prior20": -0.2134831460674157,
-      "pre_ret20": -0.2134831460674157,
-      "pre_ret60": -0.019019019019018923,
-      "dist_ma20": -0.07547169811320742,
-      "vol_ratio_5_20": 0.9827224813465903,
+      "first_vol": 69881.0,
+      "prior20": -0.21527041357370091,
+      "pre_ret20": -0.21527041357370091,
+      "pre_ret60": -0.2730844793713163,
+      "dist_ma20": -0.11366630734219663,
+      "vol_ratio_5_20": 0.5671588954561716,
       "bear_ma": true,
       "market_up": false,
       "status": "淘汰",
@@ -1024,18 +975,19 @@
       "data_sources": {
         "first_board": "miana_tushare",
         "daily": [
+          "eastmoney",
           "miana_tushare",
           "miana_tushare_cache"
         ]
       },
       "first_open": 4.06,
       "first_low": 4.02,
-      "first_vol": 1060377.88,
-      "prior20": -0.23529411764705888,
-      "pre_ret20": -0.23529411764705888,
-      "pre_ret60": 0.06940874035989708,
-      "dist_ma20": -0.08410391897842351,
-      "vol_ratio_5_20": 0.8970657341307803,
+      "first_vol": 692674.0,
+      "prior20": -0.23345588235294124,
+      "pre_ret20": -0.23345588235294124,
+      "pre_ret60": 0.07197943444730082,
+      "dist_ma20": -0.082306338028169,
+      "vol_ratio_5_20": 0.6033177681371585,
       "bear_ma": true,
       "market_up": false,
       "status": "淘汰",
@@ -1435,10 +1387,10 @@
   "last_review_date": "20261109",
   "market": {
     "date": "20261109",
-    "close": 4056.1081,
-    "ma20": 4101.270614999999,
+    "close": 4056.11,
+    "ma20": 4101.27097,
     "market_up": false,
-    "source": "miana_tushare"
+    "source": "eastmoney"
   },
   "position_sizing": "单笔20%，最多5笔，单日最多3笔",
   "costs": {
@@ -1460,25 +1412,26 @@
       "data_sources": {
         "first_board": "miana_tushare",
         "daily": [
+          "eastmoney",
           "miana_tushare",
           "miana_tushare_cache"
         ]
       },
       "first_open": 11.27,
       "first_low": 11.27,
-      "first_vol": 121100.0,
-      "prior20": -0.08951612903225814,
-      "pre_ret20": -0.08951612903225814,
-      "pre_ret60": -0.11520376175548597,
-      "dist_ma20": -0.09669160299235913,
-      "vol_ratio_5_20": 0.7318619357253614,
+      "first_vol": 47964.0,
+      "prior20": -0.09508460918614015,
+      "pre_ret20": -0.09508460918614015,
+      "pre_ret60": -0.09943865276663999,
+      "dist_ma20": -0.10542876488628661,
+      "vol_ratio_5_20": 0.7886516230091031,
       "bear_ma": true,
       "market_up": false,
       "branch": "B",
       "small_yang": 0,
       "entry_date": "20261110",
-      "prev_close": 12.03,
-      "threshold": 12.3909,
+      "prev_close": 11.95,
+      "threshold": 12.3085,
       "status": "待触发",
       "reason": "等待09:45前涨超3%",
       "pool": "v1.2精选"
@@ -1486,38 +1439,34 @@
     {
       "first_date": "20261105",
       "gap_days": 3,
-      "code": "605069.SH",
-      "name": "正和生态",
-      "first_time": "141301",
-      "first_close": 10.52,
-      "first_open_times": 0,
-      "first_turnover": 4.6,
-      "float_mv": 2227060624.56,
+      "code": "002343.SZ",
+      "name": "慈文传媒",
+      "first_time": "133515",
+      "first_close": 8.89,
+      "first_open_times": 1,
+      "first_turnover": 35.16,
+      "float_mv": 4211017742.54,
       "_source": "miana_tushare",
       "data_sources": {
         "first_board": "miana_tushare",
         "daily": [
+          "eastmoney",
           "miana_tushare",
           "miana_tushare_cache"
         ]
       },
-      "first_open": 9.49,
-      "first_low": 9.41,
-      "first_vol": 97371.0,
-      "prior20": -0.19392917369308593,
-      "pre_ret20": -0.19392917369308593,
-      "pre_ret60": -0.09125475285171092,
-      "dist_ma20": -0.10196796768587668,
-      "vol_ratio_5_20": 0.5939151354594328,
-      "bear_ma": true,
+      "first_open": 8.45,
+      "first_low": 8.3,
+      "first_vol": 1123800.0,
+      "prior20": 0.5000000000000002,
+      "pre_ret20": 0.5000000000000002,
+      "pre_ret60": 0.6363636363636365,
+      "dist_ma20": -0.02207837244249211,
+      "vol_ratio_5_20": 1.141885324154105,
+      "bear_ma": false,
       "market_up": false,
-      "branch": "B",
-      "small_yang": 0,
-      "entry_date": "20261110",
-      "prev_close": 10.15,
-      "threshold": 10.454500000000001,
-      "status": "待触发",
-      "reason": "等待09:45前涨超3%",
+      "status": "等待回调",
+      "reason": "还没有回调日",
       "pool": "v1.2精选"
     },
     {
@@ -1534,18 +1483,19 @@
       "data_sources": {
         "first_board": "miana_tushare",
         "daily": [
+          "eastmoney",
           "miana_tushare",
           "miana_tushare_cache"
         ]
       },
       "first_open": 10.39,
       "first_low": 10.32,
-      "first_vol": 985354.19,
-      "prior20": 0.20114942528735624,
-      "pre_ret20": 0.20114942528735624,
-      "pre_ret60": 0.4295485636114911,
-      "dist_ma20": -0.010369809176570932,
-      "vol_ratio_5_20": 1.7611035074149881,
+      "first_vol": 449493.0,
+      "prior20": 0.2321839080459771,
+      "pre_ret20": 0.2321839080459771,
+      "pre_ret60": 0.4664842681258552,
+      "dist_ma20": 0.014095166020244188,
+      "vol_ratio_5_20": 1.3645242036632248,
       "bear_ma": false,
       "market_up": false,
       "status": "等待回调",
@@ -1566,18 +1516,19 @@
       "data_sources": {
         "first_board": "miana_tushare",
         "daily": [
+          "eastmoney",
           "miana_tushare",
           "miana_tushare_cache"
         ]
       },
       "first_open": 5.14,
       "first_low": 5.08,
-      "first_vol": 2240947.88,
-      "prior20": 0.08893709327548782,
-      "pre_ret20": 0.08893709327548782,
-      "pre_ret60": 0.10087719298245612,
-      "dist_ma20": 0.1374192817491786,
-      "vol_ratio_5_20": 2.407363557644431,
+      "first_vol": 1250887.0,
+      "prior20": 0.00433839479392617,
+      "pre_ret20": 0.00433839479392617,
+      "pre_ret60": 0.015350877192982448,
+      "dist_ma20": 0.05299067546054115,
+      "vol_ratio_5_20": 2.0113438484479387,
       "bear_ma": false,
       "market_up": false,
       "status": "等待回调",
@@ -1605,62 +1556,26 @@
       "data_sources": {
         "first_board": "miana_tushare",
         "daily": [
+          "eastmoney",
           "miana_tushare",
           "miana_tushare_cache"
         ]
       },
       "first_open": 11.27,
       "first_low": 11.27,
-      "first_vol": 121100.0,
-      "prior20": -0.08951612903225814,
-      "pre_ret20": -0.08951612903225814,
-      "pre_ret60": -0.11520376175548597,
-      "dist_ma20": -0.09669160299235913,
-      "vol_ratio_5_20": 0.7318619357253614,
+      "first_vol": 47964.0,
+      "prior20": -0.09508460918614015,
+      "pre_ret20": -0.09508460918614015,
+      "pre_ret60": -0.09943865276663999,
+      "dist_ma20": -0.10542876488628661,
+      "vol_ratio_5_20": 0.7886516230091031,
       "bear_ma": true,
       "market_up": false,
       "branch": "B",
       "small_yang": 0,
       "entry_date": "20261110",
-      "prev_close": 12.03,
-      "threshold": 12.3909,
-      "status": "待触发",
-      "reason": "等待09:45前涨超3%",
-      "pool": "v1.3执行"
-    },
-    {
-      "first_date": "20261105",
-      "gap_days": 3,
-      "code": "605069.SH",
-      "name": "正和生态",
-      "first_time": "141301",
-      "first_close": 10.52,
-      "first_open_times": 0,
-      "first_turnover": 4.6,
-      "float_mv": 2227060624.56,
-      "_source": "miana_tushare",
-      "data_sources": {
-        "first_board": "miana_tushare",
-        "daily": [
-          "miana_tushare",
-          "miana_tushare_cache"
-        ]
-      },
-      "first_open": 9.49,
-      "first_low": 9.41,
-      "first_vol": 97371.0,
-      "prior20": -0.19392917369308593,
-      "pre_ret20": -0.19392917369308593,
-      "pre_ret60": -0.09125475285171092,
-      "dist_ma20": -0.10196796768587668,
-      "vol_ratio_5_20": 0.5939151354594328,
-      "bear_ma": true,
-      "market_up": false,
-      "branch": "B",
-      "small_yang": 0,
-      "entry_date": "20261110",
-      "prev_close": 10.15,
-      "threshold": 10.454500000000001,
+      "prev_close": 11.95,
+      "threshold": 12.3085,
       "status": "待触发",
       "reason": "等待09:45前涨超3%",
       "pool": "v1.3执行"
@@ -1675,7 +1590,7 @@
   "data_quality": {
     "trade_date": "20261110",
     "data_date": "20261109",
-    "daily_rows": 5573,
+    "daily_rows": 4729,
     "daily_status": "complete",
     "daily_error": null,
     "limit_rows": 99,
@@ -1683,22 +1598,22 @@
     "limit_down": 1,
     "market": {
       "date": "20261109",
-      "close": 4056.1081,
-      "ma20": 4101.270614999999,
+      "close": 4056.11,
+      "ma20": 4101.27097,
       "market_up": false,
-      "source": "miana_tushare"
+      "source": "eastmoney"
     },
     "sources": {
       "trade_cal": {
         "20261110": "cache"
       },
       "index_daily": {
-        "20261109": "miana_tushare"
+        "20261109": "eastmoney"
       },
       "limit_list": {
         "20261109": "miana_tushare",
         "20261106": "miana_tushare",
-        "20261105": "miana_tushare"
+        "20261105": "eastmoney,miana_tushare"
       },
       "daily": {
         "20260713": "miana_tushare_cache",
@@ -1775,12 +1690,12 @@
         "20261028": "miana_tushare_cache",
         "20261029": "miana_tushare_cache",
         "20261030": "miana_tushare_cache",
-        "20261102": "miana_tushare_cache",
-        "20261103": "miana_tushare",
-        "20261104": "miana_tushare",
-        "20261105": "miana_tushare",
-        "20261106": "miana_tushare",
-        "20261109": "miana_tushare"
+        "20261102": "miana_tushare",
+        "20261103": "eastmoney",
+        "20261104": "eastmoney",
+        "20261105": "eastmoney",
+        "20261106": "eastmoney",
+        "20261109": "eastmoney"
       }
     },
     "fallbacks": []
@@ -1791,12 +1706,12 @@
         "20261110": "cache"
       },
       "index_daily": {
-        "20261109": "miana_tushare"
+        "20261109": "eastmoney"
       },
       "limit_list": {
         "20261109": "miana_tushare",
         "20261106": "miana_tushare",
-        "20261105": "miana_tushare"
+        "20261105": "eastmoney,miana_tushare"
       },
       "daily": {
         "20260713": "miana_tushare_cache",
@@ -1873,12 +1788,12 @@
         "20261028": "miana_tushare_cache",
         "20261029": "miana_tushare_cache",
         "20261030": "miana_tushare_cache",
-        "20261102": "miana_tushare_cache",
-        "20261103": "miana_tushare",
-        "20261104": "miana_tushare",
-        "20261105": "miana_tushare",
-        "20261106": "miana_tushare",
-        "20261109": "miana_tushare"
+        "20261102": "miana_tushare",
+        "20261103": "eastmoney",
+        "20261104": "eastmoney",
+        "20261105": "eastmoney",
+        "20261106": "eastmoney",
+        "20261109": "eastmoney"
       }
     },
     "fallbacks": []
