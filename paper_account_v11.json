@@ -4,21 +4,8 @@
   "model": "N字二板量化模型 v1.3",
   "initial_capital": 100000.0,
   "start_date": "20261020",
-  "cash": 80398.1719559819,
-  "positions": [
-    {
-      "code": "002596.SZ",
-      "name": "海南瑞泽",
-      "branch": "B",
-      "entry_date": "20261109",
-      "entry_price": 3.2754000000000003,
-      "shares": 6096.6133143428815,
-      "cost": 19994.806751223412,
-      "status": "封板/连板中",
-      "pending_t1_open": false,
-      "pending_t2_close": false
-    }
-  ],
+  "cash": 101769.46584277207,
+  "positions": [],
   "stock_pool": [
     {
       "first_date": "20261110",
@@ -1405,6 +1392,17 @@
       "shares": 730.3120203333474,
       "pnl": 392.978707205315,
       "reason": "T+2收盘卖（买入日未封板）"
+    },
+    {
+      "date": "20261111",
+      "side": "SELL",
+      "code": "002596.SZ",
+      "name": "海南瑞泽",
+      "branch": "B",
+      "price": 3.51,
+      "shares": 6096.6133143428815,
+      "pnl": 1376.4871355667565,
+      "reason": "断板收盘卖"
     }
   ],
   "reviews": [
@@ -1643,6 +1641,30 @@
         },
         "fallbacks": []
       }
+    },
+    {
+      "date": "20261111",
+      "equity": 101769.46584277207,
+      "cash": 101769.46584277207,
+      "positions": 0,
+      "sells": 1,
+      "realized_pnl": 1376.4871355667565,
+      "day_pnl": 1402.446636991488,
+      "total_return": 0.017694658427720666,
+      "data_sources": {
+        "sources": {
+          "trade_cal": {
+            "20261111": "cache"
+          },
+          "daily": {
+            "20261111": "eastmoney"
+          },
+          "limit_list": {
+            "20261111": "eastmoney"
+          }
+        },
+        "fallbacks": []
+      }
     }
   ],
   "equity_curve": [
@@ -1701,11 +1723,15 @@
     {
       "date": "20261110",
       "equity": 100367.01920578058
+    },
+    {
+      "date": "20261111",
+      "equity": 101769.46584277207
     }
   ],
   "last_preopen_date": "20261111",
   "last_buy_date": "20261111",
-  "last_review_date": "20261110",
+  "last_review_date": "20261111",
   "market": {
     "date": "20261110",
     "close": 4059.11,
@@ -2344,6 +2370,12 @@
     "sources": {
       "trade_cal": {
         "20261111": "cache"
+      },
+      "daily": {
+        "20261111": "eastmoney"
+      },
+      "limit_list": {
+        "20261111": "eastmoney"
       }
     },
     "fallbacks": []
