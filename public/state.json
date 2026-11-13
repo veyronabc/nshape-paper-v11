@@ -14,7 +14,7 @@
       "entry_price": 16.819899999999997,
       "shares": 1208.5367606736847,
       "cost": 20353.893168554416,
-      "status": "待收盘确认",
+      "status": "T+2待卖",
       "pending_t1_open": false,
       "pending_t2_close": true
     }
@@ -2501,6 +2501,30 @@
         },
         "fallbacks": []
       }
+    },
+    {
+      "date": "20261113",
+      "equity": 100885.09988867072,
+      "cash": 81415.57267421766,
+      "positions": 1,
+      "sells": 0,
+      "realized_pnl": 0,
+      "day_pnl": -857.9402464022423,
+      "total_return": 0.008850998886707151,
+      "data_sources": {
+        "sources": {
+          "trade_cal": {
+            "20261113": "cache"
+          },
+          "daily": {
+            "20261113": "miana_tushare"
+          },
+          "limit_list": {
+            "20261113": "eastmoney"
+          }
+        },
+        "fallbacks": []
+      }
     }
   ],
   "equity_curve": [
@@ -2567,11 +2591,15 @@
     {
       "date": "20261112",
       "equity": 101743.04013507297
+    },
+    {
+      "date": "20261113",
+      "equity": 100885.09988867072
     }
   ],
   "last_preopen_date": "20261113",
   "last_buy_date": "20261113",
-  "last_review_date": "20261112",
+  "last_review_date": "20261113",
   "market": {
     "date": "20261112",
     "close": 4043.93,
@@ -2954,8 +2982,11 @@
       "trade_cal": {
         "20261113": "cache"
       },
-      "minutes": {
-        "20261113:605577.SH": "eastmoney"
+      "daily": {
+        "20261113": "miana_tushare"
+      },
+      "limit_list": {
+        "20261113": "eastmoney"
       }
     },
     "fallbacks": []
