@@ -4,21 +4,8 @@
   "model": "N字二板量化模型 v1.3",
   "initial_capital": 100000.0,
   "start_date": "20261020",
-  "cash": 81415.57267421766,
-  "positions": [
-    {
-      "code": "605577.SH",
-      "name": "龙版传媒",
-      "branch": "B",
-      "entry_date": "20261112",
-      "entry_price": 16.819899999999997,
-      "shares": 1208.5367606736847,
-      "cost": 20353.893168554416,
-      "status": "T+2待卖",
-      "pending_t1_open": false,
-      "pending_t2_close": true
-    }
-  ],
+  "cash": 101861.57100348633,
+  "positions": [],
   "stock_pool": [
     {
       "first_date": "20261112",
@@ -1591,6 +1578,17 @@
       "shares": 1208.5367606736847,
       "pnl": 0.0,
       "reason": "09:45前涨超3%触发"
+    },
+    {
+      "date": "20261116",
+      "side": "SELL",
+      "code": "605577.SH",
+      "name": "龙版传媒",
+      "branch": "B",
+      "price": 16.94,
+      "shares": 1208.5367606736847,
+      "pnl": 92.10516071425081,
+      "reason": "T+2收盘卖（买入日未封板）"
     }
   ],
   "reviews": [
@@ -1901,6 +1899,30 @@
         },
         "fallbacks": []
       }
+    },
+    {
+      "date": "20261116",
+      "equity": 101861.57100348633,
+      "cash": 101861.57100348633,
+      "positions": 0,
+      "sells": 1,
+      "realized_pnl": 92.10516071425081,
+      "day_pnl": 976.4711148156057,
+      "total_return": 0.018615710034863397,
+      "data_sources": {
+        "sources": {
+          "trade_cal": {
+            "20261116": "cache"
+          },
+          "daily": {
+            "20261116": "miana_tushare"
+          },
+          "limit_list": {
+            "20261116": "eastmoney"
+          }
+        },
+        "fallbacks": []
+      }
     }
   ],
   "equity_curve": [
@@ -1971,11 +1993,15 @@
     {
       "date": "20261113",
       "equity": 100885.09988867072
+    },
+    {
+      "date": "20261116",
+      "equity": 101861.57100348633
     }
   ],
   "last_preopen_date": "20261116",
   "last_buy_date": "20261116",
-  "last_review_date": "20261113",
+  "last_review_date": "20261116",
   "market": {
     "date": "20261113",
     "close": 4016.29,
@@ -2292,8 +2318,11 @@
       "trade_cal": {
         "20261116": "cache"
       },
-      "minutes": {
-        "20261116:002693.SZ": "eastmoney"
+      "daily": {
+        "20261116": "miana_tushare"
+      },
+      "limit_list": {
+        "20261116": "eastmoney"
       }
     },
     "fallbacks": []
