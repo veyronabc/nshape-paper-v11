@@ -1427,8 +1427,8 @@
   "last_review_date": "20261118",
   "market": {
     "date": "20261118",
-    "close": 3965.17,
-    "ma20": 4043.66644,
+    "close": 3983.77,
+    "ma20": 4044.59644,
     "market_up": false,
     "source": "eastmoney"
   },
@@ -1627,8 +1627,8 @@
     "limit_down": 39,
     "market": {
       "date": "20261118",
-      "close": 3965.17,
-      "ma20": 4043.66644,
+      "close": 3983.77,
+      "ma20": 4044.59644,
       "market_up": false,
       "source": "eastmoney"
     },
