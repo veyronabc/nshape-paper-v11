@@ -221,11 +221,16 @@ def stage_buy(date, path):
         unique[p["code"]] = p
     candidates = sorted(unique.values(), key=lambda p: p.get("first_date", ""), reverse=True)
     minute = pe.minute_trigger(date, candidates)
-    available = sum(1 for c in candidates if minute.get(c["code"]))
-    if candidates and available == 0:
+    missing = [c["code"] for c in candidates if not minute.get(c["code"])]
+    if missing:
         return {
             "ok": False,
-            "message": "09:30-09:45 分钟数据尚未准备好，稍后重试",
+            "message": (
+                "miana主源09:30-09:45分钟数据不足，买入阶段未执行："
+                + "、".join(missing)
+            ),
+            "missing": missing,
+            "data_sources": pe.get_provenance(),
         }
 
     triggered = []

@@ -4,7 +4,7 @@
   "model": "N字二板量化模型 v1.3",
   "initial_capital": 100000.0,
   "start_date": "20261020",
-  "cash": 40755.208250974436,
+  "cash": 81489.25680278907,
   "positions": [
     {
       "code": "002249.SZ",
@@ -15,30 +15,6 @@
       "shares": 3048.3436079269295,
       "cost": 20372.314200697267,
       "status": "T+2待卖",
-      "pending_t1_open": false,
-      "pending_t2_close": true
-    },
-    {
-      "code": "001331.SZ",
-      "name": "胜通能源",
-      "branch": "B",
-      "entry_date": "20261126",
-      "entry_price": 25.8324,
-      "shares": 787.4057973680884,
-      "cost": 20367.024275907315,
-      "status": "待收盘确认",
-      "pending_t1_open": false,
-      "pending_t2_close": true
-    },
-    {
-      "code": "002913.SZ",
-      "name": "奥士康",
-      "branch": "B",
-      "entry_date": "20261126",
-      "entry_price": 59.0087,
-      "shares": 344.7047896315528,
-      "cost": 20367.02427590732,
-      "status": "待收盘确认",
       "pending_t1_open": false,
       "pending_t2_close": true
     }
@@ -77,10 +53,9 @@
       "entry_date": "20261126",
       "prev_close": 25.08,
       "threshold": 25.8324,
-      "status": "触发买入",
-      "reason": "等待09:45前涨超3%",
-      "entry_price": 25.8324,
-      "entry_gap": 0.030000000000000027
+      "status": "未执行",
+      "reason": "miana主源缺少11月26日09:30-09:45分钟数据，未执行",
+      "buy_status": "数据不足"
     },
     {
       "first_date": "20261123",
@@ -115,8 +90,9 @@
       "entry_date": "20261126",
       "prev_close": 6.25,
       "threshold": 6.4375,
-      "status": "未触发",
-      "reason": "等待09:45前涨超3%"
+      "status": "未执行",
+      "reason": "miana主源缺少11月26日09:30-09:45分钟数据，未执行",
+      "buy_status": "数据不足"
     },
     {
       "first_date": "20261123",
@@ -151,10 +127,9 @@
       "entry_date": "20261126",
       "prev_close": 57.29,
       "threshold": 59.0087,
-      "status": "触发买入",
-      "reason": "等待09:45前涨超3%",
-      "entry_price": 59.0087,
-      "entry_gap": 0.030000000000000027
+      "status": "未执行",
+      "reason": "miana主源缺少11月26日09:30-09:45分钟数据，未执行",
+      "buy_status": "数据不足"
     },
     {
       "first_date": "20261123",
@@ -189,8 +164,9 @@
       "entry_date": "20261126",
       "prev_close": 26.51,
       "threshold": 27.305300000000003,
-      "status": "未触发",
-      "reason": "等待09:45前涨超3%"
+      "status": "未执行",
+      "reason": "miana主源缺少11月26日09:30-09:45分钟数据，未执行",
+      "buy_status": "数据不足"
     },
     {
       "first_date": "20261125",
@@ -3215,86 +3191,6 @@
       "entry_price": 6.6744,
       "entry_gap": 0.030000000000000027,
       "buy_status": "触发买入"
-    },
-    {
-      "first_date": "20261123",
-      "gap_days": 3,
-      "code": "001331.SZ",
-      "name": "胜通能源",
-      "first_time": "134424",
-      "first_close": 28.05,
-      "first_open_times": 1,
-      "first_turnover": 4.46,
-      "float_mv": 8017647907.5,
-      "_source": "miana_tushare",
-      "data_sources": {
-        "first_board": "miana_tushare",
-        "daily": [
-          "miana_tushare",
-          "miana_tushare_cache"
-        ]
-      },
-      "first_open": 24.53,
-      "first_low": 24.52,
-      "first_vol": 127599.6,
-      "prior20": -0.1991206030150754,
-      "pre_ret20": -0.1991206030150754,
-      "pre_ret60": -0.42863544700873857,
-      "dist_ma20": -0.2028135990621337,
-      "vol_ratio_5_20": 0.6096523828653375,
-      "bear_ma": true,
-      "market_up": false,
-      "branch": "B",
-      "small_yang": 0,
-      "entry_date": "20261126",
-      "prev_close": 25.08,
-      "threshold": 25.8324,
-      "status": "触发买入",
-      "reason": "等待09:45前涨超3%",
-      "pool": "v1.3执行",
-      "entry_price": 25.8324,
-      "entry_gap": 0.030000000000000027,
-      "buy_status": "触发买入"
-    },
-    {
-      "first_date": "20261123",
-      "gap_days": 3,
-      "code": "002913.SZ",
-      "name": "奥士康",
-      "first_time": "111930",
-      "first_close": 60.59,
-      "first_open_times": 0,
-      "first_turnover": 3.82,
-      "float_mv": 18506544405.16,
-      "_source": "miana_tushare",
-      "data_sources": {
-        "first_board": "miana_tushare",
-        "daily": [
-          "miana_tushare",
-          "miana_tushare_cache"
-        ]
-      },
-      "first_open": 53.42,
-      "first_low": 53.42,
-      "first_vol": 116756.61,
-      "prior20": -0.24121779859484782,
-      "pre_ret20": -0.24121779859484782,
-      "pre_ret60": -0.06310597040312982,
-      "dist_ma20": -0.05272119080582338,
-      "vol_ratio_5_20": 0.7647694309599778,
-      "bear_ma": true,
-      "market_up": false,
-      "branch": "B",
-      "small_yang": 0,
-      "entry_date": "20261126",
-      "prev_close": 57.29,
-      "threshold": 59.0087,
-      "status": "触发买入",
-      "reason": "等待09:45前涨超3%",
-      "pool": "v1.3执行",
-      "entry_price": 59.0087,
-      "entry_gap": 0.030000000000000027,
-      "buy_status": "触发买入"
     }
   ],
   "trades": [
@@ -3372,28 +3268,6 @@
       "branch": "B",
       "price": 6.6744,
       "shares": 3048.3436079269295,
-      "pnl": 0.0,
-      "reason": "09:45前涨超3%触发"
-    },
-    {
-      "date": "20261126",
-      "side": "BUY",
-      "code": "001331.SZ",
-      "name": "胜通能源",
-      "branch": "B",
-      "price": 25.8324,
-      "shares": 787.4057973680884,
-      "pnl": 0.0,
-      "reason": "09:45前涨超3%触发"
-    },
-    {
-      "date": "20261126",
-      "side": "BUY",
-      "code": "002913.SZ",
-      "name": "奥士康",
-      "branch": "B",
-      "price": 59.0087,
-      "shares": 344.7047896315528,
       "pnl": 0.0,
       "reason": "09:45前涨超3%触发"
     }
@@ -4003,7 +3877,7 @@
     }
   ],
   "last_preopen_date": "20261126",
-  "last_buy_date": "20261126",
+  "last_buy_date": "20261125",
   "last_review_date": "20261125",
   "market": {
     "date": "20261125",
@@ -4051,11 +3925,10 @@
       "entry_date": "20261126",
       "prev_close": 25.08,
       "threshold": 25.8324,
-      "status": "触发买入",
-      "reason": "等待09:45前涨超3%",
+      "status": "未执行",
+      "reason": "miana主源缺少11月26日09:30-09:45分钟数据，未执行",
       "pool": "v1.2精选",
-      "entry_price": 25.8324,
-      "entry_gap": 0.030000000000000027
+      "buy_status": "数据不足"
     },
     {
       "first_date": "20261123",
@@ -4090,9 +3963,10 @@
       "entry_date": "20261126",
       "prev_close": 26.51,
       "threshold": 27.305300000000003,
-      "status": "未触发",
-      "reason": "等待09:45前涨超3%",
-      "pool": "v1.2精选"
+      "status": "未执行",
+      "reason": "miana主源缺少11月26日09:30-09:45分钟数据，未执行",
+      "pool": "v1.2精选",
+      "buy_status": "数据不足"
     },
     {
       "first_date": "20261125",
@@ -4262,12 +4136,10 @@
       "entry_date": "20261126",
       "prev_close": 25.08,
       "threshold": 25.8324,
-      "status": "触发买入",
-      "reason": "等待09:45前涨超3%",
+      "status": "未执行",
+      "reason": "miana主源缺少11月26日09:30-09:45分钟数据，未执行",
       "pool": "v1.3执行",
-      "entry_price": 25.8324,
-      "entry_gap": 0.030000000000000027,
-      "buy_status": "触发买入"
+      "buy_status": "数据不足"
     },
     {
       "first_date": "20261123",
@@ -4302,10 +4174,10 @@
       "entry_date": "20261126",
       "prev_close": 6.25,
       "threshold": 6.4375,
-      "status": "未触发",
-      "reason": "等待09:45前涨超3%",
+      "status": "未执行",
+      "reason": "miana主源缺少11月26日09:30-09:45分钟数据，未执行",
       "pool": "v1.3执行",
-      "buy_status": "未触发"
+      "buy_status": "数据不足"
     },
     {
       "first_date": "20261123",
@@ -4340,12 +4212,10 @@
       "entry_date": "20261126",
       "prev_close": 57.29,
       "threshold": 59.0087,
-      "status": "触发买入",
-      "reason": "等待09:45前涨超3%",
+      "status": "未执行",
+      "reason": "miana主源缺少11月26日09:30-09:45分钟数据，未执行",
       "pool": "v1.3执行",
-      "entry_price": 59.0087,
-      "entry_gap": 0.030000000000000027,
-      "buy_status": "触发买入"
+      "buy_status": "数据不足"
     },
     {
       "first_date": "20261123",
@@ -4380,10 +4250,10 @@
       "entry_date": "20261126",
       "prev_close": 26.51,
       "threshold": 27.305300000000003,
-      "status": "未触发",
-      "reason": "等待09:45前涨超3%",
+      "status": "未执行",
+      "reason": "miana主源缺少11月26日09:30-09:45分钟数据，未执行",
       "pool": "v1.3执行",
-      "buy_status": "未触发"
+      "buy_status": "数据不足"
     }
   ],
   "v13_pool_date": "20261126",
@@ -4503,18 +4373,107 @@
         "20261125": "miana_tushare"
       }
     },
-    "fallbacks": []
+    "fallbacks": [],
+    "buy_data_status": "missing_primary_minutes",
+    "buy_data_error": "miana_tushare stk_mins 缺少 20261126 09:30-09:45 数据"
   },
   "data_sources": {
     "sources": {
       "trade_cal": {
         "20261126": "cache"
       },
+      "index_daily": {
+        "20261125": "miana_tushare"
+      },
+      "limit_list": {
+        "20261125": "miana_tushare",
+        "20261124": "miana_tushare",
+        "20261123": "miana_tushare"
+      },
+      "daily": {
+        "20260729": "miana_tushare_cache",
+        "20260730": "miana_tushare_cache",
+        "20260731": "miana_tushare_cache",
+        "20260803": "miana_tushare_cache",
+        "20260804": "miana_tushare_cache",
+        "20260805": "miana_tushare_cache",
+        "20260806": "miana_tushare_cache",
+        "20260807": "miana_tushare_cache",
+        "20260810": "miana_tushare_cache",
+        "20260811": "miana_tushare_cache",
+        "20260812": "miana_tushare_cache",
+        "20260813": "miana_tushare_cache",
+        "20260814": "miana_tushare_cache",
+        "20260817": "miana_tushare_cache",
+        "20260818": "miana_tushare_cache",
+        "20260819": "miana_tushare_cache",
+        "20260820": "miana_tushare_cache",
+        "20260821": "miana_tushare_cache",
+        "20260824": "miana_tushare_cache",
+        "20260825": "miana_tushare_cache",
+        "20260826": "miana_tushare_cache",
+        "20260827": "miana_tushare_cache",
+        "20260828": "miana_tushare_cache",
+        "20260831": "miana_tushare_cache",
+        "20260901": "miana_tushare_cache",
+        "20260902": "miana_tushare_cache",
+        "20260903": "miana_tushare_cache",
+        "20260904": "miana_tushare_cache",
+        "20260907": "miana_tushare_cache",
+        "20260908": "miana_tushare_cache",
+        "20260909": "miana_tushare_cache",
+        "20260910": "miana_tushare_cache",
+        "20260911": "miana_tushare_cache",
+        "20260914": "miana_tushare_cache",
+        "20260915": "miana_tushare_cache",
+        "20260916": "miana_tushare_cache",
+        "20260917": "miana_tushare_cache",
+        "20260918": "miana_tushare_cache",
+        "20260921": "miana_tushare_cache",
+        "20260922": "miana_tushare_cache",
+        "20260923": "miana_tushare_cache",
+        "20260924": "miana_tushare_cache",
+        "20260928": "miana_tushare_cache",
+        "20260929": "miana_tushare_cache",
+        "20260930": "miana_tushare_cache",
+        "20261008": "miana_tushare_cache",
+        "20261009": "miana_tushare_cache",
+        "20261012": "miana_tushare_cache",
+        "20261013": "miana_tushare_cache",
+        "20261014": "miana_tushare_cache",
+        "20261015": "miana_tushare_cache",
+        "20261016": "miana_tushare_cache",
+        "20261019": "miana_tushare_cache",
+        "20261020": "miana_tushare_cache",
+        "20261021": "miana_tushare_cache",
+        "20261022": "miana_tushare_cache",
+        "20261023": "miana_tushare_cache",
+        "20261026": "miana_tushare_cache",
+        "20261027": "miana_tushare_cache",
+        "20261028": "miana_tushare_cache",
+        "20261029": "miana_tushare_cache",
+        "20261030": "miana_tushare_cache",
+        "20261102": "miana_tushare_cache",
+        "20261103": "miana_tushare",
+        "20261104": "miana_tushare",
+        "20261105": "miana_tushare",
+        "20261106": "miana_tushare",
+        "20261109": "miana_tushare",
+        "20261110": "miana_tushare",
+        "20261111": "miana_tushare",
+        "20261112": "miana_tushare",
+        "20261113": "miana_tushare",
+        "20261116": "miana_tushare",
+        "20261117": "miana_tushare",
+        "20261118": "miana_tushare",
+        "20261119": "miana_tushare",
+        "20261120": "miana_tushare",
+        "20261123": "miana_tushare",
+        "20261124": "miana_tushare",
+        "20261125": "miana_tushare"
+      },
       "minutes": {
-        "20261126:000636.SZ": "eastmoney",
-        "20261126:001331.SZ": "eastmoney",
-        "20261126:002249.SZ": "eastmoney",
-        "20261126:002913.SZ": "eastmoney"
+        "20261126": "missing"
       }
     },
     "fallbacks": []

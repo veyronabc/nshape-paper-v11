@@ -613,118 +613,63 @@ def minute_trigger(date, events):
     codes = sorted({e["code"] for e in events})
     result = {}
     os.makedirs(MIN_DIR, exist_ok=True)
-    for i in range(0, len(codes), 50):
-        chunk = codes[i : i + 50]
-        key = f"{date}_{i//50}"
-        path = os.path.join(MIN_DIR, key + ".json")
-        if os.path.exists(path) and os.path.getsize(path) > 2:
-            data = read_json(path)
-            data = {
-                code: _tag_rows(bars, "cache_unknown")
-                for code, bars in data.items()
-            }
-        else:
+    path = os.path.join(MIN_DIR, f"{date}_primary.json")
+    data = {}
+    if os.path.exists(path) and os.path.getsize(path) > 2:
+        data = read_json(path)
+        data = {
+            code: bars
+            for code, bars in data.items()
+            if bars
+            and all(
+                row.get("_source") == PRIMARY_SOURCE
+                for row in bars
+            )
+        }
+    for code in codes:
+        bars = data.get(code, [])
+        if not bars:
+            primary_error = None
             try:
                 rows = api.call(
                     "stk_mins",
-                    ts_code=",".join(chunk),
+                    ts_code=code,
                     freq="1min",
-                    start_date=f"{date[:4]}-{date[4:6]}-{date[6:]} 09:30:00",
-                    end_date=f"{date[:4]}-{date[4:6]}-{date[6:]} 09:45:00",
+                    trade_date=date,
                     retries=4,
                 )
             except Exception as exc:
                 rows = []
                 primary_error = exc
-            else:
-                primary_error = None
-            data = defaultdict(list)
+            bars = []
             for row in rows:
-                data[row["ts_code"]].append(
-                    {**row, "_source": PRIMARY_SOURCE}
-                )
-            for code in chunk:
-                if data.get(code):
+                stamp = str(row.get("trade_time") or "")
+                if not stamp.startswith(
+                    f"{date[:4]}-{date[4:6]}-{date[6:]}"
+                ):
                     continue
-                native_error = None
-                try:
-                    fallback_rows = backup_api.minute_bar(code, date)
-                except Exception as exc:
-                    fallback_rows = []
-                    fallback_error = exc
-                else:
-                    fallback_error = None
-                if fallback_rows:
-                    data[code].extend(
-                        row
-                        for row in fallback_rows
-                        if str(row.get("trade_time") or "")[11:16]
-                        <= "09:45"
-                    )
-                if not data.get(code):
-                    try:
-                        native_rows = api.native_get(
-                            "/api/stock/v3/kline",
-                            symbol=code,
-                            type="1min",
-                            beginDate=(
-                                f"{date[:4]}-{date[4:6]}-{date[6:]} 09:30:00"
-                            ),
-                            endDate=(
-                                f"{date[:4]}-{date[4:6]}-{date[6:]} 09:45:59"
-                            ),
-                            limit="30",
-                            method="bfq",
-                        )
-                    except Exception as exc:
-                        native_rows = []
-                        native_error = exc
-                    else:
-                        native_error = None
-                    for row in native_rows:
-                        bar_date = str(row.get("date") or "")
-                        if not bar_date.startswith(
-                            f"{date[:4]}-{date[4:6]}-{date[6:]}"
-                        ):
-                            continue
-                        data[code].append(
-                            {
-                                "ts_code": code,
-                                "trade_time": bar_date,
-                                "open": row.get("open"),
-                                "high": row.get("high"),
-                                "low": row.get("low"),
-                                "close": row.get("close"),
-                                "_source": "miana_native",
-                            }
-                        )
-                if data.get(code):
-                    reason = primary_error or fallback_error or native_error
-                    source = _row_source(data[code], "cache_unknown")
-                    _record_source(
-                        "minutes",
-                        f"{date}:{code}",
-                        source,
-                        reason if source != PRIMARY_SOURCE else None,
-                    )
-                else:
-                    _record_source(
-                        "minutes",
-                        f"{date}:{code}",
-                        "missing",
-                        primary_error or fallback_error or native_error,
-                    )
-            if any(data.values()):
-                write_json(path, dict(data))
-        for code, bars in data.items():
-            result[code] = sorted(
-                bars, key=lambda r: r["trade_time"]
-            )
+                if not ("09:30:00" <= stamp[11:] <= "09:45:59"):
+                    continue
+                bars.append({**row, "_source": PRIMARY_SOURCE})
+            if bars:
+                data[code] = sorted(bars, key=lambda r: r["trade_time"])
+            else:
+                data.pop(code, None)
+                _record_source(
+                    "minutes",
+                    f"{date}:{code}",
+                    "missing",
+                    primary_error or "miana stk_mins returned no bars",
+                )
+        if data.get(code):
+            result[code] = data[code]
             _record_source(
                 "minutes",
                 f"{date}:{code}",
-                _row_source(bars, "cache_unknown"),
+                PRIMARY_SOURCE,
             )
+    if result and len(result) == len(codes):
+        write_json(path, result)
     return result
 
 
