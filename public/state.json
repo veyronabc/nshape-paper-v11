@@ -4,20 +4,8 @@
   "model": "N字二板量化模型 v1.3",
   "initial_capital": 100000.0,
   "start_date": "20261020",
-  "cash": 61122.23252688175,
+  "cash": 81276.0331662682,
   "positions": [
-    {
-      "code": "002249.SZ",
-      "name": "大洋电机",
-      "branch": "B",
-      "entry_date": "20261125",
-      "entry_price": 6.6744,
-      "shares": 3048.3436079269295,
-      "cost": 20372.314200697267,
-      "status": "T+2待卖",
-      "pending_t1_open": false,
-      "pending_t2_close": true
-    },
     {
       "code": "001331.SZ",
       "name": "胜通能源",
@@ -26,7 +14,7 @@
       "entry_price": 25.8324,
       "shares": 787.4057973680884,
       "cost": 20367.024275907315,
-      "status": "待收盘确认",
+      "status": "T+2待卖",
       "pending_t1_open": false,
       "pending_t2_close": true
     }
@@ -1305,6 +1293,17 @@
       "shares": 787.4057973680884,
       "pnl": 0.0,
       "reason": "09:45前涨超3%触发"
+    },
+    {
+      "date": "20261127",
+      "side": "SELL",
+      "code": "002249.SZ",
+      "name": "大洋电机",
+      "branch": "B",
+      "price": 6.62,
+      "shares": 3048.3436079269295,
+      "pnl": -218.51356131081047,
+      "reason": "T+2收盘卖（买入日未封板）"
     }
   ],
   "reviews": [
@@ -1807,6 +1806,30 @@
         },
         "fallbacks": []
       }
+    },
+    {
+      "date": "20261127",
+      "equity": 102402.13070965401,
+      "cash": 81276.0331662682,
+      "positions": 1,
+      "sells": 1,
+      "realized_pnl": -218.51356131081047,
+      "day_pnl": 1860.7263573216333,
+      "total_return": 0.024021307096540045,
+      "data_sources": {
+        "sources": {
+          "trade_cal": {
+            "20261127": "cache"
+          },
+          "daily": {
+            "20261127": "miana_tushare"
+          },
+          "limit_list": {
+            "20261127": "miana_tushare"
+          }
+        },
+        "fallbacks": []
+      }
     }
   ],
   "equity_curve": [
@@ -1909,11 +1932,15 @@
     {
       "date": "20261125",
       "equity": 100541.40435233238
+    },
+    {
+      "date": "20261127",
+      "equity": 102402.13070965401
     }
   ],
   "last_preopen_date": "20261127",
   "last_buy_date": "20261127",
-  "last_review_date": "20261125",
+  "last_review_date": "20261127",
   "market": {
     "date": "20261126",
     "close": 3900.5483,
@@ -2354,6 +2381,12 @@
     "sources": {
       "trade_cal": {
         "20261127": "cache"
+      },
+      "daily": {
+        "20261127": "miana_tushare"
+      },
+      "limit_list": {
+        "20261127": "miana_tushare"
       }
     },
     "fallbacks": []
